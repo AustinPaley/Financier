@@ -1,6 +1,8 @@
 import React from 'react'
 import { Link } from 'react-router-dom'
 
+const NEWACCOUNTURL = 'http://localhost:4000/api/v1/users'
+
 export default class Register extends React.Component{
   constructor(props){
     super(props)
@@ -49,6 +51,27 @@ export default class Register extends React.Component{
     }
   }
 
+  createUser = (event) => {
+    event.preventDefault()
+    fetch(NEWACCOUNTURL, {
+      method: 'POST',
+      headers: {
+        'Accept':'application/json',
+        'Content-Type': 'application/json'
+      },
+      body: JSON.stringify({
+        username: this.state.username,
+        password: this.state.password,
+        email: this.state.emailaddress
+      })
+    })
+    .then(res => res.json())
+    .then(response => this.setState({
+      username: "Username",
+      emailaddress: 'Email Address',
+      password: 'Password'
+    }))
+  }
 
   render(){
     return(
@@ -58,10 +81,10 @@ export default class Register extends React.Component{
             <h1 id="registration-header">
               Create a New Account
             </h1>
-            <form>
-              <input type="text" value={this.state.username} id="username-input" className="registration-input" onClick={this.clear} onChange={this.handleChange} />
-              <input type="text" value={this.state.emailaddress} id="email-input" className="registration-input" onClick={this.clear} onChange={this.handleChange} />
-              <input type="text" value={this.state.password} id="password-input" className="registration-input" onClick={this.clear} onChange={this.handleChange} />
+            <form onSubmit={this.createUser}>
+              <input type="text" value={this.state.username} id="username-input" name="username-input" className="registration-input" onClick={this.clear} onChange={this.handleChange} />
+              <input type="text" value={this.state.emailaddress} id="email-input" name="email-input" className="registration-input" onClick={this.clear} onChange={this.handleChange} />
+              <input type="text" value={this.state.password} id="password-input" name="password-input" className="registration-input" onClick={this.clear} onChange={this.handleChange} />
               <input type="submit" value="Register" id="register-button" />
               <p id="registration-login-text">Already have an account? Sign in <Link to='/login'>here</Link>.</p>
             </form>
