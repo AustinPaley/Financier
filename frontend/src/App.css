@@ -95,3 +95,47 @@
   margin-left: 8%;
   margin-top: 10%
 }
+
+#login-header{
+  color: #FFF0A8;
+  margin-left: 12.5%;
+  margin-top: 20%;
+}
+
+.login-input{
+  width: 20vw;
+  position: relative;
+  top: 50%;
+  transform: translateY(-50%);
+  border-radius: 5px;
+  font-size: 16px;
+  color: grey;
+  font-style: italic;
+  margin-left: 16%;
+  margin-top: 6%
+}
+
+.center-login{
+  position: absolute;
+  margin: auto;
+  margin-top: 17%;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  width: 400px;
+  height: 400px;
+  border-radius: 3px;
+  background-color: rgba(0, 0, 0, 0.79);
+}
+
+#login-button{
+  width: 20vw;
+  position: relative;
+  top: 50%;
+  transform: translateY(-50%);
+  border-radius: 5px;
+  font-size: 16px;
+  margin-left: 16%;
+  margin-top: 10%
+}

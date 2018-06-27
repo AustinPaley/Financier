@@ -6,12 +6,22 @@ import Login from './Login'
 import { Route } from 'react-router-dom'
 import Register from './Register'
 
+const EXISTINGACCOUNTURL = 'http://localhost:4000/api/v1/users'
+
 export default class App extends Component {
   constructor(props){
     super(props)
     this.state = {
-      value: '',
+      users: [],
     }
+  }
+
+  componentDidMount(){
+    fetch(EXISTINGACCOUNTURL)
+    .then(res => res.json())
+    .then(json => this.setState({
+      users: json
+    }))
   }
 
   render() {

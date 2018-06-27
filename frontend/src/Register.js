@@ -77,7 +77,7 @@ export default class Register extends React.Component{
     return(
       <div className="Registration">
         <div className="Overlay">
-          <div className="center-registration">
+          <div className="center-login">
             <h1 id="registration-header">
               Create a New Account
             </h1>
