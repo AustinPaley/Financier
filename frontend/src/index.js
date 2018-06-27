@@ -4,7 +4,13 @@ import './index.css';
 import App from './App';
 import registerServiceWorker from './registerServiceWorker';
 import { BrowserRouter as Router} from 'react-router-dom';
+import reducer from './reducers'
+import { createStore } from 'redux'
+import { Provider } from 'react-redux'
+
 require('dotenv').config()
 
-ReactDOM.render(<Router><App /></Router>, document.getElementById('root'));
+const store = createStore(reducer)
+
+ReactDOM.render(<Provider store={store}><Router><App /></Router></Provider>, document.getElementById('root'));
 registerServiceWorker();

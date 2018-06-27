@@ -1,9 +1,11 @@
 import React from 'react'
-import { Link } from 'react-router-dom'
+import { Link, Redirect } from 'react-router-dom'
+import { addUser } from './actions'
+import {connect} from 'react-redux'
 
 const NEWACCOUNTURL = 'http://localhost:4000/api/v1/users'
 
-export default class Register extends React.Component{
+class Register extends React.Component{
   constructor(props){
     super(props)
     this.state={
@@ -53,6 +55,7 @@ export default class Register extends React.Component{
 
   createUser = (event) => {
     event.preventDefault()
+    this.props.addUser(this.state.username, this.state.password, this.state.emailaddress)
     fetch(NEWACCOUNTURL, {
       method: 'POST',
       headers: {
@@ -94,3 +97,13 @@ export default class Register extends React.Component{
     )
   }
 }
+
+const mapDispatchToProps = (dispatch) => {
+  return{
+    addUser: (name, email, password) => {
+      dispatch(addUser(name, email, password))
+    }
+  }
+}
+
+export default connect(null, mapDispatchToProps)(Register)

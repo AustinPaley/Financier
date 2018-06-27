@@ -3,12 +3,13 @@ import './App.css';
 import StockContainer from './StockContainer'
 import NavBar from './Navbar'
 import Login from './Login'
-import { Route } from 'react-router-dom'
+import { Route, Redirect } from 'react-router-dom'
 import Register from './Register'
+import {connect} from 'react-redux'
 
 const EXISTINGACCOUNTURL = 'http://localhost:4000/api/v1/users'
 
-export default class App extends Component {
+class App extends Component {
   constructor(props){
     super(props)
     this.state = {
@@ -24,7 +25,7 @@ export default class App extends Component {
     }))
   }
 
-  render() {
+  render(){
     return (
       <div>
       <Route
@@ -43,3 +44,5 @@ export default class App extends Component {
     );
   }
 }
+
+export default connect()(App)

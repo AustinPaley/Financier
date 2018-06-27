@@ -2,6 +2,7 @@ import React from 'react'
 import Stock from './Stock'
 import Form from './Form'
 import StockHistoryContainer from './StockHistoryContainer'
+import {connect} from 'react-redux'
 
 const API = process.env.REACT_APP_ALPHA_VANTAGE_API
 const URL1 = "https://www.alphavantage.co/query?function"
@@ -11,7 +12,7 @@ const ONEMINUTE = "&interval=1min"
 const FINAL = URL1 + DAILY + SPXSYMBOL + ONEMINUTE + API
 const FINALSTATUS= "https://api.iextrading.com/1.0/deep/trading-status?symbols="
 
-export default class StockContainer extends React.Component{
+class StockContainer extends React.Component{
   constructor(props){
     super(props);
 
@@ -78,3 +79,5 @@ export default class StockContainer extends React.Component{
     )
   }
 }
+
+export default connect()(StockContainer)
