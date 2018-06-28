@@ -1,6 +1,6 @@
-export function addUser(name, email, password, token){
+export function addUser(name, email, password){
   return {
     type: 'ADD_USER',
-    payload: {name: name, email: email, password: password, token: token}
+    payload: {name: name, email: email, password: password}
   }
 }

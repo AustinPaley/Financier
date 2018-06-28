@@ -10,7 +10,6 @@ const userReducer = (state = initialState, action) => {
           name: action.payload.name,
           email: action.payload.email,
           password: action.payload.password,
-          token: action.payload.token
       };
       return {...state, users: [...state.users, action.payload]}
     default:

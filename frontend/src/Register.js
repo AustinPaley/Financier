@@ -71,7 +71,7 @@ class Register extends React.Component{
       })
     })
     .then(res => res.json())
-    .then(res => this.props.addUser(this.state.username, this.state.password, this.state.emailaddress, res.token))
+    .then(res => {localStorage.setItem('token', res.token)})
     .then(response => {
       this.setState({
       username: "Username",
@@ -105,8 +105,8 @@ class Register extends React.Component{
 
 const mapDispatchToProps = (dispatch) => {
   return{
-    addUser: (name, email, password, token) => {
-      dispatch(addUser(name, email, password, token))
+    addUser: (name, email, password) => {
+      dispatch(addUser(name, email, password))
     }
   }
 }
