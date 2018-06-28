@@ -6,7 +6,6 @@ export default class Login extends React.Component{
     super(props)
     this.state={
       username: "Username",
-      emailaddress: 'Email Address',
       password: 'Password'
     }
   }
@@ -37,6 +36,31 @@ export default class Login extends React.Component{
         password: event.target.value
       })
     }
+  }
+
+  loginUser = (event) => {
+    event.preventDefault()
+    fetch("http://localhost:4000/sessions/", {
+      method: 'POST',
+      headers: {
+        'Accept':'application/json',
+        'Content-Type': 'application/json'
+      },
+      body: JSON.stringify({
+        user: {
+          username: this.state.username,
+          password: this.state.password,
+        }
+      })
+    })
+    .then(res => res.json())
+    .then(res => {localStorage.setItem('token', res.token)})
+    .then(response => {
+      this.setState({
+      username: "Username",
+      password: 'Password',
+    })
+  })
   }
 
   render(){
