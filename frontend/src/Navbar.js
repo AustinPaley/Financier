@@ -1,12 +1,21 @@
 import React from 'react'
-
+import { Link} from 'react-router-dom'
 
 const NavBar = (props) => {
     return(
       <div>
-        <a href="">Page 1</a>
-        <a href="">Page 2</a>
+      {!localStorage.getItem("token") ?
+        <div>
+          <Link to='/login'>Login</Link>
+          <br />
+          <Link to='/register'>Register</Link>
+          <br />
+        </div>
+        :
+        null
+      }
         <a href="">Page 3</a>
+        <br />
         <a href="">Page 4</a>
       </div>
     )

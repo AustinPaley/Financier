@@ -28,13 +28,13 @@ class App extends Component {
   render(){
     return (
       <div>
-      <NavBar />
-      <Route
-        exact path='/register'
-        component={Register} />
-      <Route
-        exact path='/login'
-        component={Login} />
+        <Route
+          exact path='/register'
+          component={Register} />
+        <Route
+          exact path='/login'
+          component={Login} />
+        <NavBar />
       <div className="App">
         <Route
           exact path='/'
