@@ -1,5 +1,5 @@
 import React from 'react'
-import { Link, Redirect } from 'react-router-dom'
+import { Link, Redirect, withRouter } from 'react-router-dom'
 import { addUser } from './actions'
 import {connect} from 'react-redux'
 
@@ -115,4 +115,4 @@ const mapDispatchToProps = (dispatch) => {
   }
 }
 
-export default connect(null, mapDispatchToProps)(Register)
+export default withRouter(connect(null, mapDispatchToProps)(Register))

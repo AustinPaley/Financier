@@ -3,7 +3,7 @@ import './App.css';
 import StockContainer from './StockContainer'
 import NavBar from './Navbar'
 import Login from './Login'
-import { Route, Redirect } from 'react-router-dom'
+import { Route, Redirect, withRouter } from 'react-router-dom'
 import Register from './Register'
 import {connect} from 'react-redux'
 
@@ -28,13 +28,13 @@ class App extends Component {
   render(){
     return (
       <div>
+      <NavBar />
       <Route
-        path='/register'
+        exact path='/register'
         component={Register} />
       <Route
-        path='/login'
+        exact path='/login'
         component={Login} />
-      <NavBar />
       <div className="App">
         <Route
           exact path='/'
@@ -45,4 +45,4 @@ class App extends Component {
   }
 }
 
-export default connect()(App)
+export default withRouter(connect()(App))

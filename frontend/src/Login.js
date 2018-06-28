@@ -52,20 +52,14 @@ export default class Login extends React.Component{
     })
     .then(res => res.json())
     .then(res => {
-      console.log(res)
       localStorage.setItem('token', res.token)
       localStorage.setItem('id', res.id)
-    })
-    .then(response => {
-      this.setState({
-      username: "Username",
-      password: 'Password',
-    })
-      this.props.history.push("/")
+      this.props.history.push("/home")
   })
   }
 
   render(){
+    console.log("Login", this.props)
     return(
       <div className="Registration">
         <div className="Overlay">
