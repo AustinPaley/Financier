@@ -40,26 +40,28 @@ export default class Login extends React.Component{
 
   loginUser = (event) => {
     event.preventDefault()
-    fetch("http://localhost:4000/sessions/", {
+    fetch("http://localhost:4000/api/v1/sessions/", {
       method: 'POST',
       headers: {
-        'Accept':'application/json',
         'Content-Type': 'application/json'
       },
       body: JSON.stringify({
-        user: {
-          username: this.state.username,
-          password: this.state.password,
-        }
+        username: this.state.username,
+        password: this.state.password,
       })
     })
     .then(res => res.json())
-    .then(res => {localStorage.setItem('token', res.token)})
+    .then(res => {
+      console.log(res)
+      localStorage.setItem('token', res.token)
+      localStorage.setItem('id', res.id)
+    })
     .then(response => {
       this.setState({
       username: "Username",
       password: 'Password',
     })
+      this.props.history.push("/")
   })
   }
 

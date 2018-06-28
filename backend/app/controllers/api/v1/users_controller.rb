@@ -19,7 +19,8 @@ class Api::V1::UsersController < ApplicationController
       token = JWT.encode payload, ENV["JWT_SECRET"], 'HS256'
 
       render json: {
-        token: token
+        token: token,
+        id: @user.id
       }
     else
       render json: {

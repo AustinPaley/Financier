@@ -3,6 +3,15 @@ class ApplicationController < ActionController::API
     ENV["JWT_SECRET"]
   end
 
+  def generate_token
+    payload={
+      username: @user.username,
+      id: @user.id
+    }
+
+    JWT.encode payload, get_secret(), 'HS256'
+  end
+
   def get_token
     request.headers["Authorization"]
   end
