@@ -42,6 +42,7 @@ class Api::V1::UsersController < ApplicationController
   def user_patterns
     render json: @user.patterns
   end
+
   private
 
   def user_params
