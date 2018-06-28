@@ -56,7 +56,6 @@ class Register extends React.Component{
 
   createUser = (event) => {
     event.preventDefault()
-    this.props.addUser(this.state.username, this.state.password, this.state.emailaddress)
     fetch(NEWACCOUNTURL, {
       method: 'POST',
       headers: {
@@ -72,18 +71,17 @@ class Register extends React.Component{
       })
     })
     .then(res => res.json())
+    .then(res => this.props.addUser(this.state.username, this.state.password, this.state.emailaddress, res.token))
     .then(response => {
       this.setState({
       username: "Username",
       emailaddress: 'Email Address',
       password: 'Password',
-      token: response.token
     })
   })
   }
 
   render(){
-    console.log("Register State", this.state)
     return(
       <div className="Registration">
         <div className="Overlay">
@@ -107,8 +105,8 @@ class Register extends React.Component{
 
 const mapDispatchToProps = (dispatch) => {
   return{
-    addUser: (name, email, password) => {
-      dispatch(addUser(name, email, password))
+    addUser: (name, email, password, token) => {
+      dispatch(addUser(name, email, password, token))
     }
   }
 }

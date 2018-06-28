@@ -1,9 +1,6 @@
-export function addUser(name, email, password){
-  console.log("In Actions", name)
-  console.log(email)
-  console.log(password)
+export function addUser(name, email, password, token){
   return {
     type: 'ADD_USER',
-    payload: {name: name, email: email, password: password}
+    payload: {name: name, email: email, password: password, token: token}
   }
 }
