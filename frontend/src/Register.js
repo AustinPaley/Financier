@@ -63,17 +63,21 @@ class Register extends React.Component{
         'Content-Type': 'application/json'
       },
       body: JSON.stringify({
-        username: this.state.username,
-        password: this.state.password,
-        email: this.state.emailaddress
+        user: {
+          username: this.state.username,
+          password: this.state.password,
+          email: this.state.emailaddress
+        }
       })
     })
     .then(res => res.json())
-    .then(response => this.setState({
+    .then(response => {
+      this.setState({
       username: "Username",
       emailaddress: 'Email Address',
       password: 'Password'
-    }))
+    })
+  })
   }
 
   render(){

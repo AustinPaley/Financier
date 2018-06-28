@@ -1,7 +1,8 @@
 class Api::V1::PatternsController < ApplicationController
+  before_action :requires_login, only: [:index]
 
   def index
-    @patterns = Pattern.all
+      @patterns = Pattern.all
       render json: @patterns
   end
 
@@ -17,6 +18,6 @@ class Api::V1::PatternsController < ApplicationController
 
   private
   def pattern_params
-    params.require(:pattern)
+    params.require(:pattern).permit(:user_id)
   end
 end

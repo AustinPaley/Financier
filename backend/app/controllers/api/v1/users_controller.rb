@@ -6,8 +6,24 @@ class Api::V1::UsersController < ApplicationController
   end
 
   def create
-    @user = User.create(user_params)
-    render json: @user
+    @user = User.new(user_params)
+    if (@user.save)
+
+      payload={
+        username: @user.username,
+        id: @user.id
+      }
+
+      token = JWT.encode payload, ENV["JWT_SECRET"], 'HS256'
+
+      render json: {
+        token: token
+      }
+    else
+      render json: {
+        errors: @user.errors.full_messages
+      }, status: :unprocessable_entity
+    end
   end
 
   def show
@@ -19,6 +35,11 @@ class Api::V1::UsersController < ApplicationController
     @user = User.find(params[:id])
     @user.update(user_params)
     render json: @user
+  end
+
+  def user_patterns
+    @user = User.find_by(id: params[:user_id])
+    render json: @user.patterns
   end
 
   private

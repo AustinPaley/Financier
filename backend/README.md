@@ -22,3 +22,9 @@ Things you may want to cover:
 * Deployment instructions
 
 * ...
+
+
+.env looks like this:
+```
+JWT_SECRET=
+```
