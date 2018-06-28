@@ -1,4 +1,6 @@
 class Api::V1::UsersController < ApplicationController
+  before_action :requires_login, only: [:user_patterns]
+  before_action :requires_user_match, only: [:user_patterns]
 
   def index
     @users = User.all
@@ -38,10 +40,8 @@ class Api::V1::UsersController < ApplicationController
   end
 
   def user_patterns
-    @user = User.find_by(id: params[:user_id])
     render json: @user.patterns
   end
-
   private
 
   def user_params
