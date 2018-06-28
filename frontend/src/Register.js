@@ -11,7 +11,8 @@ class Register extends React.Component{
     this.state={
       username: "Username",
       emailaddress: 'Email Address',
-      password: 'Password'
+      password: 'Password',
+      token: ''
     }
   }
 
@@ -75,12 +76,14 @@ class Register extends React.Component{
       this.setState({
       username: "Username",
       emailaddress: 'Email Address',
-      password: 'Password'
+      password: 'Password',
+      token: response.token
     })
   })
   }
 
   render(){
+    console.log("Register State", this.state)
     return(
       <div className="Registration">
         <div className="Overlay">
