@@ -1,10 +1,11 @@
 import React from 'react'
 import { Link} from 'react-router-dom'
+import Adapter from './adapters/Adapter'
 
 const NavBar = (props) => {
     return(
       <div>
-      {!localStorage.getItem("token") ?
+      {Adapter.loggedIn() ?
         <div>
           <Link to='/login'>Login</Link>
           <br />
@@ -12,7 +13,7 @@ const NavBar = (props) => {
           <br />
         </div>
         :
-        null
+        <p>Logout</p>
       }
         <a href="">Page 3</a>
         <br />

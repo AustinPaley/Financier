@@ -6,6 +6,7 @@ import Login from './Login'
 import { Route, Redirect, withRouter } from 'react-router-dom'
 import Register from './Register'
 import {connect} from 'react-redux'
+import Adapter from './adapters/Adapter'
 
 const EXISTINGACCOUNTURL = 'http://localhost:4000/api/v1/users'
 
@@ -28,12 +29,18 @@ class App extends Component {
   render(){
     return (
       <div>
-        <Route
-          exact path='/register'
-          component={Register} />
-        <Route
-          exact path='/login'
-          component={Login} />
+        {Adapter.loggedIn() ?
+          <div>
+            <Route
+              exact path='/register'
+              component={Register} />
+            <Route
+              exact path='/login'
+              component={Login} />
+          </div>
+        :
+        <Redirect to="/" />
+        }
         <NavBar />
       <div className="App">
         <Route
