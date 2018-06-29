@@ -6,21 +6,28 @@ import {connect} from 'react-redux'
 import Slider from 'react-slick'
 const DownArrow = require('./images/down-arrow.png')
 const UpArrow = require('./images/up-arrow.png')
+const Loading = require('./images/loading-wheel.gif')
 
 const API = process.env.REACT_APP_ALPHA_VANTAGE_API
 const URL1 = "https://www.alphavantage.co/query?function"
 const DAILY = `=TIME_SERIES_DAILY`
 let SPXSYMBOL = "&symbol=SPX"
+let DJISYMBOL = "&symbol=DJI"
+let IXICSYMBOL = "&symbol=IXIC"
+let DAXSYMBOL = "&symbol=DAX"
 const ONEMINUTE = "&interval=1min"
-const FINAL = URL1 + DAILY + SPXSYMBOL + ONEMINUTE + API
+const SPXCALL = URL1 + DAILY + SPXSYMBOL + ONEMINUTE + API
+const DJICALL = URL1 + DAILY + DJISYMBOL + ONEMINUTE + API
+const IXICCALL = URL1 + DAILY + IXICSYMBOL + ONEMINUTE + API
+const DAXCALL = URL1 + DAILY + DAXSYMBOL + ONEMINUTE + API
 const FINALSTATUS= "https://api.iextrading.com/1.0/deep/trading-status?symbols="
+
 
 class Overview extends React.Component{
   constructor(props){
     super(props);
 
     this.state={
-      value: ''
     }
 
     this.settings={
@@ -34,49 +41,73 @@ class Overview extends React.Component{
   }
 
   componentDidMount(){
-    fetch(FINAL)
+    fetch(SPXCALL)
     .then(response => response.json())
     .then(res => {this.setState({
-      generalInfo: res
-    })})
+      todaySPX: Object.entries(res["Time Series (Daily)"])[0][1]["4. close"],
+      yesterdaySPX: Object.entries(res["Time Series (Daily)"])[1][1]["4. close"]
+    })
+    })
+
+    fetch(DJICALL)
+    .then(response => response.json())
+    .then(res => {
+      this.setState({
+      todayDJI: Object.entries(res["Time Series (Daily)"])[0][1]["4. close"],
+      yesterdayDJI: Object.entries(res["Time Series (Daily)"])[1][1]["4. close"]
+    })
+    })
+
+    fetch(IXICCALL)
+    .then(response => response.json())
+    .then(res => {
+      this.setState({
+      todayIXIC: Object.entries(res["Time Series (Daily)"])[0][1]["4. close"],
+      yesterdayIXIC: Object.entries(res["Time Series (Daily)"])[1][1]["4. close"]
+    })
+    })
   }
 
   render(){
+    console.log(this.state)
     return(
       <div>
         <h2>Todays Markets</h2>
         <Slider {...this.settings}>
           <div className="overviewstock">
-            <h3>STOCK NAME</h3>
-            <img src={DownArrow} style={{width: 30, height: 30}} />
-            <img src={UpArrow} style={{width: 30, height: 30}} />
-            <div>-297.36</div>
-            <div>-1.21%</div>
-            <div>24,283.53</div>
+            <div>S&P 500 Index</div>
+              {(this.state.todaySPX - this.state.yesterdaySPX) > 0 ?
+                <img className="arrow" src={UpArrow} style={{width: 30, height: 30}} />
+              :
+                <img className="arrow" src={DownArrow} style={{width: 30, height: 30}} />
+              }
+              <div>{Math.round(1000*(this.state.todaySPX - this.state.yesterdaySPX))/1000}</div>
+              <div>{(Math.round(10000*(this.state.todaySPX - this.state.yesterdaySPX)/this.state.yesterdaySPX))*100/10000}%</div>
+              <div>{this.state.todaySPX}</div>
           </div>
           <div className="overviewstock">
-            <h3>STOCK NAME</h3>
-            <img src={DownArrow} style={{width: 30, height: 30}} />
-            <img src={UpArrow} style={{width: 30, height: 30}} />
-            <div>-297.36</div>
-            <div>-1.21%</div>
-            <div>24,283.53</div>
+            <div>Dow</div>
+              {(this.state.todayDJI - this.state.yesterdayDJI) > 0 ?
+                <img className="arrow" src={UpArrow} style={{width: 30, height: 30}} />
+              :
+                <img className="arrow" src={DownArrow} style={{width: 30, height: 30}} />
+              }
+              <div>{Math.round(1000*(this.state.todayDJI - this.state.yesterdayDJI))/1000}</div>
+              <div>{(Math.round(10000*(this.state.todayDJI - this.state.yesterdayDJI)/this.state.yesterdayDJI))*100/10000}%</div>
+              <div>{this.state.todayDJI}</div>
           </div>
           <div className="overviewstock">
-            <h3>STOCK NAME</h3>
-            <img src={DownArrow} style={{width: 30, height: 30}} />
-            <img src={UpArrow} style={{width: 30, height: 30}} />
-            <div>-297.36</div>
-            <div>-1.21%</div>
-            <div>24,283.53</div>
-          </div>
+            <div>Nasdaq Composite</div>
+              {(this.state.todayIXIC - this.state.yesterdayIXIC) > 0 ?
+                <img className="arrow" src={UpArrow} style={{width: 30, height: 30}} />
+              :
+                <img className="arrow" src={DownArrow} style={{width: 30, height: 30}} />
+              }
+              <div>{Math.round(1000*(this.state.todayIXIC - this.state.yesterdayIXIC))/1000}</div>
+              <div>{(Math.round(10000*(this.state.todayIXIC - this.state.yesterdayIXIC)/this.state.yesterdayIXIC))*100/10000}%</div>
+              <div>{this.state.todayIXIC}</div>
+            </div>
           <div className="overviewstock">
-          <h3>STOCK NAME</h3>
-            <img src={DownArrow} style={{width: 30, height: 30}} />
-            <img src={UpArrow} style={{width: 30, height: 30}} />
-            <div>-297.36</div>
-            <div>-1.21%</div>
-            <div>24,283.53</div>
           </div>
           <div className="overviewstock">
             <h3>STOCK NAME</h3>
