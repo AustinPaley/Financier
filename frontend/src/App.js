@@ -7,6 +7,7 @@ import { Route, Redirect, withRouter } from 'react-router-dom'
 import Register from './Register'
 import {connect} from 'react-redux'
 import Adapter from './adapters/Adapter'
+import Overview from './Overview'
 
 const EXISTINGACCOUNTURL = 'http://localhost:4000/api/v1/users'
 
@@ -50,6 +51,9 @@ class App extends Component {
             exact path='/'
             component={StockContainer} />
         }
+        <Route
+          exact path='/overview'
+          component={Overview} />
       </div>
       </div>
     );

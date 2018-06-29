@@ -216,3 +216,8 @@ a {
 a:hover{
   color: #AEA4CE
 }
+
+.overviewstock{
+  border-style: solid;
+  margin-left: 1px;
+}
