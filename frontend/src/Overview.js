@@ -21,6 +21,7 @@ const DJICALL = URL1 + DAILY + DJISYMBOL + ONEMINUTE + API
 const IXICCALL = URL1 + DAILY + IXICSYMBOL + ONEMINUTE + API
 const DAXCALL = URL1 + DAILY + DAXSYMBOL + ONEMINUTE + API
 const FINALSTATUS= "https://api.iextrading.com/1.0/deep/trading-status?symbols="
+const WORLDWIDENEWS = "https://api.iextrading.com/1.0/stock/market/news/last/9"
 
 
 class Overview extends React.Component{
@@ -28,6 +29,7 @@ class Overview extends React.Component{
     super(props);
 
     this.state={
+      worldwidenews: ''
     }
 
     this.settings={
@@ -36,7 +38,7 @@ class Overview extends React.Component{
       infinite: true,
       speed: 500,
       slidesToShow: 6,
-      slidesToScroll: 1
+      slidesToScroll: 6
     }
   }
 
@@ -66,10 +68,18 @@ class Overview extends React.Component{
       yesterdayIXIC: Object.entries(res["Time Series (Daily)"])[1][1]["4. close"]
     })
     })
+
+    fetch(WORLDWIDENEWS)
+    .then(response => response.json())
+    .then(res => {
+      this.setState({
+        worldwidenews: res
+      })
+    })
   }
 
   render(){
-    console.log(this.state)
+    console.log(this.state.worldwidenews)
     return(
       <div>
         <h2>Todays Markets</h2>
@@ -163,9 +173,17 @@ class Overview extends React.Component{
         <div>Story 1</div>
         <div>Story 2</div>
         <div>Story 3</div>
-        <h2>Worldwide News</h2>
-        <div>VIDEO</div>
-        <div>NEWS ITEMS</div>
+        <h2>Recent News</h2>
+        <div className="recent-news-container">
+          {this.state.worldwidenews !== "" ? this.state.worldwidenews.map((news, index) => {
+            return (
+            <div className="newsLink">
+                <a href={news.url}>{news.headline}</a>
+                <div className="recent-news-source">{news.source}</div>
+                <div className="recent-news-date">{news.datetime}</div>
+            </div>)
+          }) : null}
+        </div>
       </div>
     )
   }

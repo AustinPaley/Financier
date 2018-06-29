@@ -209,12 +209,37 @@
   color: #FFEBC4;
 }
 
-a {
+.newsLink a{
+  color: #000000;
+  width: 5%;
+  text-decoration: none;
+}
+
+.navigation a{
   color: #FFFFFF
 }
 
 a:hover{
   color: #AEA4CE
+}
+
+.recent-news-container{
+  float: right;
+  word-wrap: break-word;
+}
+
+.newsLink{
+  border-style: solid;
+  width: 400px;
+  font-size: 14px;
+}
+
+.recent-news-source{
+  font-size: 12px;
+}
+
+.recent-news-date{
+  font-size: 10px;
 }
 
 .overviewstock{
