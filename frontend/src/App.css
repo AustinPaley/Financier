@@ -247,3 +247,19 @@ a:hover{
   margin-left: 1px;
   background: #ffffff;
 }
+
+.topStoryContainer{
+  background-color: #42588A;
+  white-space: nowrap;
+  height: 30vh
+}
+
+.topStoryContainer h2{
+  float: left;
+  margin-top: 0px;
+  margin-left: 40px;
+}
+
+.topStory{
+  float:left;
+}

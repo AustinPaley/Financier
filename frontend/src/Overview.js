@@ -12,6 +12,7 @@ const Loading = require('./images/loading-wheel.gif')
 
 const API = process.env.REACT_APP_ALPHA_VANTAGE_API
 const URL1 = "https://www.alphavantage.co/query?function"
+const URL2 = "https://newsapi.org/v2/top-headlines?sources=the-wall-street-journal&apiKey="
 const DAILY = `=TIME_SERIES_DAILY`
 let SPXSYMBOL = "&symbol=SPX"
 let DJISYMBOL = "&symbol=DJI"
@@ -24,6 +25,8 @@ const IXICCALL = URL1 + DAILY + IXICSYMBOL + ONEMINUTE + API
 const DAXCALL = URL1 + DAILY + DAXSYMBOL + ONEMINUTE + API
 const FINALSTATUS= "https://api.iextrading.com/1.0/deep/trading-status?symbols="
 const WORLDWIDENEWS = "https://api.iextrading.com/1.0/stock/market/news/last/9"
+const NEWSAPI = process.env.REACT_APP_NEWS_API
+const TOPNEWS = URL2 + NEWSAPI
 
 
 class Overview extends React.Component{
@@ -31,7 +34,8 @@ class Overview extends React.Component{
     super(props);
 
     this.state={
-      worldwidenews: ''
+      worldwidenews: '',
+      topnews: ''
     }
 
     this.settings={
@@ -69,10 +73,13 @@ class Overview extends React.Component{
     })
 
     Adapter.makeFetch(WORLDWIDENEWS).then(res => {this.setState({worldwidenews: res})})
+
+    Adapter.makeFetch(TOPNEWS)
+    .then(res => {this.setState({topnews: res.articles.slice(0, 3)})})
   }
 
   render(){
-    console.log(this.state.worldwidenews)
+    console.log(this.state)
     return(
       <div>
         <h2>Todays Markets</h2>
@@ -162,10 +169,24 @@ class Overview extends React.Component{
           </div>
         </Slider>
         <br />
-        <h2>Top Stories</h2>
-        <div>Story 1</div>
-        <div>Story 2</div>
-        <div>Story 3</div>
+        <div className="topStoryContainer">
+          <h2>Top Stories</h2>
+          <div className="topNewsContainer">
+            {this.state.topnews.length === 3 ?
+              this.state.topnews.map((news, index) =>{
+                return(
+                  <div className="topNews">
+                    <img src={news.urlToImage} alt={news.title} style={{width: 400, height: 200}} />
+                    <h3><a href={news.url}>{news.title}</a></h3>
+                    <div>by {news.author}</div>
+                  </div>
+                )
+              })
+              :
+              null
+            }
+          </div>
+        </div>
         <h2>Recent News</h2>
         <div className="recent-news-container">
           {this.state.worldwidenews !== "" ? this.state.worldwidenews.map((news, index) => {
