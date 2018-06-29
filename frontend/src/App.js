@@ -38,14 +38,18 @@ class App extends Component {
               exact path='/login'
               component={Login} />
           </div>
-        :
-        <Redirect to="/" />
+          :
+          <Redirect to="/" />
         }
-        <NavBar />
+        <NavBar props={this.props}/>
       <div className="App">
-        <Route
-          exact path='/'
-          component={StockContainer} />
+        {Adapter.loggedIn() ?
+          <Redirect to="/register" />
+          :
+          <Route
+            exact path='/'
+            component={StockContainer} />
+        }
       </div>
       </div>
     );

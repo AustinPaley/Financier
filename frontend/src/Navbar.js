@@ -3,6 +3,7 @@ import { Link} from 'react-router-dom'
 import Adapter from './adapters/Adapter'
 
 const NavBar = (props) => {
+  console.log("Navbar", props)
     return(
       <div>
       {Adapter.loggedIn() ?
@@ -13,7 +14,7 @@ const NavBar = (props) => {
           <br />
         </div>
         :
-        <p>Logout</p>
+        <button onClick={() => {props.props.history.push("/login"); localStorage.clear()}}>Logout</button>
       }
         <a href="">Page 3</a>
         <br />
