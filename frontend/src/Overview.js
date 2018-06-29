@@ -4,6 +4,8 @@ import Form from './Form'
 import StockHistoryContainer from './StockHistoryContainer'
 import {connect} from 'react-redux'
 import Slider from 'react-slick'
+import Adapter from './adapters/Adapter'
+
 const DownArrow = require('./images/down-arrow.png')
 const UpArrow = require('./images/up-arrow.png')
 const Loading = require('./images/loading-wheel.gif')
@@ -43,16 +45,14 @@ class Overview extends React.Component{
   }
 
   componentDidMount(){
-    fetch(SPXCALL)
-    .then(response => response.json())
+    Adapter.makeFetch(SPXCALL)
     .then(res => {this.setState({
       todaySPX: Object.entries(res["Time Series (Daily)"])[0][1]["4. close"],
       yesterdaySPX: Object.entries(res["Time Series (Daily)"])[1][1]["4. close"]
     })
     })
 
-    fetch(DJICALL)
-    .then(response => response.json())
+    Adapter.makeFetch(DJICALL)
     .then(res => {
       this.setState({
       todayDJI: Object.entries(res["Time Series (Daily)"])[0][1]["4. close"],
@@ -60,8 +60,7 @@ class Overview extends React.Component{
     })
     })
 
-    fetch(IXICCALL)
-    .then(response => response.json())
+    Adapter.makeFetch(IXICCALL)
     .then(res => {
       this.setState({
       todayIXIC: Object.entries(res["Time Series (Daily)"])[0][1]["4. close"],
@@ -69,13 +68,7 @@ class Overview extends React.Component{
     })
     })
 
-    fetch(WORLDWIDENEWS)
-    .then(response => response.json())
-    .then(res => {
-      this.setState({
-        worldwidenews: res
-      })
-    })
+    Adapter.makeFetch(WORLDWIDENEWS).then(res => {this.setState({worldwidenews: res})})
   }
 
   render(){
