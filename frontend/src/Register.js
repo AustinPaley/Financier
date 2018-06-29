@@ -72,10 +72,11 @@ class Register extends React.Component{
     })
     .then(res => res.json())
     .then(res => {
-      console.log("json", res)
-      localStorage.setItem('token', res.token)
-      localStorage.setItem('id', res.id)
-      this.props.history.push("/")
+      if (!res.errors){
+        localStorage.setItem('token', res.token)
+        localStorage.setItem('id', res.id)
+        this.props.history.push("/")
+      }
     })
   }
 

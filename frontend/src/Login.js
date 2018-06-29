@@ -52,7 +52,7 @@ export default class Login extends React.Component{
     })
     .then(res => res.json())
     .then(res => {
-      if (res.errors !== "Username or password is invalid."){
+      if (!res.errors){
         localStorage.setItem('token', res.token)
         localStorage.setItem('id', res.id)
         this.props.history.push("/")
