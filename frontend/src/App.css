@@ -139,3 +139,80 @@
   margin-left: 16%;
   margin-top: 10%
 }
+
+.navigation{
+  background-color: #42588A;
+  white-space: nowrap;
+  height: 10vh
+}
+
+.navigation .todaysmarkets{
+  display: inline-block;
+  font-size: 20px;
+  text-decoration: none;
+  width: 12%;
+  margin-left: 120px;
+  margin-top: 25px;
+  margin-right: 20px;
+}
+
+.navigation .quotewindow{
+  display:inline-block;
+  font-size: 20px;
+  text-decoration: none;
+  width: 12%;
+  margin-top: 25px;
+  margin-right: 20px;
+}
+
+.navigation .stockspotlight{
+  display:inline-block;
+  font-size: 20px;
+  text-decoration: none;
+  width: 12%;
+  margin-top: 25px;
+  margin-right: 20px;
+}
+
+.navigation .patternmatcher{
+  display:inline-block;
+  font-size: 20px;
+  text-decoration: none;
+  width: 12%;
+  margin-top: 25px;
+  margin-right: 20px;
+}
+
+.navigation .trade{
+  display:inline-block;
+  font-size: 20px;
+  text-decoration: none;
+  width: 12%;
+  margin-top: 25px;
+  margin-right: 20px;
+}
+
+.navigation .logout_button{
+  display:inline-block;
+  font-size: 10px;
+  text-decoration: none;
+  width: 6%;
+  margin-top: 25px;
+}
+
+.navigation .clock{
+  display:inline-block;
+  font-size: 16px;
+  text-decoration: none;
+  width: 10%;
+  margin-top: 25px;
+  color: #FFEBC4;
+}
+
+a {
+  color: #FFFFFF
+}
+
+a:hover{
+  color: #AEA4CE
+}

@@ -1,26 +1,36 @@
 import React from 'react'
 import { Link} from 'react-router-dom'
 import Adapter from './adapters/Adapter'
+import Clock from 'react-live-clock'
 
-const NavBar = (props) => {
-  console.log("Navbar", props)
-    return(
-      <div>
-      {Adapter.loggedIn() ?
+class NavBar extends React.Component{
+  constructor(props){
+    super(props);
+  }
+    render(){
+      return(
         <div>
-          <Link to='/login'>Login</Link>
-          <br />
-          <Link to='/register'>Register</Link>
-          <br />
+          <div className="navigation">
+            <Link to="/overview" className="todaysmarkets">Today's Markets</Link>
+            <Link to="/quote-window" className="quotewindow">Quote Window</Link>
+            <Link to="stock-spotlight" className="stockspotlight">Stock Spotlight</Link>
+            <Link to="pattern-matcher" className="patternmatcher">Pattern Matcher</Link>
+            <Link to="trade" className="trade">Trade Now</Link>
+            <Clock className="clock" format={'HH:mm:ssa'} ticking={true} timezone={'US/Eastern'} />
+              {Adapter.loggedIn() ?
+                <div>
+                  <Link to='/login'>Login</Link>
+                  <br />
+                  <Link to='/register'>Register</Link>
+                  <br />
+                </div>
+                :
+                <button className="logout_button" onClick={() => {this.props.props.history.push("/login"); localStorage.clear()}}>Logout</button>
+              }
+          </div>
         </div>
-        :
-        <button onClick={() => {props.props.history.push("/login"); localStorage.clear()}}>Logout</button>
-      }
-        <a href="">Page 3</a>
-        <br />
-        <a href="">Page 4</a>
-      </div>
-    )
+      )
+    }
   }
 
 export default NavBar;
