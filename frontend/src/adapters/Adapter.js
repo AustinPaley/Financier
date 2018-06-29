@@ -2,13 +2,10 @@ class Adapter {
   static loggedIn(){
     return !localStorage.getItem("token")
   }
-
-  // static logout(){
-  //   return {
-  //     localStorage.removeItem("id")
-  //     localStorage.removeItem("token")
-  //   }
-  // }
+  
+  static logout(){
+    return localStorage.clear()
+  }
 }
 
 export default Adapter

@@ -178,7 +178,7 @@ class Overview extends React.Component{
           {this.state.worldwidenews !== "" ? this.state.worldwidenews.map((news, index) => {
             return (
             <div className="newsLink">
-                <a href={news.url}>{news.headline}</a>
+                <a href={news.url}>{news.headline.toString().substring(0, 100) + "..."}</a>
                 <div className="recent-news-source">{news.source}</div>
                 <div className="recent-news-date">{news.datetime}</div>
             </div>)

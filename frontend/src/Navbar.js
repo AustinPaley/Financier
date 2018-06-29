@@ -25,7 +25,7 @@ class NavBar extends React.Component{
                   <br />
                 </div>
                 :
-                <button className="logout_button" onClick={() => {this.props.props.history.push("/login"); localStorage.clear()}}>Logout</button>
+                <button className="logout_button" onClick={() => {this.props.props.history.push("/login"); Adapter.logout()}}>Logout</button>
               }
           </div>
         </div>
