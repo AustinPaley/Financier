@@ -82,7 +82,7 @@ class Matcher extends React.Component{
           <h3>Saved Patterns</h3>
             {this.props.patterns.length > 0 ? this.props.patterns[0].patterns.payload.map(pattern =>{
               return(
-              <div>Okay</div>
+              <div>Pattern: {pattern.id}</div>
               )
             })
             :
