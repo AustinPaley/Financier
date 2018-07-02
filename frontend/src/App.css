@@ -307,4 +307,63 @@ a:hover{
 
 .saved-patterns{
   float: right;
+  margin-right: 200px;
+}
+
+.form-amount-investing{
+  float: left;
+  font-size: 26px;
+  font-weight: bold;
+  margin-top: 0px;
+  margin-left: 30px;
+}
+
+.input-amount-investing{
+  font-size: 26px;
+  margin-top: 0px;
+  margin-left: 30px;
+}
+
+.pattern-form{
+  float:left;
+}
+
+.form-primary-symbol{
+  text-align: left;
+  font-size: 22px;
+  font-weight: bold;
+  margin-top: 30px;
+  margin-left: 30px;
+}
+
+.input-primary-symbol{
+  font-size: 22px;
+  margin-top: 30px;
+  margin-left: 0px;
+}
+
+.pattern-selector{
+  font-size: 14px;
+  text-align: left;
+  font-weight: bold;
+  margin-top: 15px;
+  margin-left: 30px;
+}
+
+.pattern-input{
+  font-size: 14px;
+  font-weight: bold;
+  margin-left: 5px;
+}
+
+.pattern-condition-button{
+  margin-left: 30px;
+  float: left;
+}
+
+.pattern-button{
+  margin-left: 30px;
+  float: left;
+  width: 100px;
+  height: 100px;
 }

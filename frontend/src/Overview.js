@@ -135,11 +135,18 @@ class Overview extends React.Component{
 
     Adapter.makeFetch(NIKKEICALL)
     .then(res => {
-      debugger
-      this.setState({
-      todayNIKKEI: Object.entries(res["Time Series (Daily)"])[0][1]["4. close"],
-      yesterdayNIKKEI: Object.entries(res["Time Series (Daily)"])[1][1]["4. close"]
-    })
+      if(!res.Information){
+        this.setState({
+        todayNIKKEI: Object.entries(res["Time Series (Daily)"])[0][1]["4. close"],
+        yesterdayNIKKEI: Object.entries(res["Time Series (Daily)"])[1][1]["4. close"]
+        })
+      }
+      else if (!!res.Information){
+        this.setState({
+          todayNIKKEI: 0,
+          yesterdayNIKKEI: 0
+        })
+      }
     })
 
     Adapter.makeFetch(HSICALL)
