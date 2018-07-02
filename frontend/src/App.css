@@ -265,57 +265,27 @@ a:hover{
 
 .topNews{
   float:left;
-  margin-left: 10px;
-  margin-right: 10px;
+  margin-left: 31px;
+  margin-right: 31px;
   width: 400px;
   word-wrap: break-word;
-}
-
-.topNews h3{
-  font-size: 14px;
-  word-wrap: break-word;
-  text-align: left;
-  margin-left: 50px;
-}
-
-.topNews a{
-  word-wrap: break-word;
-}
-
-.topNews div{
-  text-align: left;
-  margin-left: 50px;
-  margin-top: 0px;
-  color: grey;
-  word-wrap: break-word;
-}
-
-.topNews{
-  float:left;
-  margin-left: 10px;
-  margin-right: 10px;
-  width: 400px;
-  word-wrap: break-word;
+  margin-bottom: 10px;
+  border-bottom: 1px solid grey
 }
 
 .topNews h3{
   font-size: 13.5px;
   word-wrap: break-word;
   text-align: left;
-  margin-left: 50px;
-  margin-top: 0px;
+  margin-top: 5px;
   margin-bottom: 5px;
-}
-
-.topNews a{
-  word-wrap: break-word;
 }
 
 .topNews div{
   text-align: left;
-  margin-left: 50px;
   margin-top: 0px;
   color: grey;
-  font-size: 10px;
+  font-size: 11px;
   word-wrap: break-word;
+  margin-bottom: 10px;
 }

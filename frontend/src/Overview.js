@@ -177,8 +177,8 @@ class Overview extends React.Component{
                 debugger
                 return(
                   <div className="topNews">
-                    <img src={news.urlToImage} alt={news.title} style={{width: 300, height: 150}} />
-                    <h3><a href={news.url}>{news.title.toString().substring(0, 42) + "..."}</a></h3>
+                    <img src={news.urlToImage} alt={news.title} style={{width: 400, height: 200}} />
+                    <h3><a href={news.url}>{news.title.toString().substring(0, 55) + "..."}</a></h3>
                     <div>by {news.author}</div>
                   </div>
                 )
