@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import Adapter from './adapters/Adapter'
 
 export default class Matcher extends React.Component{
   constructor(){
