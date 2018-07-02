@@ -17,12 +17,24 @@ const DAILY = `=TIME_SERIES_DAILY`
 let SPXSYMBOL = "&symbol=SPX"
 let DJISYMBOL = "&symbol=DJI"
 let IXICSYMBOL = "&symbol=IXIC"
-let DAXSYMBOL = "&symbol=DAX"
+let DAXSYMBOL = "&symbol=^GDAXI"
+let RUTSYMBOL = "&symbol=^RUT"
+let FTSESYMBOL = "&symbol=^FTSE"
+let VIXSYMBOL = "&symbol=^VIX"
+let CAC40SYMBOL = "&symbol=^FCHI"
+let NIKKEISYMBOL = "&symbol=^N225"
+let HSISYMBOL = "&symbol=^HSI"
 const ONEMINUTE = "&interval=1min"
 const SPXCALL = URL1 + DAILY + SPXSYMBOL + ONEMINUTE + API
 const DJICALL = URL1 + DAILY + DJISYMBOL + ONEMINUTE + API
 const IXICCALL = URL1 + DAILY + IXICSYMBOL + ONEMINUTE + API
 const DAXCALL = URL1 + DAILY + DAXSYMBOL + ONEMINUTE + API
+const RUTCALL = URL1 + DAILY + RUTSYMBOL + ONEMINUTE + API
+const FTSECALL = URL1 + DAILY + FTSESYMBOL + ONEMINUTE + API
+const VIXCALL = URL1 + DAILY + VIXSYMBOL + ONEMINUTE + API
+const CAC40CALL = URL1 + DAILY + CAC40SYMBOL + ONEMINUTE + API
+const NIKKEICALL = URL1 + DAILY + NIKKEISYMBOL + ONEMINUTE + API
+const HSICALL = URL1 + DAILY + HSISYMBOL + ONEMINUTE + API
 const FINALSTATUS= "https://api.iextrading.com/1.0/deep/trading-status?symbols="
 const WORLDWIDENEWS = "https://api.iextrading.com/1.0/stock/market/news/last/9"
 const NEWSAPI = process.env.REACT_APP_NEWS_API
@@ -72,6 +84,62 @@ class Overview extends React.Component{
     })
     })
 
+    Adapter.makeFetch(RUTCALL)
+    .then(res => {
+      this.setState({
+      todayRUT: Object.entries(res["Time Series (Daily)"])[0][1]["4. close"],
+      yesterdayRUT: Object.entries(res["Time Series (Daily)"])[1][1]["4. close"]
+    })
+    })
+
+    Adapter.makeFetch(DAXCALL)
+    .then(res => {
+      this.setState({
+      todayDAX: Object.entries(res["Time Series (Daily)"])[0][1]["4. close"],
+      yesterdayDAX: Object.entries(res["Time Series (Daily)"])[1][1]["4. close"]
+    })
+    })
+
+    Adapter.makeFetch(FTSECALL)
+    .then(res => {
+      this.setState({
+      todayFTSE: Object.entries(res["Time Series (Daily)"])[0][1]["4. close"],
+      yesterdayFTSE: Object.entries(res["Time Series (Daily)"])[1][1]["4. close"]
+    })
+    })
+
+    Adapter.makeFetch(VIXCALL)
+    .then(res => {
+      this.setState({
+      todayVIX: Object.entries(res["Time Series (Daily)"])[0][1]["4. close"],
+      yesterdayVIX: Object.entries(res["Time Series (Daily)"])[1][1]["4. close"]
+    })
+    })
+
+    Adapter.makeFetch(CAC40CALL)
+    .then(res => {
+      this.setState({
+      todayCAC40: Object.entries(res["Time Series (Daily)"])[0][1]["4. close"],
+      yesterdayCAC40: Object.entries(res["Time Series (Daily)"])[1][1]["4. close"]
+    })
+    })
+
+    Adapter.makeFetch(NIKKEICALL)
+    .then(res => {
+      this.setState({
+      todayNIKKEI: Object.entries(res["Time Series (Daily)"])[0][1]["4. close"],
+      yesterdayNIKKEI: Object.entries(res["Time Series (Daily)"])[1][1]["4. close"]
+    })
+    })
+
+    Adapter.makeFetch(HSICALL)
+    .then(res => {
+      this.setState({
+      todayHSI: Object.entries(res["Time Series (Daily)"])[0][1]["4. close"],
+      yesterdayHSI: Object.entries(res["Time Series (Daily)"])[1][1]["4. close"]
+    })
+    })
+
     Adapter.makeFetch(WORLDWIDENEWS).then(res => {this.setState({worldwidenews: res})})
 
     Adapter.makeFetch(TOPNEWS)
@@ -118,54 +186,81 @@ class Overview extends React.Component{
               <div>{this.state.todayIXIC}</div>
             </div>
           <div className="overviewstock">
+            <div>Russell 2000</div>
+              {(this.state.todayRUT - this.state.yesterdayRUT) > 0 ?
+                <img className="arrow" src={UpArrow} style={{width: 30, height: 30}} />
+              :
+                <img className="arrow" src={DownArrow} style={{width: 30, height: 30}} />
+              }
+              <div>{Math.round(1000*(this.state.todayRUT - this.state.yesterdayRUT))/1000}</div>
+              <div>{(Math.round(10000*(this.state.todayRUT - this.state.yesterdayRUT)/this.state.yesterdayRUT))*100/10000}%</div>
+              <div>{this.state.todayRUT}</div>
           </div>
           <div className="overviewstock">
-            <h3>STOCK NAME</h3>
-            <img src={DownArrow} style={{width: 30, height: 30}} />
-            <img src={UpArrow} style={{width: 30, height: 30}} />
-            <div>-297.36</div>
-            <div>-1.21%</div>
-            <div>24,283.53</div>
+          <div>DAX</div>
+            {(this.state.todayDAX - this.state.yesterdayDAX) > 0 ?
+              <img className="arrow" src={UpArrow} style={{width: 30, height: 30}} />
+            :
+              <img className="arrow" src={DownArrow} style={{width: 30, height: 30}} />
+            }
+            <div>{Math.round(1000*(this.state.todayDAX - this.state.yesterdayDAX))/1000}</div>
+            <div>{(Math.round(10000*(this.state.todayDAX - this.state.yesterdayDAX)/this.state.yesterdayDAX))*100/10000}%</div>
+            <div>{this.state.todayDAX}</div>
           </div>
           <div className="overviewstock">
-            <h3>STOCK NAME</h3>
-            <img src={DownArrow} style={{width: 30, height: 30}} />
-            <img src={UpArrow} style={{width: 30, height: 30}} />
-            <div>-297.36</div>
-            <div>-1.21%</div>
-            <div>24,283.53</div>
+          <div>VIX</div>
+            {(this.state.todayVIX - this.state.yesterdayVIX) > 0 ?
+              <img className="arrow" src={UpArrow} style={{width: 30, height: 30}} />
+            :
+              <img className="arrow" src={DownArrow} style={{width: 30, height: 30}} />
+            }
+            <div>{Math.round(1000*(this.state.todayVIX - this.state.yesterdayVIX))/1000}</div>
+            <div>{(Math.round(10000*(this.state.todayVIX - this.state.yesterdayVIX)/this.state.yesterdayVIX))*100/10000}%</div>
+            <div>{this.state.todayVIX}</div>
           </div>
           <div className="overviewstock">
-            <h3>STOCK NAME</h3>
-            <img src={DownArrow} style={{width: 30, height: 30}} />
-            <img src={UpArrow} style={{width: 30, height: 30}} />
-            <div>-297.36</div>
-            <div>-1.21%</div>
-            <div>24,283.53</div>
+          <div>FTSE 100</div>
+            {(this.state.todayFTSE - this.state.yesterdayFTSE) > 0 ?
+              <img className="arrow" src={UpArrow} style={{width: 30, height: 30}} />
+            :
+              <img className="arrow" src={DownArrow} style={{width: 30, height: 30}} />
+            }
+            <div>{Math.round(1000*(this.state.todayFTSE - this.state.yesterdayFTSE))/1000}</div>
+            <div>{(Math.round(10000*(this.state.todayFTSE - this.state.yesterdayFTSE)/this.state.yesterdayFTSE))*100/10000}%</div>
+            <div>{this.state.todayFTSE}</div>
           </div>
           <div className="overviewstock">
-          <h3>STOCK NAME</h3>
-            <img src={DownArrow} style={{width: 30, height: 30}} />
-            <img src={UpArrow} style={{width: 30, height: 30}} />
-            <div>-297.36</div>
-            <div>-1.21%</div>
-            <div>24,283.53</div>
+          <div>CAC40</div>
+            {(this.state.todayCAC40 - this.state.yesterdayCAC40) > 0 ?
+              <img className="arrow" src={UpArrow} style={{width: 30, height: 30}} />
+            :
+              <img className="arrow" src={DownArrow} style={{width: 30, height: 30}} />
+            }
+            <div>{Math.round(1000*(this.state.todayCAC40 - this.state.yesterdayCAC40))/1000}</div>
+            <div>{(Math.round(10000*(this.state.todayCAC40 - this.state.yesterdayCAC40)/this.state.yesterdayCAC40))*100/10000}%</div>
+            <div>{this.state.todayCAC40}</div>
           </div>
           <div className="overviewstock">
-            <h3>STOCK NAME</h3>
-            <img src={DownArrow} style={{width: 30, height: 30}} />
-            <img src={UpArrow} style={{width: 30, height: 30}} />
-            <div>-297.36</div>
-            <div>-1.21%</div>
-            <div>24,283.53</div>
+          <div>NIKKEI 225</div>
+            {(this.state.todayNIKKEI - this.state.yesterdayNIKKEI) > 0 ?
+              <img className="arrow" src={UpArrow} style={{width: 30, height: 30}} />
+            :
+              <img className="arrow" src={DownArrow} style={{width: 30, height: 30}} />
+            }
+            <div>{Math.round(1000*(this.state.todayNIKKEI - this.state.yesterdayNIKKEI))/1000}</div>
+            <div>{(Math.round(10000*(this.state.todayNIKKEI - this.state.yesterdayNIKKEI)/this.state.yesterdayNIKKEI))*100/10000}%</div>
+            <div>{this.state.todayNIKKEI}</div>
           </div>
           <div className="overviewstock">
-            <h3>STOCK NAME</h3>
-            <img src={DownArrow} style={{width: 30, height: 30}} />
-            <img src={UpArrow} style={{width: 30, height: 30}} />
-            <div>-297.36</div>
-            <div>-1.21%</div>
-            <div>24,283.53</div>
+          <div>Hang Seng Index</div>
+            {(this.state.todayHSI - this.state.yesterdayHSI) > 0 ?
+              <img className="arrow" src={UpArrow} style={{width: 30, height: 30}} />
+            :
+              <img className="arrow" src={DownArrow} style={{width: 30, height: 30}} />
+            }
+            <div>{Math.round(1000*(this.state.todayHSI - this.state.yesterdayHSI))/1000}</div>
+            <div>{(Math.round(10000*(this.state.todayHSI - this.state.yesterdayHSI)/this.state.yesterdayHSI))*100/10000}%</div>
+            <div>{this.state.todayHSI}</div>
           </div>
         </Slider>
         <br />
@@ -174,7 +269,6 @@ class Overview extends React.Component{
           <div className="topNewsContainer">
             {this.state.topnews.length === 3 ?
               this.state.topnews.map((news, index) =>{
-                debugger
                 return(
                   <div className="topNews">
                     <img src={news.urlToImage} alt={news.title} style={{width: 400, height: 200}} />
