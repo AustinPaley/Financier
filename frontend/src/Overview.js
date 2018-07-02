@@ -286,6 +286,7 @@ class Overview extends React.Component{
         <br /><br/>
         <h2>Recent News</h2>
         <div className="recent-news-container">
+          <ReactPlayer url="https://www.youtube.com/watch?v=Ga3maNZ0x0w" playing volume="0" className="Video" controls="true" />
           {this.state.worldwidenews !== "" ? this.state.worldwidenews.map((news, index) => {
             return (
             <div className="newsLink">
@@ -295,7 +296,6 @@ class Overview extends React.Component{
             </div>)
           }) : null}
         </div>
-        <ReactPlayer url="https://www.youtube.com/watch?v=Ga3maNZ0x0w" playing volume="0" className="Video" controls="true" />
       </div>
     )
   }
