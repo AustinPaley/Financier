@@ -170,14 +170,15 @@ class Overview extends React.Component{
         </Slider>
         <br />
         <div className="topStoryContainer">
-          <h2>Top Stories</h2>
+          <tr><h2>Top Stories</h2></tr>
           <div className="topNewsContainer">
             {this.state.topnews.length === 3 ?
               this.state.topnews.map((news, index) =>{
+                debugger
                 return(
                   <div className="topNews">
-                    <img src={news.urlToImage} alt={news.title} style={{width: 400, height: 200}} />
-                    <h3><a href={news.url}>{news.title}</a></h3>
+                    <img src={news.urlToImage} alt={news.title} style={{width: 300, height: 150}} />
+                    <h3><a href={news.url}>{news.title.toString().substring(0, 42) + "..."}</a></h3>
                     <div>by {news.author}</div>
                   </div>
                 )
@@ -187,6 +188,7 @@ class Overview extends React.Component{
             }
           </div>
         </div>
+        <br /><br/>
         <h2>Recent News</h2>
         <div className="recent-news-container">
           {this.state.worldwidenews !== "" ? this.state.worldwidenews.map((news, index) => {
