@@ -5,6 +5,7 @@ import StockHistoryContainer from './StockHistoryContainer'
 import {connect} from 'react-redux'
 import Slider from 'react-slick'
 import Adapter from './adapters/Adapter'
+import ReactPlayer from 'react-player'
 
 const DownArrow = require('./images/down-arrow.png')
 const UpArrow = require('./images/up-arrow.png')
@@ -294,6 +295,7 @@ class Overview extends React.Component{
             </div>)
           }) : null}
         </div>
+        <ReactPlayer url="https://www.youtube.com/watch?v=Ga3maNZ0x0w" playing volume="0" className="Video" controls="true" />
       </div>
     )
   }
