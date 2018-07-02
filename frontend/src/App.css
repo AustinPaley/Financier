@@ -293,4 +293,6 @@ a:hover{
 .Video{
   margin-left: 31px;
   margin-top: 7%;
+  width: 320px !important;
+  height: 180px !important; 
 }
