@@ -17,6 +17,12 @@ ActiveRecord::Schema.define(version: 2018_06_27_165507) do
 
   create_table "patterns", force: :cascade do |t|
     t.integer "user_id"
+    t.string "symbol"
+    t.integer "open"
+    t.integer "close"
+    t.integer "high"
+    t.integer "low"
+    t.integer "investment_size"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
