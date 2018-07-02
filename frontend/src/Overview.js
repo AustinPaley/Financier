@@ -41,7 +41,6 @@ const WORLDWIDENEWS = "https://api.iextrading.com/1.0/stock/market/news/last/9"
 const NEWSAPI = process.env.REACT_APP_NEWS_API
 const TOPNEWS = URL2 + NEWSAPI
 
-
 class Overview extends React.Component{
   constructor(props){
     super(props);
@@ -63,7 +62,8 @@ class Overview extends React.Component{
 
   componentDidMount(){
     Adapter.makeFetch(SPXCALL)
-    .then(res => {this.setState({
+    .then(res => {
+      this.setState({
       todaySPX: Object.entries(res["Time Series (Daily)"])[0][1]["4. close"],
       yesterdaySPX: Object.entries(res["Time Series (Daily)"])[1][1]["4. close"]
     })
@@ -119,14 +119,23 @@ class Overview extends React.Component{
 
     Adapter.makeFetch(CAC40CALL)
     .then(res => {
-      this.setState({
-      todayCAC40: Object.entries(res["Time Series (Daily)"])[0][1]["4. close"],
-      yesterdayCAC40: Object.entries(res["Time Series (Daily)"])[1][1]["4. close"]
-    })
+      if(!res.Information){
+        this.setState({
+        todayCAC40: Object.entries(res["Time Series (Daily)"])[0][1]["4. close"],
+        yesterdayCAC40: Object.entries(res["Time Series (Daily)"])[1][1]["4. close"]
+        })
+      }
+      else if (!!res.Information){
+        this.setState({
+          todayCAC40: 0,
+          yesterdayCAC40: 0
+        })
+      }
     })
 
     Adapter.makeFetch(NIKKEICALL)
     .then(res => {
+      debugger
       this.setState({
       todayNIKKEI: Object.entries(res["Time Series (Daily)"])[0][1]["4. close"],
       yesterdayNIKKEI: Object.entries(res["Time Series (Daily)"])[1][1]["4. close"]
