@@ -9,6 +9,7 @@ import {connect} from 'react-redux'
 import Adapter from './adapters/Adapter'
 import Overview from './Overview'
 import Matcher from './Matcher'
+import { addPattern } from './actions'
 
 const EXISTINGACCOUNTURL = 'http://localhost:4000/api/v1/users'
 
@@ -26,9 +27,15 @@ class App extends Component {
     .then(json => this.setState({
       users: json
     }))
+
+    Adapter.patternFetch("http://localhost:4000/api/v1/patterns")
+    .then(res => {this.props.addPattern({
+      type: "ADD_PATTERN", payload: res.filter(pattern => pattern.user_id === parseInt(localStorage.getItem("id")))})
+    })
   }
 
   render(){
+    console.log(this.props)
     return (
       <div>
         {Adapter.loggedIn() ?
@@ -64,4 +71,12 @@ class App extends Component {
   }
 }
 
-export default withRouter(connect()(App))
+const mapDispatchToProps = (dispatch) => {
+  return{
+    addPattern: (res) => {
+      dispatch(addPattern(res))
+    }
+  }
+}
+
+export default withRouter(connect(null, mapDispatchToProps)(App))

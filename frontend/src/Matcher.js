@@ -19,13 +19,6 @@ class Matcher extends React.Component{
     }
   }
 
-  componentDidMount(){
-    Adapter.patternFetch("http://localhost:4000/api/v1/patterns")
-    .then(res => {this.setState({
-      user_patterns: res.filter(pattern => pattern.user_id === 1)})
-    })
-  }
-
   handleInput = (event) => {
     if (event.target.name === "amount-investing"){
       this.setState({
@@ -69,7 +62,6 @@ class Matcher extends React.Component{
   }
 
   render(){
-    console.log(this.state.user_patterns)
     return(
       <div>
         <div className="pattern-form">
@@ -88,21 +80,24 @@ class Matcher extends React.Component{
         </div>
         <div className="saved-patterns">
           <h3>Saved Patterns</h3>
-            {this.state.user_patterns.map(pattern =>{
+            {this.props.patterns.length > 0 ? this.props.patterns[0].patterns.payload.map(pattern =>{
+              return(
               <div>Okay</div>
-            })}
+              )
+            })
+            :
+            null
+            }
         </div>
       </div>
     )
   }
 }
 
-const mapDispatchToProps = (dispatch) => {
-  return{
-    addPattern: (amountInvesting, primarySymbol, open, close, high, low, user_id) => {
-      dispatch(addPattern(amountInvesting, primarySymbol, open, close, high, low, user_id))
-    }
+const mapStateToProps = state => {
+  return {
+    patterns: state.pattern.patterns
   }
 }
 
-export default connect(null, mapDispatchToProps)(Matcher)
+export default connect(mapStateToProps)(Matcher)

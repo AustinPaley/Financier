@@ -5,10 +5,11 @@ export function addUser(name, email, password){
   }
 }
 
-export function addPattern(amountInvesting, primarySymbol, open, close, high, low, user_id){
-  debugger
+export function addPattern(res){
   return{
     type: "ADD_PATTERN",
-    payload: {}
+    payload: {
+      patterns: res
+    }
   }
 }
