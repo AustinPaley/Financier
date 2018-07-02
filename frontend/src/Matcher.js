@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import Adapter from './adapters/Adapter'
 
+const POSTURL = "http://localhost:4000/api/v1/patterns"
 export default class Matcher extends React.Component{
   constructor(){
     super()
@@ -11,6 +12,7 @@ export default class Matcher extends React.Component{
       close: '',
       high: '',
       low: '',
+      user_id: 1
     }
   }
 
@@ -51,8 +53,10 @@ export default class Matcher extends React.Component{
     }
   }
 
-  handleSubmit = () => {
-
+  handleSubmit = (event) => {
+    event.preventDefault()
+    Adapter.postPattern(POSTURL, this.state.user_id, this.state.primarySymbol, this.state.open, this.state.close, this.state.high, this.state.low, this.state.amountInvesting)
+    .then(res => {console.log(res)})
   }
 
   render(){
@@ -65,7 +69,7 @@ export default class Matcher extends React.Component{
             <div className="pattern-selector">Open<input className="pattern-input" name="open" type="text" onChange={this.handleInput} /></div>
             <div className="pattern-selector">Previous Close:<input className="pattern-input" name="close" type="text" onChange={this.handleInput} /></div>
             <div className="pattern-selector">High:<input className="pattern-input" name="high" type="text" onChange={this.handleInput} /></div>
-            <div className="pattern-selector">Low:<input className="pattern-input" name="low'" type="text" onChange={this.handleInput} /></div>
+            <div className="pattern-selector">Low:<input className="pattern-input" name="low" type="text" onChange={this.handleInput} /></div>
             <br /><br />
             <button className="pattern-condition-button">Add New Condition</button>
             <br /><br/>
