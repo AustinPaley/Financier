@@ -12,6 +12,16 @@ class Adapter {
     .then(response => response.json())
   }
 
+  static patternFetch(fetchurl){
+    return fetch(fetchurl, {
+      headers:{
+        'Content-Type' : 'application/json',
+        'Authorization' : localStorage.getItem("token")
+      }
+    })
+    .then(response => response.json())
+  }
+
   static postPattern(fetchurl, user_id, symbol, open, close, high, low, investment_size){
     return fetch(fetchurl, {
       method: 'POST',

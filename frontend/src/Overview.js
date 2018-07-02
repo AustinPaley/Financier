@@ -350,7 +350,7 @@ class Overview extends React.Component{
             {this.state.topnews.length === 3 ?
               this.state.topnews.map((news, index) =>{
                 return(
-                  <div className="topNews">
+                  <div key={index} className="topNews">
                     <img src={news.urlToImage} alt={news.title} style={{width: 400, height: 200}} />
                     <h3><a href={news.url}>{news.title.toString().substring(0, 55) + "..."}</a></h3>
                     <div>by {news.author}</div>

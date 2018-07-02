@@ -1,10 +1,12 @@
 import React, { Component } from 'react';
 import Adapter from './adapters/Adapter'
+import {connect} from 'react-redux'
+import { addPattern } from './actions'
 
 const POSTURL = "http://localhost:4000/api/v1/patterns"
-export default class Matcher extends React.Component{
-  constructor(){
-    super()
+class Matcher extends React.Component{
+  constructor(props){
+    super(props)
     this.state={
       amountInvesting: '',
       primarySymbol: '',
@@ -12,8 +14,16 @@ export default class Matcher extends React.Component{
       close: '',
       high: '',
       low: '',
-      user_id: 1
+      user_id: localStorage.getItem("id"),
+      user_patterns: [],
     }
+  }
+
+  componentDidMount(){
+    Adapter.patternFetch("http://localhost:4000/api/v1/patterns")
+    .then(res => {this.setState({
+      user_patterns: res.filter(pattern => pattern.user_id === 1)})
+    })
   }
 
   handleInput = (event) => {
@@ -56,10 +66,10 @@ export default class Matcher extends React.Component{
   handleSubmit = (event) => {
     event.preventDefault()
     Adapter.postPattern(POSTURL, this.state.user_id, this.state.primarySymbol, this.state.open, this.state.close, this.state.high, this.state.low, this.state.amountInvesting)
-    .then(res => {console.log(res)})
   }
 
   render(){
+    console.log(this.state.user_patterns)
     return(
       <div>
         <div className="pattern-form">
@@ -78,16 +88,21 @@ export default class Matcher extends React.Component{
         </div>
         <div className="saved-patterns">
           <h3>Saved Patterns</h3>
-          <div>Pattern 1</div>
-          <div>Pattern 1</div>
-          <div>Pattern 1</div>
-          <div>Pattern 1</div>
-          <div>Pattern 1</div>
-          <div>Pattern 1</div>
-          <div>Pattern 1</div>
+            {this.state.user_patterns.map(pattern =>{
+              <div>Okay</div>
+            })}
         </div>
       </div>
     )
   }
-
 }
+
+const mapDispatchToProps = (dispatch) => {
+  return{
+    addPattern: (amountInvesting, primarySymbol, open, close, high, low, user_id) => {
+      dispatch(addPattern(amountInvesting, primarySymbol, open, close, high, low, user_id))
+    }
+  }
+}
+
+export default connect(null, mapDispatchToProps)(Matcher)
