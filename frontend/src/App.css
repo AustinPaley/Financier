@@ -304,3 +304,7 @@ a:hover{
   grid-area: video;
   margin-right: 52px;
 }
+
+.saved-patterns{
+  float: right;
+}

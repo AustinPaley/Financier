@@ -8,6 +8,7 @@ import Register from './Register'
 import {connect} from 'react-redux'
 import Adapter from './adapters/Adapter'
 import Overview from './Overview'
+import Matcher from './Matcher'
 
 const EXISTINGACCOUNTURL = 'http://localhost:4000/api/v1/users'
 
@@ -40,7 +41,7 @@ class App extends Component {
               component={Login} />
           </div>
           :
-          <Redirect to="/" />
+          <Redirect to="/overview" />
         }
         <NavBar props={this.props}/>
       <div className="App">
@@ -54,6 +55,9 @@ class App extends Component {
         <Route
           exact path='/overview'
           component={Overview} />
+        <Route
+          exact path='/pattern-matcher'
+          component={Matcher} />
       </div>
       </div>
     );
