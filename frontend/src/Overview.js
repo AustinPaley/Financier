@@ -151,10 +151,18 @@ class Overview extends React.Component{
 
     Adapter.makeFetch(HSICALL)
     .then(res => {
-      this.setState({
-      todayHSI: Object.entries(res["Time Series (Daily)"])[0][1]["4. close"],
-      yesterdayHSI: Object.entries(res["Time Series (Daily)"])[1][1]["4. close"]
-    })
+      if(!res.Information){
+        this.setState({
+        todayHSI: Object.entries(res["Time Series (Daily)"])[0][1]["4. close"],
+        yesterdayHSI: Object.entries(res["Time Series (Daily)"])[1][1]["4. close"]
+        })
+      }
+      else if (!!res.Information){
+        this.setState({
+          todayHSI: 0,
+          yesterdayHSI: 0
+        })
+      }
     })
 
     Adapter.makeFetch(WORLDWIDENEWS).then(res => {this.setState({worldwidenews: res})})
@@ -164,7 +172,6 @@ class Overview extends React.Component{
   }
 
   render(){
-    console.log(this.state)
     return(
       <div>
         <h2>Todays Markets</h2>
