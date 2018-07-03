@@ -1,9 +1,33 @@
 import React from 'react'
 import { connect } from 'react-redux'
+import Adapter from './adapters/Adapter'
+const API = process.env.REACT_APP_ALPHA_VANTAGE_API
+const URL1 = "https://www.alphavantage.co/query?function"
+const DAILY = `=TIME_SERIES_DAILY`
+let SYMBOLTYPE = "&symbol="
+const ONEMINUTE = "&interval=1min"
 
 class Pattern extends React.Component{
+  constructor(props){
+    super(props)
+
+    this.state={
+      history: ''
+    }
+  }
+
+  componentDidMount(){
+    if (this.props.pattern !== undefined){
+      let symbol = this.props.pattern[0].symbol
+      Adapter.makeFetch(URL1 + DAILY + SYMBOLTYPE + symbol + ONEMINUTE + API)
+      .then(res => {this.setState({
+        history: res
+      })})
+    }
+  }
+
   render(){
-    console.log(this.props.pattern)
+    const relevantHistory = this.state.history["Time Series (Daily)"]
     return(
       <div>
         {this.props.pattern !== undefined ?
@@ -21,6 +45,25 @@ class Pattern extends React.Component{
           })
         :
         null}
+        <br />
+        {this.state.history ?
+          <div>
+            <div>
+            Last Time This Happened: {Object.entries(relevantHistory).find(entry => entry[1]["4. close"] == 2619.5500)[0]}
+            </div>
+            <div>
+            The Price: {Object.entries(relevantHistory).find(entry => entry[1]["4. close"] == 2619.5500)[1]["4. close"]}
+            </div>
+            <div>Start Index: {Object.entries(relevantHistory).map(entry => entry[0]).indexOf(Object.entries(relevantHistory).find(entry => entry[1]["4. close"] == 2619.5500)[0])}
+            // "10" is a standin for days, 2619.5500 is a stand in for close
+            </div>
+            <div>Final Index: {Object.entries(relevantHistory).map(entry => entry[0]).indexOf(Object.entries(relevantHistory).find(entry => entry[1]["4. close"] == 2619.5500)[0]) - 10}
+            // "10" is a standin for days, 2619.5500 is a stand in for close
+            </div>
+          </div>
+          :
+          <div>"No Matches Found"</div>
+        }
       </div>
     )
   }
