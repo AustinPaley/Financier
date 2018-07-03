@@ -18,6 +18,6 @@ class Api::V1::PatternsController < ApplicationController
 
   private
   def pattern_params
-    params.require(:pattern).permit(:user_id, :close, :open, :high, :low, :symbol, :investment_size)
+    params.require(:pattern).permit(:user_id, :close, :open, :high, :low, :symbol, :investment_size, :days)
   end
 end

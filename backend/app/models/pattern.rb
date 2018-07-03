@@ -3,4 +3,5 @@ class Pattern < ApplicationRecord
   validates :investment_size, presence: true
   validates :user_id, presence: true
   validates :symbol, presence: true
+  validates :days, presence: true
 end

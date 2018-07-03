@@ -23,6 +23,7 @@ ActiveRecord::Schema.define(version: 2018_06_27_165507) do
     t.integer "high"
     t.integer "low"
     t.integer "investment_size"
+    t.integer "days"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end

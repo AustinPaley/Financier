@@ -15,6 +15,7 @@ class Matcher extends React.Component{
       close: '',
       high: '',
       low: '',
+      days: '',
       user_id: localStorage.getItem("id"),
       user_patterns: [],
     }
@@ -55,17 +56,24 @@ class Matcher extends React.Component{
         low: event.target.value
       })
     }
+
+    else if (event.target.name === "days"){
+      this.setState({
+        days: event.target.value
+      })
+    }
   }
 
   handleSubmit = (event) => {
     event.preventDefault()
-    Adapter.postPattern(POSTURL, this.state.user_id, this.state.primarySymbol, this.state.open, this.state.close, this.state.high, this.state.low, this.state.amountInvesting)
+    Adapter.postPattern(POSTURL, this.state.user_id, this.state.primarySymbol, this.state.open, this.state.close, this.state.high, this.state.low, this.state.amountInvesting, this.state.days)
     .then(res => {
       this.props.history.push(`/pattern/${res.id}`)
     })
   }
 
   render(){
+    console.log(this.state)
     return(
       <div>
         <div className="pattern-form">
@@ -76,6 +84,7 @@ class Matcher extends React.Component{
             <div className="pattern-selector">Previous Close:<input className="pattern-input" name="close" type="text" onChange={this.handleInput} /></div>
             <div className="pattern-selector">High:<input className="pattern-input" name="high" type="text" onChange={this.handleInput} /></div>
             <div className="pattern-selector">Low:<input className="pattern-input" name="low" type="text" onChange={this.handleInput} /></div>
+            <div className="pattern-selector">Number of Days:<input className="pattern-input" name="days" type="text" onChange={this.handleInput} /></div>
             <br /><br />
             <button className="pattern-condition-button">Add New Condition</button>
             <br /><br/>

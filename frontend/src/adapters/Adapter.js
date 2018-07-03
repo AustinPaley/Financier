@@ -22,7 +22,7 @@ class Adapter {
     .then(response => response.json())
   }
 
-  static postPattern(fetchurl, user_id, symbol, open, close, high, low, investment_size){
+  static postPattern(fetchurl, user_id, symbol, open, close, high, low, investment_size, days){
     return fetch(fetchurl, {
       method: 'POST',
       headers:{
@@ -35,6 +35,7 @@ class Adapter {
         close: close,
         high: high,
         low: low,
+        days: days,
         investment_size: investment_size}
       })
     })

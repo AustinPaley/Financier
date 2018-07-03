@@ -8,6 +8,7 @@ class CreatePatterns < ActiveRecord::Migration[5.2]
       t.integer :high
       t.integer :low
       t.integer :investment_size
+      t.integer :days
       t.timestamps
     end
   end
