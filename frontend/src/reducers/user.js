@@ -10,14 +10,11 @@ const userReducer = (state = initialState, action) => {
           amountInvesting: action.payload.amountInvesting,
           email: action.payload.email,
           password: action.payload.password,
-
-          // amountInvesting, primarySymbol, open, close, high, low, user_id
       };
       return {...state, users: [...state.users, action.payload]}
     default:
       return state;
   }
-  return state;
 }
 
 

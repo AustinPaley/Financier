@@ -59,10 +59,8 @@ class Pattern extends React.Component{
             Start Price: {Object.entries(relevantHistory).find(entry => entry[1]["4. close"] == this.props.pattern[0].close)[1]["4. close"]}
             </div>
             <div>Start Index: {Object.entries(relevantHistory).map(entry => entry[0]).indexOf(Object.entries(relevantHistory).find(entry => entry[1]["4. close"] == this.props.pattern[0].close)[0])}
-            // "10" is a standin for days, this.props.pattern[0].close is a stand in for close
             </div>
             <div>Final Index: {Object.entries(relevantHistory).map(entry => entry[0]).indexOf(Object.entries(relevantHistory).find(entry => entry[1]["4. close"] == this.props.pattern[0].close)[0]) - this.props.pattern[0].days}
-            // "10" is a standin for days, this.props.pattern[0].close is a stand in for close
             </div>
             <div>Final Close: {Object.entries(relevantHistory)[Object.entries(relevantHistory).map(entry => entry[0]).indexOf(Object.entries(relevantHistory).find(entry => entry[1]["4. close"] == this.props.pattern[0].close)[0]) - this.props.pattern[0].days][1]["4. close"]}
             </div>

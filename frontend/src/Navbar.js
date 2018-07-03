@@ -4,9 +4,6 @@ import Adapter from './adapters/Adapter'
 import Clock from 'react-live-clock'
 
 class NavBar extends React.Component{
-  constructor(props){
-    super(props);
-  }
     render(){
       return(
         <div>

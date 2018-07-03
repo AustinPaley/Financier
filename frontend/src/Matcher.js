@@ -1,7 +1,6 @@
-import React, { Component } from 'react';
+import React from 'react';
 import Adapter from './adapters/Adapter'
 import {connect} from 'react-redux'
-import { addPattern } from './actions'
 import { Link } from 'react-router-dom'
 
 const POSTURL = "http://localhost:4000/api/v1/patterns"

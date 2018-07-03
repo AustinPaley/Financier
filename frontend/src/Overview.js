@@ -1,7 +1,4 @@
 import React from 'react'
-import Stock from './Stock'
-import Form from './Form'
-import StockHistoryContainer from './StockHistoryContainer'
 import {connect} from 'react-redux'
 import Slider from 'react-slick'
 import Adapter from './adapters/Adapter'
@@ -36,7 +33,6 @@ const VIXCALL = URL1 + DAILY + VIXSYMBOL + ONEMINUTE + API
 const CAC40CALL = URL1 + DAILY + CAC40SYMBOL + ONEMINUTE + API
 const NIKKEICALL = URL1 + DAILY + NIKKEISYMBOL + ONEMINUTE + API
 const HSICALL = URL1 + DAILY + HSISYMBOL + ONEMINUTE + API
-const FINALSTATUS= "https://api.iextrading.com/1.0/deep/trading-status?symbols="
 const WORLDWIDENEWS = "https://api.iextrading.com/1.0/stock/market/news/last/9"
 const NEWSAPI = process.env.REACT_APP_NEWS_API
 const TOPNEWS = URL2 + NEWSAPI
@@ -235,9 +231,9 @@ class Overview extends React.Component{
           <div className="overviewstock">
             <div>S&P 500 Index</div>
               {(this.state.todaySPX - this.state.yesterdaySPX) > 0 ?
-                <img className="arrow" src={UpArrow} style={{width: 30, height: 30}} />
+                <img className="arrow" alt="Up Arrow" src={UpArrow} style={{width: 30, height: 30}} />
               :
-                <img className="arrow" src={DownArrow} style={{width: 30, height: 30}} />
+                <img className="arrow" alt="Down Arrow" src={DownArrow} style={{width: 30, height: 30}} />
               }
               <div>{Math.round(1000*(this.state.todaySPX - this.state.yesterdaySPX))/1000}</div>
               <div>{(Math.round(10000*(this.state.todaySPX - this.state.yesterdaySPX)/this.state.yesterdaySPX))*100/10000}%</div>
@@ -246,9 +242,9 @@ class Overview extends React.Component{
           <div className="overviewstock">
             <div>Dow</div>
               {(this.state.todayDJI - this.state.yesterdayDJI) > 0 ?
-                <img className="arrow" src={UpArrow} style={{width: 30, height: 30}} />
+                <img className="arrow" alt="Up Arrow" src={UpArrow} style={{width: 30, height: 30}} />
               :
-                <img className="arrow" src={DownArrow} style={{width: 30, height: 30}} />
+                <img className="arrow" alt="Down Arrow" src={DownArrow} style={{width: 30, height: 30}} />
               }
               <div>{Math.round(1000*(this.state.todayDJI - this.state.yesterdayDJI))/1000}</div>
               <div>{(Math.round(10000*(this.state.todayDJI - this.state.yesterdayDJI)/this.state.yesterdayDJI))*100/10000}%</div>
@@ -257,9 +253,9 @@ class Overview extends React.Component{
           <div className="overviewstock">
             <div>Nasdaq Composite</div>
               {(this.state.todayIXIC - this.state.yesterdayIXIC) > 0 ?
-                <img className="arrow" src={UpArrow} style={{width: 30, height: 30}} />
+                <img className="arrow" alt="Up Arrow" src={UpArrow} style={{width: 30, height: 30}} />
               :
-                <img className="arrow" src={DownArrow} style={{width: 30, height: 30}} />
+                <img className="arrow" alt="Down Arrow" src={DownArrow} style={{width: 30, height: 30}} />
               }
               <div>{Math.round(1000*(this.state.todayIXIC - this.state.yesterdayIXIC))/1000}</div>
               <div>{(Math.round(10000*(this.state.todayIXIC - this.state.yesterdayIXIC)/this.state.yesterdayIXIC))*100/10000}%</div>
@@ -268,9 +264,9 @@ class Overview extends React.Component{
           <div className="overviewstock">
             <div>Russell 2000</div>
               {(this.state.todayRUT - this.state.yesterdayRUT) > 0 ?
-                <img className="arrow" src={UpArrow} style={{width: 30, height: 30}} />
+                <img className="arrow" alt="Up Arrow" src={UpArrow} style={{width: 30, height: 30}} />
               :
-                <img className="arrow" src={DownArrow} style={{width: 30, height: 30}} />
+                <img className="arrow" alt="Down Arrow" src={DownArrow} style={{width: 30, height: 30}} />
               }
               <div>{Math.round(1000*(this.state.todayRUT - this.state.yesterdayRUT))/1000}</div>
               <div>{(Math.round(10000*(this.state.todayRUT - this.state.yesterdayRUT)/this.state.yesterdayRUT))*100/10000}%</div>
@@ -279,9 +275,9 @@ class Overview extends React.Component{
           <div className="overviewstock">
           <div>DAX</div>
             {(this.state.todayDAX - this.state.yesterdayDAX) > 0 ?
-              <img className="arrow" src={UpArrow} style={{width: 30, height: 30}} />
+              <img className="arrow" alt="Up Arrow" src={UpArrow} style={{width: 30, height: 30}} />
             :
-              <img className="arrow" src={DownArrow} style={{width: 30, height: 30}} />
+              <img className="arrow" alt="Down Arrow" src={DownArrow} style={{width: 30, height: 30}} />
             }
             <div>{Math.round(1000*(this.state.todayDAX - this.state.yesterdayDAX))/1000}</div>
             <div>{(Math.round(10000*(this.state.todayDAX - this.state.yesterdayDAX)/this.state.yesterdayDAX))*100/10000}%</div>
@@ -290,9 +286,9 @@ class Overview extends React.Component{
           <div className="overviewstock">
           <div>VIX</div>
             {(this.state.todayVIX - this.state.yesterdayVIX) > 0 ?
-              <img className="arrow" src={UpArrow} style={{width: 30, height: 30}} />
+              <img className="arrow" alt="Up Arrow" src={UpArrow} style={{width: 30, height: 30}} />
             :
-              <img className="arrow" src={DownArrow} style={{width: 30, height: 30}} />
+              <img className="arrow" alt="Down Arrow" src={DownArrow} style={{width: 30, height: 30}} />
             }
             <div>{Math.round(1000*(this.state.todayVIX - this.state.yesterdayVIX))/1000}</div>
             <div>{(Math.round(10000*(this.state.todayVIX - this.state.yesterdayVIX)/this.state.yesterdayVIX))*100/10000}%</div>
@@ -301,9 +297,9 @@ class Overview extends React.Component{
           <div className="overviewstock">
           <div>FTSE 100</div>
             {(this.state.todayFTSE - this.state.yesterdayFTSE) > 0 ?
-              <img className="arrow" src={UpArrow} style={{width: 30, height: 30}} />
+              <img className="arrow" alt="Up Arrow" src={UpArrow} style={{width: 30, height: 30}} />
             :
-              <img className="arrow" src={DownArrow} style={{width: 30, height: 30}} />
+              <img className="arrow" alt="Down Arrow" src={DownArrow} style={{width: 30, height: 30}} />
             }
             <div>{Math.round(1000*(this.state.todayFTSE - this.state.yesterdayFTSE))/1000}</div>
             <div>{(Math.round(10000*(this.state.todayFTSE - this.state.yesterdayFTSE)/this.state.yesterdayFTSE))*100/10000}%</div>
@@ -312,9 +308,9 @@ class Overview extends React.Component{
           <div className="overviewstock">
           <div>CAC40</div>
             {(this.state.todayCAC40 - this.state.yesterdayCAC40) > 0 ?
-              <img className="arrow" src={UpArrow} style={{width: 30, height: 30}} />
+              <img className="arrow" alt="Up Arrow" src={UpArrow} style={{width: 30, height: 30}} />
             :
-              <img className="arrow" src={DownArrow} style={{width: 30, height: 30}} />
+              <img className="arrow" alt="Down Arrow" src={DownArrow} style={{width: 30, height: 30}} />
             }
             <div>{Math.round(1000*(this.state.todayCAC40 - this.state.yesterdayCAC40))/1000}</div>
             <div>{(Math.round(10000*(this.state.todayCAC40 - this.state.yesterdayCAC40)/this.state.yesterdayCAC40))*100/10000}%</div>
@@ -323,9 +319,9 @@ class Overview extends React.Component{
           <div className="overviewstock">
           <div>NIKKEI 225</div>
             {(this.state.todayNIKKEI - this.state.yesterdayNIKKEI) > 0 ?
-              <img className="arrow" src={UpArrow} style={{width: 30, height: 30}} />
+              <img className="arrow" alt="Up Arrow" src={UpArrow} style={{width: 30, height: 30}} />
             :
-              <img className="arrow" src={DownArrow} style={{width: 30, height: 30}} />
+              <img className="arrow" alt="Down Arrow" src={DownArrow} style={{width: 30, height: 30}} />
             }
             <div>{Math.round(1000*(this.state.todayNIKKEI - this.state.yesterdayNIKKEI))/1000}</div>
             <div>{(Math.round(10000*(this.state.todayNIKKEI - this.state.yesterdayNIKKEI)/this.state.yesterdayNIKKEI))*100/10000}%</div>
@@ -334,9 +330,9 @@ class Overview extends React.Component{
           <div className="overviewstock">
           <div>Hang Seng Index</div>
             {(this.state.todayHSI - this.state.yesterdayHSI) > 0 ?
-              <img className="arrow" src={UpArrow} style={{width: 30, height: 30}} />
+              <img className="arrow" alt="Up Arrow" src={UpArrow} style={{width: 30, height: 30}} />
             :
-              <img className="arrow" src={DownArrow} style={{width: 30, height: 30}} />
+              <img className="arrow" alt="Down Arrow" src={DownArrow} style={{width: 30, height: 30}} />
             }
             <div>{Math.round(1000*(this.state.todayHSI - this.state.yesterdayHSI))/1000}</div>
             <div>{(Math.round(10000*(this.state.todayHSI - this.state.yesterdayHSI)/this.state.yesterdayHSI))*100/10000}%</div>
