@@ -52,7 +52,7 @@ class Pattern extends React.Component{
             Last Time This Happened: {Object.entries(relevantHistory).find(entry => entry[1]["4. close"] == 2619.5500)[0]}
             </div>
             <div>
-            The Price: {Object.entries(relevantHistory).find(entry => entry[1]["4. close"] == 2619.5500)[1]["4. close"]}
+            Start Price: {Object.entries(relevantHistory).find(entry => entry[1]["4. close"] == 2619.5500)[1]["4. close"]}
             </div>
             <div>Start Index: {Object.entries(relevantHistory).map(entry => entry[0]).indexOf(Object.entries(relevantHistory).find(entry => entry[1]["4. close"] == 2619.5500)[0])}
             // "10" is a standin for days, 2619.5500 is a stand in for close
@@ -60,6 +60,10 @@ class Pattern extends React.Component{
             <div>Final Index: {Object.entries(relevantHistory).map(entry => entry[0]).indexOf(Object.entries(relevantHistory).find(entry => entry[1]["4. close"] == 2619.5500)[0]) - 10}
             // "10" is a standin for days, 2619.5500 is a stand in for close
             </div>
+            <div>Final Close: {Object.entries(relevantHistory)[Object.entries(relevantHistory).map(entry => entry[0]).indexOf(Object.entries(relevantHistory).find(entry => entry[1]["4. close"] == 2619.5500)[0]) - 10][1]["4. close"]}
+            </div>
+            <div> Amout Made:{Object.entries(relevantHistory)[Object.entries(relevantHistory).map(entry => entry[0]).indexOf(Object.entries(relevantHistory).find(entry => entry[1]["4. close"] == 2619.5500)[0]) - 10][1]["4. close"] - Object.entries(relevantHistory).find(entry => entry[1]["4. close"] == 2619.5500)[1]["4. close"]} </div>
+            // multiply this by amount invested!
           </div>
           :
           <div>"No Matches Found"</div>
