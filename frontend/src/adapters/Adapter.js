@@ -9,7 +9,8 @@ class Adapter {
 
   static makeFetch(fetchurl){
     return fetch(fetchurl)
-    .then(response => response.json())
+    .then(response =>
+      response.json())
   }
 
   static patternFetch(fetchurl){

@@ -20,9 +20,13 @@ class Pattern extends React.Component{
     if (this.props.pattern !== undefined){
       let symbol = this.props.pattern[0].symbol
       Adapter.makeFetch(URL1 + DAILY + SYMBOLTYPE + symbol + ONEMINUTE + API)
-      .then(res => {this.setState({
-        history: res
-      })})
+      .then(res => {
+        if(res.Information !== "Please consider optimizing your API call frequency." && res["Error Message"] !== "Invalid API call. Please retry or visit the documentation (https://www.alphavantage.co/documentation/) for TIME_SERIES_DAILY."){
+          this.setState({
+            history: res
+          })
+        }
+      })
     }
   }
 
@@ -46,23 +50,23 @@ class Pattern extends React.Component{
         :
         null}
         <br />
-        {this.state.history ?
+        {this.state.history && this.props.pattern.length === 1 && Object.entries(relevantHistory).find(entry => entry[1]["4. close"] == this.props.pattern[0].close) !== undefined ?
           <div>
             <div>
-            Last Time This Happened: {Object.entries(relevantHistory).find(entry => entry[1]["4. close"] == 2619.5500)[0]}
+            Last Time This Happened: {Object.entries(relevantHistory).find(entry => entry[1]["4. close"] == this.props.pattern[0].close)[0]}
             </div>
             <div>
-            Start Price: {Object.entries(relevantHistory).find(entry => entry[1]["4. close"] == 2619.5500)[1]["4. close"]}
+            Start Price: {Object.entries(relevantHistory).find(entry => entry[1]["4. close"] == this.props.pattern[0].close)[1]["4. close"]}
             </div>
-            <div>Start Index: {Object.entries(relevantHistory).map(entry => entry[0]).indexOf(Object.entries(relevantHistory).find(entry => entry[1]["4. close"] == 2619.5500)[0])}
-            // "10" is a standin for days, 2619.5500 is a stand in for close
+            <div>Start Index: {Object.entries(relevantHistory).map(entry => entry[0]).indexOf(Object.entries(relevantHistory).find(entry => entry[1]["4. close"] == this.props.pattern[0].close)[0])}
+            // "10" is a standin for days, this.props.pattern[0].close is a stand in for close
             </div>
-            <div>Final Index: {Object.entries(relevantHistory).map(entry => entry[0]).indexOf(Object.entries(relevantHistory).find(entry => entry[1]["4. close"] == 2619.5500)[0]) - 10}
-            // "10" is a standin for days, 2619.5500 is a stand in for close
+            <div>Final Index: {Object.entries(relevantHistory).map(entry => entry[0]).indexOf(Object.entries(relevantHistory).find(entry => entry[1]["4. close"] == this.props.pattern[0].close)[0]) - this.props.pattern[0].days}
+            // "10" is a standin for days, this.props.pattern[0].close is a stand in for close
             </div>
-            <div>Final Close: {Object.entries(relevantHistory)[Object.entries(relevantHistory).map(entry => entry[0]).indexOf(Object.entries(relevantHistory).find(entry => entry[1]["4. close"] == 2619.5500)[0]) - 10][1]["4. close"]}
+            <div>Final Close: {Object.entries(relevantHistory)[Object.entries(relevantHistory).map(entry => entry[0]).indexOf(Object.entries(relevantHistory).find(entry => entry[1]["4. close"] == this.props.pattern[0].close)[0]) - this.props.pattern[0].days][1]["4. close"]}
             </div>
-            <div> Amout Made:{Object.entries(relevantHistory)[Object.entries(relevantHistory).map(entry => entry[0]).indexOf(Object.entries(relevantHistory).find(entry => entry[1]["4. close"] == 2619.5500)[0]) - 10][1]["4. close"] - Object.entries(relevantHistory).find(entry => entry[1]["4. close"] == 2619.5500)[1]["4. close"]} </div>
+            <div>Amount Made:{Object.entries(relevantHistory)[Object.entries(relevantHistory).map(entry => entry[0]).indexOf(Object.entries(relevantHistory).find(entry => entry[1]["4. close"] == this.props.pattern[0].close)[0]) - this.props.pattern[0].days][1]["4. close"] - Object.entries(relevantHistory).find(entry => entry[1]["4. close"] == 2619.5500)[1]["4. close"]} </div>
             // multiply this by amount invested!
           </div>
           :
