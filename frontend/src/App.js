@@ -9,6 +9,7 @@ import {connect} from 'react-redux'
 import Adapter from './adapters/Adapter'
 import Overview from './Overview'
 import Matcher from './Matcher'
+import Pattern from './Pattern'
 import { addPattern } from './actions'
 
 const EXISTINGACCOUNTURL = 'http://localhost:4000/api/v1/users'
@@ -68,6 +69,9 @@ class App extends Component {
         <Route
           exact path='/pattern-matcher'
           component={Matcher} />
+        <Route
+          path='/pattern/:patternid'
+          component={Pattern} />
       </div>
       </div>
     );
