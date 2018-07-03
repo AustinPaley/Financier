@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import Adapter from './adapters/Adapter'
 import {connect} from 'react-redux'
 import { addPattern } from './actions'
+import { Link } from 'react-router-dom'
 
 const POSTURL = "http://localhost:4000/api/v1/patterns"
 class Matcher extends React.Component{
@@ -85,7 +86,7 @@ class Matcher extends React.Component{
           <h3>Saved Patterns</h3>
             {this.props.patterns.length > 0 ? this.props.patterns[0].patterns.payload.map(pattern =>{
               return(
-              <div>Pattern: {pattern.id}</div>
+              <div><Link to={'/pattern/' + pattern.id}>Pattern: {pattern.id}</Link></div>
               )
             })
             :
