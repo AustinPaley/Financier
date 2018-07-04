@@ -1,6 +1,7 @@
 import React from 'react'
 import { connect } from 'react-redux'
 import Adapter from './adapters/Adapter'
+import PatternChart from './components/PatternChart'
 const API = process.env.REACT_APP_ALPHA_VANTAGE_API
 const URL1 = "https://www.alphavantage.co/query?function"
 const DAILY = `=TIME_SERIES_DAILY`
@@ -32,7 +33,6 @@ class Pattern extends React.Component{
 
   render(){
     const relevantHistory = this.state.history["Time Series (Daily)"]
-    debugger
     return(
       <div>
         {this.props.pattern !== undefined ?
@@ -40,6 +40,14 @@ class Pattern extends React.Component{
             return(
               <div className="patternContainer">
                 <h2>Results:</h2>
+                <PatternChart pattern=
+                  {this.state.history && this.props.pattern.length === 1 && Object.entries(relevantHistory).find(entry => entry[1]["4. close"].slice(0, -2) === this.props.pattern[0].close) !== undefined
+                  ?
+                  Object.entries(relevantHistory).slice((Object.entries(relevantHistory).map(entry => entry[0]).indexOf(Object.entries(relevantHistory).find(entry => entry[1]["4. close"].slice(0, -2) == this.props.pattern[0].close)[0]) - this.props.pattern[0].days), (Object.entries(relevantHistory).map(entry => entry[0]).indexOf(Object.entries(relevantHistory).find(entry => entry[1]["4. close"].slice(0, -2) === this.props.pattern[0].close)[0]))+1)
+                  :
+                  null
+                  }
+                />
                 <div>Symbol: {pattern.symbol}</div>
                 <div>Investment Size: {pattern.investment_size}</div>
                 <div>Open: {pattern.open}</div>
