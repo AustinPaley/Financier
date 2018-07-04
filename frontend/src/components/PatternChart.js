@@ -15,7 +15,6 @@ export default class PatternChart extends React.Component{
     }
   }
   render(){
-    console.log(this.props.pattern)
     return(
       <div className="chart">
       <Line data={this.state.chartData}

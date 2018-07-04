@@ -42,10 +42,11 @@ class Pattern extends React.Component{
                 <h2>Results:</h2>
                   {this.state.history && this.props.pattern.length === 1 && Object.entries(relevantHistory).find(entry => entry[1]["4. close"].slice(0, -2) === this.props.pattern[0].close) !== undefined
                   ?
-                  <PatternChart pattern={Object.entries(relevantHistory).slice((Object.entries(relevantHistory).map(entry => entry[0]).indexOf(Object.entries(relevantHistory).find(entry => entry[1]["4. close"].slice(0, -2) === this.props.pattern[0].close)[0]) - this.props.pattern[0].days), (Object.entries(relevantHistory).map(entry => entry[0]).indexOf(Object.entries(relevantHistory).find(entry => entry[1]["4. close"].slice(0, -2) === this.props.pattern[0].close)[0]))+1).map(date => parseFloat(date[1]["4. close"].slice(0, -2)))}/>
+                  <PatternChart pattern={Object.entries(relevantHistory).slice((Object.entries(relevantHistory).map(entry => entry[0]).indexOf(Object.entries(relevantHistory).find(entry => entry[1]["4. close"].slice(0, -2) === this.props.pattern[0].close)[0]) - this.props.pattern[0].days), (Object.entries(relevantHistory).map(entry => entry[0]).indexOf(Object.entries(relevantHistory).find(entry => entry[1]["4. close"].slice(0, -2) === this.props.pattern[0].close)[0]))+1).map(date => parseFloat(date[1]["4. close"].slice(0, -2))).reverse()}/>
                   :
                   null
                   }
+                <div><u>Search Parameters:</u></div>
                 <div>Symbol: {pattern.symbol}</div>
                 <div>Investment Size: {pattern.investment_size}</div>
                 <div>Open: {pattern.open}</div>
@@ -64,11 +65,7 @@ class Pattern extends React.Component{
             Last Time This Happened: {Object.entries(relevantHistory).find(entry => entry[1]["4. close"].slice(0, -2) === this.props.pattern[0].close)[0]}
             </div>
             <div>
-            Start Price: {Object.entries(relevantHistory).find(entry => entry[1]["4. close"].slice(0, -2) === this.props.pattern[0].close)[1]["4. close"]}
-            </div>
-            <div>Start Index: {Object.entries(relevantHistory).map(entry => entry[0]).indexOf(Object.entries(relevantHistory).find(entry => entry[1]["4. close"].slice(0, -2) === this.props.pattern[0].close)[0])}
-            </div>
-            <div>Final Index: {Object.entries(relevantHistory).map(entry => entry[0]).indexOf(Object.entries(relevantHistory).find(entry => entry[1]["4. close"].slice(0, -2) == this.props.pattern[0].close)[0]) - this.props.pattern[0].days}
+            Initial Close: {Object.entries(relevantHistory).find(entry => entry[1]["4. close"].slice(0, -2) === this.props.pattern[0].close)[1]["4. close"]}
             </div>
             <div>Final Close: {Object.entries(relevantHistory)[Object.entries(relevantHistory).map(entry => entry[0]).indexOf(Object.entries(relevantHistory).find(entry => entry[1]["4. close"].slice(0, -2) === this.props.pattern[0].close)[0]) - this.props.pattern[0].days][1]["4. close"]}
             </div>
