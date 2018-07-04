@@ -12,7 +12,7 @@ class Pattern extends React.Component{
     super(props)
 
     this.state={
-      history: ''
+      history: '',
     }
   }
 
@@ -32,6 +32,7 @@ class Pattern extends React.Component{
 
   render(){
     const relevantHistory = this.state.history["Time Series (Daily)"]
+    debugger
     return(
       <div>
         {this.props.pattern !== undefined ?
@@ -50,22 +51,21 @@ class Pattern extends React.Component{
         :
         null}
         <br />
-        {this.state.history && this.props.pattern.length === 1 && Object.entries(relevantHistory).find(entry => entry[1]["4. close"] == this.props.pattern[0].close) !== undefined ?
+        {this.state.history && this.props.pattern.length === 1 && Object.entries(relevantHistory).find(entry => entry[1]["4. close"].slice(0, -2) === this.props.pattern[0].close) !== undefined ?
           <div>
             <div>
-            Last Time This Happened: {Object.entries(relevantHistory).find(entry => entry[1]["4. close"] == this.props.pattern[0].close)[0]}
+            Last Time This Happened: {Object.entries(relevantHistory).find(entry => entry[1]["4. close"].slice(0, -2) === this.props.pattern[0].close)[0]}
             </div>
             <div>
-            Start Price: {Object.entries(relevantHistory).find(entry => entry[1]["4. close"] == this.props.pattern[0].close)[1]["4. close"]}
+            Start Price: {Object.entries(relevantHistory).find(entry => entry[1]["4. close"].slice(0, -2) === this.props.pattern[0].close)[1]["4. close"]}
             </div>
-            <div>Start Index: {Object.entries(relevantHistory).map(entry => entry[0]).indexOf(Object.entries(relevantHistory).find(entry => entry[1]["4. close"] == this.props.pattern[0].close)[0])}
+            <div>Start Index: {Object.entries(relevantHistory).map(entry => entry[0]).indexOf(Object.entries(relevantHistory).find(entry => entry[1]["4. close"].slice(0, -2) === this.props.pattern[0].close)[0])}
             </div>
-            <div>Final Index: {Object.entries(relevantHistory).map(entry => entry[0]).indexOf(Object.entries(relevantHistory).find(entry => entry[1]["4. close"] == this.props.pattern[0].close)[0]) - this.props.pattern[0].days}
+            <div>Final Index: {Object.entries(relevantHistory).map(entry => entry[0]).indexOf(Object.entries(relevantHistory).find(entry => entry[1]["4. close"].slice(0, -2) == this.props.pattern[0].close)[0]) - this.props.pattern[0].days}
             </div>
-            <div>Final Close: {Object.entries(relevantHistory)[Object.entries(relevantHistory).map(entry => entry[0]).indexOf(Object.entries(relevantHistory).find(entry => entry[1]["4. close"] == this.props.pattern[0].close)[0]) - this.props.pattern[0].days][1]["4. close"]}
+            <div>Final Close: {Object.entries(relevantHistory)[Object.entries(relevantHistory).map(entry => entry[0]).indexOf(Object.entries(relevantHistory).find(entry => entry[1]["4. close"].slice(0, -2) === this.props.pattern[0].close)[0]) - this.props.pattern[0].days][1]["4. close"]}
             </div>
-            <div>Amount Made:{Object.entries(relevantHistory)[Object.entries(relevantHistory).map(entry => entry[0]).indexOf(Object.entries(relevantHistory).find(entry => entry[1]["4. close"] == this.props.pattern[0].close)[0]) - this.props.pattern[0].days][1]["4. close"] - Object.entries(relevantHistory).find(entry => entry[1]["4. close"] == 2619.5500)[1]["4. close"]} </div>
-            // multiply this by amount invested!
+            <div>Amount Made:{this.props.pattern[0].investment_size * ((Object.entries(relevantHistory)[Object.entries(relevantHistory).map(entry => entry[0]).indexOf(Object.entries(relevantHistory).find(entry => entry[1]["4. close"].slice(0, -2) === this.props.pattern[0].close)[0]) - this.props.pattern[0].days][1]["4. close"]) - (Object.entries(relevantHistory).find(entry => entry[1]["4. close"].slice(0, -2) === this.props.pattern[0].close)[1]["4. close"]))} </div>
           </div>
           :
           <div>"No Matches Found"</div>
