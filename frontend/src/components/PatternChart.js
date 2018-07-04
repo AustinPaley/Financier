@@ -6,14 +6,17 @@ export default class PatternChart extends React.Component{
     super(props)
 
     this.state={
-      chartData: ''
+      chartData: {
+        datasets: [{
+          data: this.props.pattern,
+        }]
+      }
     }
   }
   render(){
-    console.log("INSIDE PATTERN CHART", this.props)
+    debugger
     return(
       <div className="chart">
-        PATTERNCHART
       </div>
     )
   }
