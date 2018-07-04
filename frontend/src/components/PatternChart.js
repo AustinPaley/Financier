@@ -7,7 +7,7 @@ export default class PatternChart extends React.Component{
 
     this.state={
       chartData: {
-        labels: this.props.pattern.map(day => "Day " + this.props.pattern.indexOf(day)),
+        labels: this.props.pattern.map(day => "Day " + (this.props.pattern.indexOf(day)+1)),
         datasets: [{
           label: "Performance Data",
           fillColor: "rgba(66, 88, 138, 0.5)",
@@ -22,9 +22,9 @@ export default class PatternChart extends React.Component{
   render(){
     debugger
     return(
-      <div className="chart">
+      <div className="patternChart">
       <Line data={this.state.chartData}
-        width="800"
+        width="1200"
         height="400" />
       </div>
     )

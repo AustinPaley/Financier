@@ -33,6 +33,7 @@ class Pattern extends React.Component{
 
   render(){
     const relevantHistory = this.state.history["Time Series (Daily)"]
+    debugger
     return(
       <div>
         {this.props.pattern !== undefined ?
@@ -46,13 +47,15 @@ class Pattern extends React.Component{
                   :
                   null
                   }
-                <div><u>Search Parameters:</u></div>
-                <div>Symbol: {pattern.symbol}</div>
-                <div>Investment Size: {pattern.investment_size}</div>
-                <div>Open: {pattern.open}</div>
-                <div>High: {pattern.high}</div>
-                <div>Low: {pattern.low}</div>
-                <div>Close: {pattern.close}</div>
+                <div className="patternParameters">
+                  <h3><u>Search Parameters:</u></h3>
+                  <div><b>Symbol:</b> {pattern.symbol}</div>
+                  <div><b>Investment Size:</b> {pattern.investment_size}</div>
+                  <div><b>Open:</b> {pattern.open}</div>
+                  <div><b>High:</b> {pattern.high}</div>
+                  <div><b>Low:</b> {pattern.low}</div>
+                  <div><b>Close:</b> {pattern.close}</div><br/>
+                </div>
               </div>
             )
           })
@@ -60,19 +63,20 @@ class Pattern extends React.Component{
         null}
         <br />
         {this.state.history && this.props.pattern.length === 1 && Object.entries(relevantHistory).find(entry => entry[1]["4. close"].slice(0, -2) === this.props.pattern[0].close) !== undefined ?
-          <div>
+          <div className="patternReturnInfo">
+            <h3><u>Query Information</u></h3>
             <div>
-            Last Time This Happened: {Object.entries(relevantHistory).find(entry => entry[1]["4. close"].slice(0, -2) === this.props.pattern[0].close)[0]}
+            <b>Last Time This Happened:</b> {Object.entries(relevantHistory).find(entry => entry[1]["4. close"].slice(0, -2) === this.props.pattern[0].close)[0]}
             </div>
             <div>
-            Initial Close: {Object.entries(relevantHistory).find(entry => entry[1]["4. close"].slice(0, -2) === this.props.pattern[0].close)[1]["4. close"]}
+            <b>Initial Close:</b> {Object.entries(relevantHistory).find(entry => entry[1]["4. close"].slice(0, -2) === this.props.pattern[0].close)[1]["4. close"]}
             </div>
-            <div>Final Close: {Object.entries(relevantHistory)[Object.entries(relevantHistory).map(entry => entry[0]).indexOf(Object.entries(relevantHistory).find(entry => entry[1]["4. close"].slice(0, -2) === this.props.pattern[0].close)[0]) - this.props.pattern[0].days][1]["4. close"]}
+            <div><b>Final Close:</b> {Object.entries(relevantHistory)[Object.entries(relevantHistory).map(entry => entry[0]).indexOf(Object.entries(relevantHistory).find(entry => entry[1]["4. close"].slice(0, -2) === this.props.pattern[0].close)[0]) - this.props.pattern[0].days][1]["4. close"]}
             </div>
-            <div className="expectedReturn">Based on historical data, you can expect <span className="returnAmount">${this.props.pattern[0].investment_size * ((Object.entries(relevantHistory)[Object.entries(relevantHistory).map(entry => entry[0]).indexOf(Object.entries(relevantHistory).find(entry => entry[1]["4. close"].slice(0, -2) === this.props.pattern[0].close)[0]) - this.props.pattern[0].days][1]["4. close"]) - (Object.entries(relevantHistory).find(entry => entry[1]["4. close"].slice(0, -2) === this.props.pattern[0].close)[1]["4. close"]))}</span> in return. </div>
+            <div className="expectedReturn">Based on historical data, you can expect <span className="returnAmount">${Math.trunc(this.props.pattern[0].investment_size * ((Object.entries(relevantHistory)[Object.entries(relevantHistory).map(entry => entry[0]).indexOf(Object.entries(relevantHistory).find(entry => entry[1]["4. close"].slice(0, -2) === this.props.pattern[0].close)[0]) - this.props.pattern[0].days][1]["4. close"]) - (Object.entries(relevantHistory).find(entry => entry[1]["4. close"].slice(0, -2) === this.props.pattern[0].close)[1]["4. close"])))}</span> in return. </div>
           </div>
           :
-          <div>"No Matches Found"</div>
+          <div className="patternReturnInfo">"No Matches Found"</div>
         }
       </div>
     )
