@@ -38,7 +38,8 @@ class Pattern extends React.Component{
         {this.props.pattern !== undefined ?
           this.props.pattern.map(pattern => {
             return(
-              <div>
+              <div className="patternContainer">
+                <h2>Results:</h2>
                 <div>Symbol: {pattern.symbol}</div>
                 <div>Investment Size: {pattern.investment_size}</div>
                 <div>Open: {pattern.open}</div>
@@ -65,7 +66,7 @@ class Pattern extends React.Component{
             </div>
             <div>Final Close: {Object.entries(relevantHistory)[Object.entries(relevantHistory).map(entry => entry[0]).indexOf(Object.entries(relevantHistory).find(entry => entry[1]["4. close"].slice(0, -2) === this.props.pattern[0].close)[0]) - this.props.pattern[0].days][1]["4. close"]}
             </div>
-            <div>Amount Made:{this.props.pattern[0].investment_size * ((Object.entries(relevantHistory)[Object.entries(relevantHistory).map(entry => entry[0]).indexOf(Object.entries(relevantHistory).find(entry => entry[1]["4. close"].slice(0, -2) === this.props.pattern[0].close)[0]) - this.props.pattern[0].days][1]["4. close"]) - (Object.entries(relevantHistory).find(entry => entry[1]["4. close"].slice(0, -2) === this.props.pattern[0].close)[1]["4. close"]))} </div>
+            <div className="expectedReturn">Based on historical data, you can expect <span className="returnAmount">${this.props.pattern[0].investment_size * ((Object.entries(relevantHistory)[Object.entries(relevantHistory).map(entry => entry[0]).indexOf(Object.entries(relevantHistory).find(entry => entry[1]["4. close"].slice(0, -2) === this.props.pattern[0].close)[0]) - this.props.pattern[0].days][1]["4. close"]) - (Object.entries(relevantHistory).find(entry => entry[1]["4. close"].slice(0, -2) === this.props.pattern[0].close)[1]["4. close"]))}</span> in return. </div>
           </div>
           :
           <div>"No Matches Found"</div>
