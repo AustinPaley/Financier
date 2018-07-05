@@ -81,7 +81,7 @@ class Matcher extends React.Component{
     const TOBEDELETED = event.target.parentNode
     Adapter.deletePattern(DELETEURL + DELETEID)
     .then(res => {
-      alert(res.messages)
+      alert("Pattern " + res.item.id + " has been removed.")
       this.props.removePattern({
       type: "DELETE_PATTERN",
       payload: res.item})
