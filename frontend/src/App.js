@@ -60,7 +60,7 @@ class App extends Component {
           <Redirect to="/register" />
           :
           <Route
-            exact path='/'
+            exact path='/stock-spotlight'
             component={StockContainer} />
         }
         <Route

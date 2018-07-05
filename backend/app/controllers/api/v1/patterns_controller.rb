@@ -16,6 +16,14 @@ class Api::V1::PatternsController < ApplicationController
     render json: @pattern
   end
 
+  def destroy
+    @pattern = Pattern.find(params[:id])
+    @pattern.destroy
+    render json: {
+      messages: "Pattern removed."
+    }
+  end
+
   private
   def pattern_params
     params.require(:pattern).permit(:user_id, :close, :open, :high, :low, :symbol, :investment_size, :days)

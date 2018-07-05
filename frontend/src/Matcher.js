@@ -3,6 +3,7 @@ import Adapter from './adapters/Adapter'
 import {connect} from 'react-redux'
 import { Link } from 'react-router-dom'
 import { addPattern } from './actions'
+const DeleteButton = require('./images/delete-icon.png')
 
 const POSTURL = "http://localhost:4000/api/v1/patterns"
 class Matcher extends React.Component{
@@ -73,6 +74,11 @@ class Matcher extends React.Component{
     })
   }
 
+  handleDelete = (event) =>{
+    const DELETEID = event.target.parentNode.id
+    Adapter.deletePattern("http://localhost:4000/api/v1/patterns/" + DELETEID)
+  }
+
   render(){
     return(
       <div>
@@ -95,7 +101,10 @@ class Matcher extends React.Component{
           <h3>Saved Patterns</h3>
             {this.props.patterns.length > 0 ? this.props.patterns[0].patterns.payload.map(pattern =>{
               return(
-              <div><Link to={'/pattern/' + pattern.id}>Pattern: {pattern.id}</Link></div>
+              <div id={pattern.id}>
+                <Link to={'/pattern/' + pattern.id}>Pattern: {pattern.id}</Link>
+                <img className="delete_button" alt="Delete Button" src={DeleteButton} style={{width: 10, height: 10}} onClick={this.handleDelete} />
+              </div>
               )
             })
             :

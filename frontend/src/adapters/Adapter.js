@@ -23,6 +23,14 @@ class Adapter {
     .then(response => response.json())
   }
 
+  static deletePattern(fetchurl){
+    debugger
+    return fetch(fetchurl, {
+
+    })
+    .then(response => response.json())
+  }
+
   static postPattern(fetchurl, user_id, symbol, open, close, high, low, investment_size, days){
     return fetch(fetchurl, {
       method: 'POST',

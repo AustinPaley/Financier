@@ -411,3 +411,11 @@ canvas{
   color: green;
   font-size: 40px;
 }
+
+.delete_button{
+  margin-left: 5px;
+}
+
+.delete_button:hover{
+  cursor:pointer;
+}

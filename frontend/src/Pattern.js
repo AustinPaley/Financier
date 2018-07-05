@@ -135,7 +135,6 @@ class Pattern extends React.Component{
 
 const mapStateToProps = state => {
   console.log("STATE", state)
-  debugger
   if (state.pattern.patterns[0] !== undefined && state.pattern.patterns[0].patterns.payload.filter(pattern => pattern.id === parseInt(window.location.pathname.replace("/pattern/", ""))) !== null && (state.pattern.patterns[1] === undefined || state.pattern.patterns[1].patterns.id !== parseInt(window.location.pathname.replace("/pattern/", "")))){
     return {
       pattern: state.pattern.patterns[0].patterns.payload.filter(pattern => pattern.id === parseInt(window.location.pathname.replace("/pattern/", "")))
