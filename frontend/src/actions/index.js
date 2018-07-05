@@ -13,3 +13,12 @@ export function addPattern(res){
     }
   }
 }
+
+export function removePattern(res){
+  return{
+    type: "DELETE_PATTERN",
+    payload: {
+      patterns: res
+    }
+  }
+}

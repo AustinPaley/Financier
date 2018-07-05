@@ -2,7 +2,7 @@ import React from 'react';
 import Adapter from './adapters/Adapter'
 import {connect} from 'react-redux'
 import { Link } from 'react-router-dom'
-import { addPattern } from './actions'
+import { addPattern, removePattern } from './actions'
 const DeleteButton = require('./images/delete-icon.png')
 
 const POSTURL = "http://localhost:4000/api/v1/patterns"
@@ -80,16 +80,13 @@ class Matcher extends React.Component{
     const DELETEID = event.target.parentNode.id
     const TOBEDELETED = event.target.parentNode
     Adapter.deletePattern(DELETEURL + DELETEID)
-    .then(res => alert(res.messages))
+    .then(res => {
+      alert(res.messages)
+      this.props.removePattern({
+      type: "DELETE_PATTERN",
+      payload: res.item})
+    })
   }
-
-  // deleteItem = (toBeDeleted) => {
-  //   const NewGeneralInfo = {...this.state.generalInfo}
-  //   delete NewGeneralInfo["Time Series (Daily)"][toBeDeleted]
-  //   this.setState({
-  //     generalInfo: NewGeneralInfo
-  //   })
-  // }
 
   render(){
     return(
@@ -132,6 +129,9 @@ const mapDispatchToProps = (dispatch) => {
   return{
     addPattern: (res) => {
       dispatch(addPattern(res))
+    },
+    removePattern: (res) => {
+      dispatch(removePattern(res))
     }
   }
 }

@@ -20,6 +20,7 @@ class Api::V1::PatternsController < ApplicationController
     @pattern = Pattern.find(params[:id])
     @pattern.destroy
     render json: {
+      item: @pattern,
       messages: "Pattern removed."
     }
   end
