@@ -2,6 +2,7 @@ import React from 'react';
 import Adapter from './adapters/Adapter'
 import {connect} from 'react-redux'
 import { Link } from 'react-router-dom'
+import { addPattern } from './actions'
 
 const POSTURL = "http://localhost:4000/api/v1/patterns"
 class Matcher extends React.Component{
@@ -66,6 +67,7 @@ class Matcher extends React.Component{
   handleSubmit = (event) => {
     event.preventDefault()
     Adapter.postPattern(POSTURL, this.state.user_id, this.state.primarySymbol, this.state.open, this.state.close, this.state.high, this.state.low, this.state.amountInvesting, this.state.days)
+    .then(res => {this.props.addPattern(res))
     .then(res => {
       this.props.history.push(`/pattern/${res.id}`)
     })
@@ -106,10 +108,18 @@ class Matcher extends React.Component{
   }
 }
 
+const mapDispatchToProps = (dispatch) => {
+  return{
+    addPattern: (res) => {
+      dispatch(addPattern(res))
+    }
+  }
+}
+
 const mapStateToProps = state => {
   return {
     patterns: state.pattern.patterns
   }
 }
 
-export default connect(mapStateToProps)(Matcher)
+export default connect(mapStateToProps, mapDispatchToProps)(Matcher)
