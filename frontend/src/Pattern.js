@@ -71,8 +71,31 @@ class Pattern extends React.Component{
               </div>
             )
           })
-        :
-        null}
+          :
+          null
+        }
+        {this.props.pattern !== undefined && this.props.pattern.id === parseInt(window.location.pathname.replace("/pattern/", "")) ?
+              <div className="patternContainer">
+                <h2>Results:</h2>
+                  {this.state.history && Object.entries(relevantHistory).find(entry => entry[1]["4. close"].slice(0, -2) === this.props.pattern.close) !== undefined
+                  ?
+                  <PatternChart pattern={Object.entries(relevantHistory).slice((Object.entries(relevantHistory).map(entry => entry[0]).indexOf(Object.entries(relevantHistory).find(entry => entry[1]["4. close"].slice(0, -2) === this.props.pattern.close)[0]) - this.props.pattern.days), (Object.entries(relevantHistory).map(entry => entry[0]).indexOf(Object.entries(relevantHistory).find(entry => entry[1]["4. close"].slice(0, -2) === this.props.pattern.close)[0]))+1).map(date => parseFloat(date[1]["4. close"].slice(0, -2))).reverse()}/>
+                  :
+                  null
+                  }
+                <div className="patternParameters">
+                  <h3><u>Search Parameters:</u></h3>
+                  <div><b>Symbol:</b> {this.props.pattern.symbol}</div>
+                  <div><b>Investment Size:</b> {this.props.pattern.investment_size}</div>
+                  <div><b>Open:</b> {this.props.pattern.open}</div>
+                  <div><b>High:</b> {this.props.pattern.high}</div>
+                  <div><b>Low:</b> {this.props.pattern.low}</div>
+                  <div><b>Close:</b> {this.props.pattern.close}</div><br/>
+                </div>
+              </div>
+          :
+          null
+        }
         <br />
         {this.state.history && this.props.pattern.length === 1 && Object.entries(relevantHistory).find(entry => entry[1]["4. close"].slice(0, -2) === this.props.pattern[0].close) !== undefined ?
           <div className="patternReturnInfo">
