@@ -32,7 +32,6 @@ class Pattern extends React.Component{
     }
     if (this.props.pattern !== undefined && this.props.pattern.length === undefined){
       let symbol = this.props.pattern.symbol
-      debugger
       Adapter.makeFetch(URL1 + DAILY + SYMBOLTYPE + symbol + ONEMINUTE + API)
       .then(res => {
         if(res.Information !== "Please consider optimizing your API call frequency." && res["Error Message"] !== "Invalid API call. Please retry or visit the documentation (https://www.alphavantage.co/documentation/) for TIME_SERIES_DAILY."){
@@ -97,9 +96,8 @@ class Pattern extends React.Component{
 }
 
 const mapStateToProps = state => {
-  debugger
   console.log("STATE", state)
-  if (state.pattern.patterns[0] !== undefined && state.pattern.patterns[0].patterns.payload.filter(pattern => pattern.id === parseInt(window.location.pathname.replace("/pattern/", ""))) !== null && (state.pattern.patterns[1] === undefined || state.pattern.patterns[1].id !== parseInt(window.location.pathname.replace("/pattern/", "")))){
+  if (state.pattern.patterns[0] !== undefined && state.pattern.patterns[0].patterns.payload.filter(pattern => pattern.id === parseInt(window.location.pathname.replace("/pattern/", ""))) !== null && (state.pattern.patterns[1] === undefined || state.pattern.patterns[1].id === parseInt(window.location.pathname.replace("/pattern/", "")))){
     return {
       pattern: state.pattern.patterns[0].patterns.payload.filter(pattern => pattern.id === parseInt(window.location.pathname.replace("/pattern/", "")))
     }
