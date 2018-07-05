@@ -20,7 +20,6 @@ export default class PatternChart extends React.Component{
     }
   }
   render(){
-    debugger
     return(
       <div className="patternChart">
       <Line data={this.state.chartData}

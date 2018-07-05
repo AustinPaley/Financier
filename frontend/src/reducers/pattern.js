@@ -3,7 +3,6 @@ const initialState = {
 }
 
 const patternReducer = (state = initialState, action) => {
-  debugger
   switch(action.type){
     case "ADD_PATTERN":
       return {...state, patterns: [...state.patterns, action.payload]}

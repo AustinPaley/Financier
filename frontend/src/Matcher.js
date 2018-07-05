@@ -67,14 +67,13 @@ class Matcher extends React.Component{
   handleSubmit = (event) => {
     event.preventDefault()
     Adapter.postPattern(POSTURL, this.state.user_id, this.state.primarySymbol, this.state.open, this.state.close, this.state.high, this.state.low, this.state.amountInvesting, this.state.days)
-    .then(res => {this.props.addPattern(res))
     .then(res => {
+      this.props.addPattern(res)
       this.props.history.push(`/pattern/${res.id}`)
     })
   }
 
   render(){
-    console.log(this.state)
     return(
       <div>
         <div className="pattern-form">

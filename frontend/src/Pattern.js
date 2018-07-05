@@ -18,8 +18,21 @@ class Pattern extends React.Component{
   }
 
   componentDidMount(){
-    if (this.props.pattern !== undefined){
+    if (this.props.pattern !== undefined && this.props.pattern.length !== undefined){
+      debugger
       let symbol = this.props.pattern[0].symbol
+      Adapter.makeFetch(URL1 + DAILY + SYMBOLTYPE + symbol + ONEMINUTE + API)
+      .then(res => {
+        if(res.Information !== "Please consider optimizing your API call frequency." && res["Error Message"] !== "Invalid API call. Please retry or visit the documentation (https://www.alphavantage.co/documentation/) for TIME_SERIES_DAILY."){
+          this.setState({
+            history: res
+          })
+        }
+      })
+    }
+    if (this.props.pattern !== undefined && this.props.pattern.length === undefined){
+      let symbol = this.props.pattern.symbol
+      debugger
       Adapter.makeFetch(URL1 + DAILY + SYMBOLTYPE + symbol + ONEMINUTE + API)
       .then(res => {
         if(res.Information !== "Please consider optimizing your API call frequency." && res["Error Message"] !== "Invalid API call. Please retry or visit the documentation (https://www.alphavantage.co/documentation/) for TIME_SERIES_DAILY."){
@@ -33,9 +46,10 @@ class Pattern extends React.Component{
 
   render(){
     const relevantHistory = this.state.history["Time Series (Daily)"]
+    debugger
     return(
       <div>
-        {this.props.pattern !== undefined ?
+        {this.props.pattern !== undefined && this.props.pattern.length !== undefined ?
           this.props.pattern.map(pattern => {
             return(
               <div className="patternContainer">
@@ -83,9 +97,16 @@ class Pattern extends React.Component{
 }
 
 const mapStateToProps = state => {
-  if (state.pattern.patterns[0] !== undefined && state.pattern.patterns[0].patterns.payload.filter(pattern => pattern.id === parseInt(window.location.pathname.replace("/pattern/", ""))) !== null){
+  debugger
+  console.log("STATE", state)
+  if (state.pattern.patterns[0] !== undefined && state.pattern.patterns[0].patterns.payload.filter(pattern => pattern.id === parseInt(window.location.pathname.replace("/pattern/", ""))) !== null && (state.pattern.patterns[1] === undefined || state.pattern.patterns[1].id !== parseInt(window.location.pathname.replace("/pattern/", "")))){
     return {
       pattern: state.pattern.patterns[0].patterns.payload.filter(pattern => pattern.id === parseInt(window.location.pathname.replace("/pattern/", "")))
+    }
+  }
+  else if(state.pattern.patterns[1] !== undefined && state.pattern.patterns[1].patterns.id === parseInt(window.location.pathname.replace("/pattern/", "")) !== null){
+    return{
+      pattern: state.pattern.patterns[1].patterns
     }
   }
 }
