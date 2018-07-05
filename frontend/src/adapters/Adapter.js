@@ -24,9 +24,12 @@ class Adapter {
   }
 
   static deletePattern(fetchurl){
-    debugger
     return fetch(fetchurl, {
-
+      method: 'DELETE',
+      headers:{
+        'Content-Type' : 'application/json',
+        'Authorization' : localStorage.getItem("token")
+      }
     })
     .then(response => response.json())
   }

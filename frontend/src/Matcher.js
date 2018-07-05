@@ -6,6 +6,7 @@ import { addPattern } from './actions'
 const DeleteButton = require('./images/delete-icon.png')
 
 const POSTURL = "http://localhost:4000/api/v1/patterns"
+const DELETEURL = "http://localhost:4000/api/v1/patterns/"
 class Matcher extends React.Component{
   constructor(props){
     super(props)
@@ -75,9 +76,20 @@ class Matcher extends React.Component{
   }
 
   handleDelete = (event) =>{
+    event.preventDefault()
     const DELETEID = event.target.parentNode.id
-    Adapter.deletePattern("http://localhost:4000/api/v1/patterns/" + DELETEID)
+    const TOBEDELETED = event.target.parentNode
+    Adapter.deletePattern(DELETEURL + DELETEID)
+    .then(res => alert(res.messages))
   }
+
+  // deleteItem = (toBeDeleted) => {
+  //   const NewGeneralInfo = {...this.state.generalInfo}
+  //   delete NewGeneralInfo["Time Series (Daily)"][toBeDeleted]
+  //   this.setState({
+  //     generalInfo: NewGeneralInfo
+  //   })
+  // }
 
   render(){
     return(
