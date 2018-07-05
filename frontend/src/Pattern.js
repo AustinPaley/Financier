@@ -45,7 +45,6 @@ class Pattern extends React.Component{
 
   render(){
     const relevantHistory = this.state.history["Time Series (Daily)"]
-    debugger
     return(
       <div>
         {this.props.pattern !== undefined && this.props.pattern.length !== undefined ?
@@ -136,7 +135,8 @@ class Pattern extends React.Component{
 
 const mapStateToProps = state => {
   console.log("STATE", state)
-  if (state.pattern.patterns[0] !== undefined && state.pattern.patterns[0].patterns.payload.filter(pattern => pattern.id === parseInt(window.location.pathname.replace("/pattern/", ""))) !== null && (state.pattern.patterns[1] === undefined || state.pattern.patterns[1].id === parseInt(window.location.pathname.replace("/pattern/", "")))){
+  debugger
+  if (state.pattern.patterns[0] !== undefined && state.pattern.patterns[0].patterns.payload.filter(pattern => pattern.id === parseInt(window.location.pathname.replace("/pattern/", ""))) !== null && (state.pattern.patterns[1] === undefined || state.pattern.patterns[1].patterns.id !== parseInt(window.location.pathname.replace("/pattern/", "")))){
     return {
       pattern: state.pattern.patterns[0].patterns.payload.filter(pattern => pattern.id === parseInt(window.location.pathname.replace("/pattern/", "")))
     }
