@@ -111,7 +111,23 @@ class Pattern extends React.Component{
             <div className="expectedReturn">Based on historical data, you can expect <span className="returnAmount">${Math.trunc(this.props.pattern[0].investment_size * ((Object.entries(relevantHistory)[Object.entries(relevantHistory).map(entry => entry[0]).indexOf(Object.entries(relevantHistory).find(entry => entry[1]["4. close"].slice(0, -2) === this.props.pattern[0].close)[0]) - this.props.pattern[0].days][1]["4. close"]) - (Object.entries(relevantHistory).find(entry => entry[1]["4. close"].slice(0, -2) === this.props.pattern[0].close)[1]["4. close"])))}</span> in return. </div>
           </div>
           :
-          <div className="patternReturnInfo">"No Matches Found"</div>
+          null
+        }
+        {this.state.history && this.props.pattern !== undefined && this.props.pattern.id === parseInt(window.location.pathname.replace("/pattern/", "")) ?
+          <div className="patternReturnInfo">
+            <h3><u>Query Information</u></h3>
+            <div>
+            <b>Last Time This Happened:</b> {Object.entries(relevantHistory).find(entry => entry[1]["4. close"].slice(0, -2) === this.props.pattern.close)[0]}
+            </div>
+            <div>
+            <b>Initial Close:</b> {Object.entries(relevantHistory).find(entry => entry[1]["4. close"].slice(0, -2) === this.props.pattern.close)[1]["4. close"]}
+            </div>
+            <div><b>Final Close:</b> {Object.entries(relevantHistory)[Object.entries(relevantHistory).map(entry => entry[0]).indexOf(Object.entries(relevantHistory).find(entry => entry[1]["4. close"].slice(0, -2) === this.props.pattern.close)[0]) - this.props.pattern.days][1]["4. close"]}
+            </div>
+            <div className="expectedReturn">Based on historical data, you can expect <span className="returnAmount">${Math.trunc(this.props.pattern.investment_size * ((Object.entries(relevantHistory)[Object.entries(relevantHistory).map(entry => entry[0]).indexOf(Object.entries(relevantHistory).find(entry => entry[1]["4. close"].slice(0, -2) === this.props.pattern.close)[0]) - this.props.pattern.days][1]["4. close"]) - (Object.entries(relevantHistory).find(entry => entry[1]["4. close"].slice(0, -2) === this.props.pattern.close)[1]["4. close"])))}</span> in return. </div>
+          </div>
+          :
+          null
         }
       </div>
     )
