@@ -19,7 +19,6 @@ class Pattern extends React.Component{
 
   componentDidMount(){
     if (this.props.pattern !== undefined && this.props.pattern.length !== undefined){
-      debugger
       let symbol = this.props.pattern[0].symbol
       Adapter.makeFetch(URL1 + DAILY + SYMBOLTYPE + symbol + ONEMINUTE + API)
       .then(res => {

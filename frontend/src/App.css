@@ -419,3 +419,14 @@ canvas{
 .delete_button:hover{
   cursor:pointer;
 }
+
+.Select-input{
+  margin-top: 15px;
+  margin-left: 15px;
+}
+
+.Select-placeholder{
+  float: left;
+  margin-left: 30px;
+  margin-top: 15px;
+}
