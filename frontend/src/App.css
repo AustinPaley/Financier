@@ -314,7 +314,7 @@ a:hover{
   float: left;
   font-size: 26px;
   font-weight: bold;
-  margin-top: 0px;
+  margin-top: 30px;
   margin-left: 30px;
 }
 
@@ -326,13 +326,14 @@ a:hover{
 
 .pattern-form{
   float:left;
+  width: 1000px;
 }
 
 .form-primary-symbol{
   text-align: left;
   font-size: 22px;
   font-weight: bold;
-  margin-top: 30px;
+  margin-top: 50px;
   margin-left: 30px;
 }
 
@@ -420,13 +421,11 @@ canvas{
   cursor:pointer;
 }
 
-.Select-input{
-  margin-top: 15px;
+select.input-primary-symbol{
+  font-size: 12px;
   margin-left: 15px;
 }
 
-.Select-placeholder{
-  float: left;
-  margin-left: 30px;
-  margin-top: 15px;
+input.input-primary-symbol{
+  margin-right: 15px;
 }

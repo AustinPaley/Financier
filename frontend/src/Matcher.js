@@ -95,9 +95,9 @@ class Matcher extends React.Component{
       <div>
         <div className="pattern-form">
           <form onSubmit={this.handleSubmit}>
-            <div className="form-amount-investing">Amount Investing: <input className="input-amount-investing" name="amount-investing" type="text" onChange={this.handleInput} /></div>
+            <div className="form-amount-investing">Amount Investing: <input className="input-amount-investing" name="amount-investing" type="text" onChange={this.handleInput} /></div><br/>
             <div className="form-primary-symbol">Primary Symbol Name: <input className="input-primary-symbol" name="primary-symbol" type="text" onChange={this.handleInput} />
-            OR
+             OR
             <select className="input-primary-symbol" name="primary-symbol" type="select" onChange={this.handleInput}>
               {this.state.symbol_options.map(symbol => {
                 return(
