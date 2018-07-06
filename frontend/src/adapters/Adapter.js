@@ -8,6 +8,7 @@ class Adapter {
   }
 
   static makeFetch(fetchurl){
+    console.log(fetchurl)
     return fetch(fetchurl)
     .then(response => {
       if(response.ok === true){

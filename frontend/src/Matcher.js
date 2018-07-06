@@ -8,6 +8,7 @@ const DeleteButton = require('./images/delete-icon.png')
 
 const POSTURL = "http://localhost:4000/api/v1/patterns"
 const DELETEURL = "http://localhost:4000/api/v1/patterns/"
+
 class Matcher extends React.Component{
   constructor(props){
     super(props)
@@ -99,7 +100,12 @@ class Matcher extends React.Component{
   render(){
     return(
       <div>
-        <MatcherChart />
+        {this.state.primarySymbol !== ''
+          ?
+          <MatcherChart primarySymbol={this.state.primarySymbol}/>
+          :
+          null
+        }
         <div className="pattern-form">
           <form onSubmit={this.handleSubmit}>
             <div className="form-amount-investing">Amount Investing: <input className="input-amount-investing" name="amount-investing" type="text" onChange={this.handleInput} /></div><br/>

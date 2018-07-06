@@ -403,6 +403,11 @@ canvas{
   margin-left: 120px;
 }
 
+.MatcherChart canvas{
+  margin-right: 10px;
+  margin-left: 10px;
+}
+
 .expectedReturn{
   margin-top: -180px;
   font-size: 30px;
