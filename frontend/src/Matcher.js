@@ -31,9 +31,15 @@ class Matcher extends React.Component{
         amountInvesting: event.target.value
       })
     }
-    else if (event.target.name === "primary-symbol"){
+    else if (event.target.name === "primary-symbol" && event.target.value !== "Select Company Symbol..."){
       this.setState({
         primarySymbol: event.target.value
+      })
+    }
+
+    else if (event.target.name === "primary-symbol" && event.target.value === "Select Company Symbol..."){
+      this.setState({
+        primarySymbol: ''
       })
     }
 
@@ -97,7 +103,7 @@ class Matcher extends React.Component{
         <div className="pattern-form">
           <form onSubmit={this.handleSubmit}>
             <div className="form-amount-investing">Amount Investing: <input className="input-amount-investing" name="amount-investing" type="text" onChange={this.handleInput} /></div><br/>
-            <div className="form-primary-symbol">Primary Symbol Name: <input className="input-primary-symbol" name="primary-symbol" type="text" onChange={this.handleInput} /><br/>
+            <div className="form-primary-symbol">Primary Symbol Name: <input className="input-primary-symbol" name="primary-symbol" type="text" onChange={this.handleInput} value={this.state.primarySymbol} /><br/>
              <em>or</em>
             <select className="input-primary-symbol" name="primary-symbol" type="select" onChange={this.handleInput}>
             <option default>Select Company Symbol...</option>

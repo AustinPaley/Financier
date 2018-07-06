@@ -326,7 +326,8 @@ a:hover{
 
 .pattern-form{
   float:left;
-  width: 1000px;
+  width: 600px;
+  margin-left: 90px;
 }
 
 .form-primary-symbol{
