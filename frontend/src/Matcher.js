@@ -104,7 +104,10 @@ class Matcher extends React.Component{
           ?
           <MatcherChart primarySymbol={this.state.primarySymbol}/>
           :
-          null
+          <div className="Spaceholder">
+            <br />
+            <h2>Enter a Symbol to See Historical Data</h2>
+          </div>
         }
         <div className="pattern-form">
           <form onSubmit={this.handleSubmit}>

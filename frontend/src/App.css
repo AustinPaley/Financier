@@ -408,6 +408,11 @@ canvas{
   margin-left: 10px;
 }
 
+.MatcherChart {
+  background: rgb(197, 205, 224, 0.2);
+  padding-top: 10px;
+}
+
 .expectedReturn{
   margin-top: -180px;
   font-size: 30px;
@@ -434,4 +439,9 @@ select.input-primary-symbol{
 
 input.input-primary-symbol{
   margin-right: 15px;
+}
+
+.Spaceholder{
+  height: 451px;
+  background: rgb(197, 205, 224, 0.2);
 }
