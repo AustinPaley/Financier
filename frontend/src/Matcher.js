@@ -3,10 +3,19 @@ import Adapter from './adapters/Adapter'
 import {connect} from 'react-redux'
 import { Link } from 'react-router-dom'
 import { addPattern, removePattern } from './actions'
+import Select from 'react-select'
 const DeleteButton = require('./images/delete-icon.png')
 
 const POSTURL = "http://localhost:4000/api/v1/patterns"
 const DELETEURL = "http://localhost:4000/api/v1/patterns/"
+const scaryAnimals = [
+  { label: "Alligators", value: 1 },
+  { label: "Crocodiles", value: 2 },
+  { label: "Sharks", value: 3 },
+  { label: "Small crocodiles", value: 4 },
+  { label: "Smallest crocodiles", value: 5 },
+  { label: "Snakes", value: 6 },
+];
 class Matcher extends React.Component{
   constructor(props){
     super(props)
@@ -20,6 +29,7 @@ class Matcher extends React.Component{
       days: '',
       user_id: localStorage.getItem("id"),
       user_patterns: [],
+      symbol_options: this.props.symbols,
     }
   }
 
@@ -75,6 +85,12 @@ class Matcher extends React.Component{
     })
   }
 
+  handlePrimarySymbol = (symbol) => {
+    this.setState({
+      primarySymbol: symbol
+    })
+  }
+
   handleDelete = (event) =>{
     event.preventDefault()
     const DELETEID = event.target.parentNode.id
@@ -89,12 +105,32 @@ class Matcher extends React.Component{
   }
 
   render(){
+    console.log("SYMBOL", this.state.primarySymbol)
     return(
       <div>
+        <Select
+          className="input-primary-symbol"
+          id="primary-symbol-select"
+          name="primary-symbol"
+          options={this.state.symbol_options.map(symbol => ({label: symbol.name, value: symbol.symbol}))}
+          onSelectResetsInput={false}
+          onChange={this.handlePrimarySymbol}
+          searchable={true}
+          matchProp={"value"}
+          matchPos={"start"}
+          placeholder={"Choose symbol..."}
+          searchPromptText={"Type to search..."}
+          onBlurResetsInput={false}
+          onSelectResetsInput={false}
+          autoFocus
+          simpleValue
+          value={this.state.primarySymbol}
+        />
         <div className="pattern-form">
           <form onSubmit={this.handleSubmit}>
             <div className="form-amount-investing">Amount Investing: <input className="input-amount-investing" name="amount-investing" type="text" onChange={this.handleInput} /></div>
-            <div className="form-primary-symbol">Primary Symbol Name: <input className="input-primary-symbol" name="primary-symbol" type="text" onChange={this.handleInput} /></div>
+            <div className="form-primary-symbol">Primary Symbol Name: <input className="input-primary-symbol" name="primary-symbol" type="text" onChange={this.handleInput} />
+            </div>
             <div className="pattern-selector">Open<input className="pattern-input" name="open" type="text" onChange={this.handleInput} /></div>
             <div className="pattern-selector">Previous Close:<input className="pattern-input" name="close" type="text" onChange={this.handleInput} /></div>
             <div className="pattern-selector">High:<input className="pattern-input" name="high" type="text" onChange={this.handleInput} /></div>
@@ -138,7 +174,8 @@ const mapDispatchToProps = (dispatch) => {
 
 const mapStateToProps = state => {
   return {
-    patterns: state.pattern.patterns
+    patterns: state.pattern.patterns,
+    symbols: state.symbols.symbols
   }
 }
 

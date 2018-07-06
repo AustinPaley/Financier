@@ -22,3 +22,12 @@ export function removePattern(res){
     }
   }
 }
+
+export function addSymbols(res){
+  return{
+    type: "ADD_SYMBOLS",
+    payload: {
+      symbols: res
+    }
+  }
+}

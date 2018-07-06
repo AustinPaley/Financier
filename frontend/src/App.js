@@ -10,7 +10,7 @@ import Adapter from './adapters/Adapter'
 import Overview from './Overview'
 import Matcher from './Matcher'
 import Pattern from './Pattern'
-import { addPattern } from './actions'
+import { addPattern, addSymbols } from './actions'
 
 const EXISTINGACCOUNTURL = 'http://localhost:4000/api/v1/users'
 
@@ -36,6 +36,11 @@ class App extends Component {
         type: "ADD_PATTERN", payload: res.filter(pattern => pattern.user_id === parseInt(localStorage.getItem("id")))})
       }
     })
+
+    Adapter.makeFetch("https://api.iextrading.com/1.0/ref-data/symbols")
+    .then(res =>
+      this.props.addSymbols(res)
+    )
   }
 
   render(){
@@ -82,6 +87,9 @@ const mapDispatchToProps = (dispatch) => {
   return{
     addPattern: (res) => {
       dispatch(addPattern(res))
+    },
+    addSymbols: (res) => {
+      dispatch(addSymbols(res))
     }
   }
 }

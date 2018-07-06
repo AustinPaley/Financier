@@ -10,7 +10,8 @@
     "react-dom": "^16.4.1",
     "react-live-clock": "^2.0.3",
     "react-player": "^1.6.4",
-    "react-scripts": "1.1.4"
+    "react-scripts": "1.1.4",
+    "react-select": "^1.2.1"
   },
   "scripts": {
     "start": "react-scripts start",
