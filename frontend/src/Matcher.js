@@ -3,6 +3,7 @@ import Adapter from './adapters/Adapter'
 import {connect} from 'react-redux'
 import { Link } from 'react-router-dom'
 import { addPattern, removePattern } from './actions'
+import MatcherChart from './components/MatcherChart'
 const DeleteButton = require('./images/delete-icon.png')
 
 const POSTURL = "http://localhost:4000/api/v1/patterns"
@@ -90,15 +91,16 @@ class Matcher extends React.Component{
   }
 
   render(){
-          debugger
     return(
       <div>
+        <MatcherChart />
         <div className="pattern-form">
           <form onSubmit={this.handleSubmit}>
             <div className="form-amount-investing">Amount Investing: <input className="input-amount-investing" name="amount-investing" type="text" onChange={this.handleInput} /></div><br/>
-            <div className="form-primary-symbol">Primary Symbol Name: <input className="input-primary-symbol" name="primary-symbol" type="text" onChange={this.handleInput} />
-             OR
+            <div className="form-primary-symbol">Primary Symbol Name: <input className="input-primary-symbol" name="primary-symbol" type="text" onChange={this.handleInput} /><br/>
+             <em>or</em>
             <select className="input-primary-symbol" name="primary-symbol" type="select" onChange={this.handleInput}>
+            <option default>Select Company Symbol...</option>
               {this.state.symbol_options.map(symbol => {
                 return(
                 <option value={symbol.symbol}>{symbol.name.toString().substring(0, 30) + "..."}</option>)})}
