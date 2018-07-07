@@ -24,7 +24,9 @@ export default class MatcherChart extends React.Component{
           highlightStroke: "rgba(90, 0, 0)",
           data: [],
         }]
-      }
+      },
+      allData: [],
+      selectedDataType: "Closes"
     }
   }
 
@@ -43,18 +45,91 @@ export default class MatcherChart extends React.Component{
             highlightStroke: "rgba(90, 0, 0)",
             data: Object.entries(res["Time Series (Daily)"]).map(day => day[1]["4. close"])
           }]
-        }
+        },
+        allData: res
       })
     })
+  }
+
+  handleClick = (event) =>{
+    if (event.target.name === "open"){
+      this.setState({
+        chartData:{
+          labels: Object.entries(this.state.allData["Time Series (Daily)"]).map(day => day[0]),
+          datasets: [{
+            label: "Performance Data",
+            fillColor: "rgba(66, 88, 138, 0.5)",
+            strokeColor: "rgba(66, 88, 138)",
+            highlightFill: "rgba(90, 0, 0)",
+            highlightStroke: "rgba(90, 0, 0)",
+            data: Object.entries(this.state.allData["Time Series (Daily)"]).map(day => day[1]["1. open"])
+          }]
+        },
+        selectedDataType: "Opens"
+      })
+    }
+    else if (event.target.name === "close"){
+      this.setState({
+        chartData:{
+          labels: Object.entries(this.state.allData["Time Series (Daily)"]).map(day => day[0]),
+          datasets: [{
+            label: "Performance Data",
+            fillColor: "rgba(66, 88, 138, 0.5)",
+            strokeColor: "rgba(66, 88, 138)",
+            highlightFill: "rgba(90, 0, 0)",
+            highlightStroke: "rgba(90, 0, 0)",
+            data: Object.entries(this.state.allData["Time Series (Daily)"]).map(day => day[1]["4. close"])
+          }]
+        },
+        selectedDataType: "Closes"
+      })
+    }
+    else if (event.target.name === "high"){
+      this.setState({
+        chartData:{
+          labels: Object.entries(this.state.allData["Time Series (Daily)"]).map(day => day[0]),
+          datasets: [{
+            label: "Performance Data",
+            fillColor: "rgba(66, 88, 138, 0.5)",
+            strokeColor: "rgba(66, 88, 138)",
+            highlightFill: "rgba(90, 0, 0)",
+            highlightStroke: "rgba(90, 0, 0)",
+            data: Object.entries(this.state.allData["Time Series (Daily)"]).map(day => day[1]["2. high"])
+          }]
+        },
+        selectedDataType: "Highs"
+      })
+    }
+    else if (event.target.name === "low"){
+      this.setState({
+        chartData:{
+          labels: Object.entries(this.state.allData["Time Series (Daily)"]).map(day => day[0]),
+          datasets: [{
+            label: "Performance Data",
+            fillColor: "rgba(66, 88, 138, 0.5)",
+            strokeColor: "rgba(66, 88, 138)",
+            highlightFill: "rgba(90, 0, 0)",
+            highlightStroke: "rgba(90, 0, 0)",
+            data: Object.entries(this.state.allData["Time Series (Daily)"]).map(day => day[1]["3. low"])
+          }]
+        },
+        selectedDataType: "Lows"
+      })
+    }
   }
 
   render(){
     return(
       <div className="MatcherChart">
-      <h2>{this.props.primarySymbol} Data</h2>
+      <h2>{this.props.primarySymbol} {this.state.selectedDataType}</h2>
         <Line data={this.state.chartData}
           width="1200"
           height="400" />
+        <br/>
+        <button name="open" onClick={this.handleClick}>Open</button>
+        <button name="high" onClick={this.handleClick}>High</button>
+        <button name="low" onClick={this.handleClick}>Low</button>
+        <button name="close" onClick={this.handleClick}>Close</button>
       </div>
     )
   }
