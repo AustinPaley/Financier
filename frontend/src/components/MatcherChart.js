@@ -1,6 +1,7 @@
 import React from 'react'
 import {Line} from 'react-chartjs'
 import Adapter from '../adapters/Adapter'
+import {connect} from 'react-redux'
 const API = process.env.REACT_APP_ALPHA_VANTAGE_API
 const URL1 = "https://www.alphavantage.co/query?function"
 const DAILY = `=TIME_SERIES_DAILY`
@@ -8,7 +9,7 @@ let SPXSYMBOL = "&symbol=SPX"
 const ONEMINUTE = "&interval=1min"
 const SPXCALL = URL1 + DAILY + SPXSYMBOL + ONEMINUTE + API
 
-export default class MatcherChart extends React.Component{
+class MatcherChart extends React.Component{
   constructor(props){
     super(props)
 
@@ -119,9 +120,10 @@ export default class MatcherChart extends React.Component{
   }
 
   render(){
+    debugger
     return(
       <div className="MatcherChart">
-      <h2>{this.props.primarySymbol} {this.state.selectedDataType}</h2>
+      <h2>{this.props.symbols.find(symbol => symbol.symbol === this.state.primarySymbol).name} <em>({this.props.primarySymbol})</em> {this.state.selectedDataType}</h2>
         <Line data={this.state.chartData}
           width="1200"
           height="400" />
@@ -135,3 +137,11 @@ export default class MatcherChart extends React.Component{
   }
 
 }
+
+const mapStateToProps = state => {
+  return {
+    symbols: state.symbols.symbols
+  }
+}
+
+export default connect(mapStateToProps)(MatcherChart)

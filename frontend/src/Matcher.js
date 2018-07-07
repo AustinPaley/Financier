@@ -27,6 +27,7 @@ class Matcher extends React.Component{
   }
 
   handleInput = (event) => {
+    debugger
     if (event.target.name === "amount-investing"){
       this.setState({
         amountInvesting: event.target.value
@@ -98,11 +99,12 @@ class Matcher extends React.Component{
   }
 
   render(){
+    debugger
     return(
       <div>
         {this.state.primarySymbol !== ''
           ?
-          <MatcherChart primarySymbol={this.state.primarySymbol}/>
+          <MatcherChart primarySymbol={this.state.primarySymbol} fullSymbol={this.state}/>
           :
           <div className="Spaceholder">
             <br />
