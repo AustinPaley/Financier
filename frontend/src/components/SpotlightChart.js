@@ -106,9 +106,9 @@ class SpotlightChart extends React.Component{
 
   render(){
     return(
-      <div className="MatcherChart">
+      <div className="SpotlightChart">
         <Line data={this.state.chartData}
-          width="1200"
+          width="800"
           height="400" />
       </div>
     )

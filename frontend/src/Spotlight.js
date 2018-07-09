@@ -48,48 +48,52 @@ class Spotlight extends React.Component{
         <h2 className="stockSpotlightHeader">Stock Spotlight</h2>
         <input className="stockSearch" onChange={this.changeStock} /><br/>
         <h3 className="stockSpotlightCompanyName">{this.state.symbolCompanyInfo.companyName}</h3><br/><br/><br/><br/><br/>
-        <div className="stockInfoContainer">
-          <div><b>Symbol</b></div>
-          <div>{this.state.symbolQuote.symbol !== undefined ? this.state.symbolQuote.symbol : "-"}</div>
-          <div><b>Change</b></div>
-          <div>{this.state.symbolQuote.symbol !== undefined ? this.state.symbolQuote.change : "-"}</div>
-          <div><b>Bid</b></div>
-          <div>{this.state.symbolQuote.symbol !== undefined ? this.state.symbolQuote.iexBidPrice : "-"}</div>
-          <div><b>Ask</b></div>
-          <div>{this.state.symbolQuote.symbol !== undefined ? this.state.symbolQuote.iexAskPrice : "-"}</div>
-          <div><b>Volume</b></div>
-          <div>{this.state.symbolQuote.symbol !== undefined ? this.state.symbolQuote.latestVolume : "-"}</div>
-          <div><b>TSize</b></div>
-          <div>{this.state.symbolQuote.symbol !== undefined ? this.state.symbolQuote.iexRealtimeSize : "-"}</div>
-          <div><b>High</b></div>
-          <div>{this.state.symbolQuote.symbol !== undefined ? this.state.symbolQuote.high : "-"}</div>
-          <div><b>Low</b></div>
-          <div>{this.state.symbolQuote.symbol !== undefined ? this.state.symbolQuote.low : "-"}</div>
-          <div><b>Close</b></div>
-          <div>{this.state.symbolQuote.symbol !== undefined ? this.state.symbolQuote.close : "-"}</div>
+        <div className="stockTicker">
+          <div className="stockInfoContainer">
+            <div className="stockInfoHeader"><b>Symbol</b></div>
+            <div className="stockInfoHeader"><b>Change</b></div>
+            <div className="stockInfoHeader"><b>Bid</b></div>
+            <div className="stockInfoHeader"><b>Ask</b></div>
+            <div className="stockInfoHeader"><b>Volume</b></div>
+            <div className="stockInfoHeader"><b>TSize</b></div>
+            <div className="stockInfoHeader"><b>High</b></div>
+            <div className="stockInfoHeader"><b>Low</b></div>
+            <div className="stockInfoHeader"><b>Close</b></div>
+            <div className="stockInfoData">{this.state.symbolQuote.symbol !== undefined ? this.state.symbolQuote.symbol : "-"}</div>
+            <div className="stockInfoData">{this.state.symbolQuote.symbol !== undefined ? this.state.symbolQuote.change : "-"}</div>
+            <div className="stockInfoData">{this.state.symbolQuote.symbol !== undefined ? this.state.symbolQuote.iexBidPrice : "-"}</div>
+            <div className="stockInfoData">{this.state.symbolQuote.symbol !== undefined ? this.state.symbolQuote.iexAskPrice : "-"}</div>
+            <div className="stockInfoData">{this.state.symbolQuote.symbol !== undefined ? this.state.symbolQuote.latestVolume : "-"}</div>
+            <div className="stockInfoData">{this.state.symbolQuote.symbol !== undefined ? this.state.symbolQuote.iexRealtimeSize : "-"}</div>
+            <div className="stockInfoData">{this.state.symbolQuote.symbol !== undefined ? this.state.symbolQuote.high : "-"}</div>
+            <div className="stockInfoData">{this.state.symbolQuote.symbol !== undefined ? this.state.symbolQuote.low : "-"}</div>
+            <div className="stockInfoData">{this.state.symbolQuote.symbol !== undefined ? this.state.symbolQuote.close : "-"}</div>
+          </div>
+          <button className="saveSpotlight">Save Spotlight</button>
         </div>
-        <button>Save This Spotlight</button>
-        <h4>Chart of Selected Stock Tabular/Graph</h4>
         {this.state.symbolSearch !== ""
           ?
           <SpotlightChart primarySymbol={this.state.symbolSearch}/>
           :
           null
         }
-        <h4>{this.state.symbolCompanyInfo.companyName} News</h4>
-        {this.state.symbolSearchNews.length !== undefined ?
-          this.state.symbolSearchNews.map(newsItem => {
-            return(
-              <div>
-                <div className="newsItem"><a href={newsItem.url}>{newsItem.headline.toString().substring(0, 100) + "..."}</a></div>
-                <div className="recent-news-source">{newsItem.source}</div>
-                <div className="recent-news-date">{newsItem.datetime}</div>
-              </div>
-            )
-          })
-          :
-          <div>No news to display</div>
-        }
+        <div className="spotlightNewsContainer">
+          <h4>{this.state.symbolCompanyInfo.companyName} News</h4>
+          {this.state.symbolSearchNews.length !== undefined ?
+            this.state.symbolSearchNews.map(newsItem => {
+              return(
+                <div>
+                  <div className="newsItem"><a href={newsItem.url}>{newsItem.headline.toString().substring(0, 50) + "..."}</a></div>
+                  <div className="recent-news-source">{newsItem.source}</div>
+                  <div className="recent-news-date">{newsItem.datetime}</div>
+                  <br/>
+                </div>
+              )
+            })
+            :
+            <div>No news to display</div>
+          }
+        </div>
       </div>
     )
   }

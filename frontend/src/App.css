@@ -413,6 +413,18 @@ canvas{
   padding-top: 10px;
 }
 
+.SpotlightChart canvas{
+  margin-right: 10px;
+  margin-left: -270px;
+  background: rgb(197, 205, 224, 0.2);
+}
+
+.SpotlightChart {
+  float: left;
+  margin-left: 435px;
+  padding-top: 10px;
+}
+
 .expectedReturn{
   margin-top: -180px;
   font-size: 30px;
@@ -465,4 +477,37 @@ input.stockSearch{
   margin-left: -380px;
   margin-top: 40px;
   font-size: 20px;
+}
+
+.stockInfoContainer{
+  margin-left: -280px;
+  display: inline-grid;
+  grid-template-columns: 70px 70px 70px 70px 70px 70px 70px 70px 70px;
+  grid-template-rows: 2;
+  grid-template-areas:
+  'stockInfoHeader stockInfoHeader stockInfoHeader stockInfoHeader stockInfoHeader stockInfoHeader stockInfoHeader stockInfoHeader stockInfoHeader'
+  'stockInfoData stockInfoData stockInfoData stockInfoData stockInfoData stockInfoData stockInfoData stockInfoData stockInfoData';
+  margin-top: 5px;
+  margin-bottom: 30px;
+}
+
+.stockInfoHeader{
+  border: 1px black solid;
+  font-size: 14px;
+}
+
+.stockInfoData{
+  border: 1px black solid;
+  font-size: 14px;
+}
+
+.spotlightNewsContainer{
+  float: right;
+  margin-right: 25px;
+}
+
+button.saveSpotlight{
+  margin-left: 20px;
+  font-size: 14px;
+  border-radius: 10px;
 }
