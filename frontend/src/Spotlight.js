@@ -43,11 +43,12 @@ class Spotlight extends React.Component{
   }
 
   render(){
+    console.log("SYMBOL", this.state.symbolCompanyInfo.symbol !== undefined)
     return(
       <div>
         <h2 className="stockSpotlightHeader">Stock Spotlight</h2>
         <input className="stockSearch" onChange={this.changeStock} /><br/>
-        <h3 className="stockSpotlightCompanyName">{this.state.symbolCompanyInfo.companyName}</h3><br/><br/><br/><br/><br/>
+        {this.state.symbolCompanyInfo.symbol !== undefined ? <h3 className="stockSpotlightCompanyName">{this.state.symbolCompanyInfo.companyName} ({this.state.symbolCompanyInfo.symbol})</h3> : <h3 className="stockSpotlightCompanyName">Search a Stock Symbol To Begin</h3>}<br/><br/><br/><br/><br/>
         <div className="stockTicker">
           <div className="stockInfoContainer">
             <div className="stockInfoHeader"><b>Symbol</b></div>
@@ -78,8 +79,8 @@ class Spotlight extends React.Component{
           null
         }
         <div className="spotlightNewsContainer">
-          {this.state.symbolSearchNews.length !== 0 ? <h4>{this.state.symbolCompanyInfo.companyName} News</h4> : null}
-          {this.state.symbolSearchNews.length !== undefined ?
+          {this.state.symbolSearchNews.length !== 0 && this.state.symbolSearchNews.length !== undefined ? <h4>{this.state.symbolCompanyInfo.companyName} News</h4> : null}
+          {this.state.symbolSearchNews.length !== 0 && this.state.symbolSearchNews.length !== undefined ?
             this.state.symbolSearchNews.map(newsItem => {
               return(
                 <div>
@@ -91,7 +92,7 @@ class Spotlight extends React.Component{
               )
             })
             :
-            <div>No news to display</div>
+            null
           }
         </div>
       </div>
