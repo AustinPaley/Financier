@@ -54,8 +54,51 @@ class SpotlightChart extends React.Component{
     }
   }
 
+    componentWillReceiveProps(nextProps) {
+      if (this.state.primarySymbol !== nextProps.primarySymbol) {
+        let SYMBOL = "&symbol=" + nextProps.primarySymbol
+        Adapter.makeFetch(URL1 + DAILY + SYMBOL + ONEMINUTE + API)
+        .then(res => {
+          this.setState({
+            chartData:{
+              labels: Object.entries(res["Time Series (Daily)"]).map(day => day[0]),
+              datasets: [{
+                label: "Performance Data",
+                fillColor: "rgba(66, 88, 138, 0.5)",
+                strokeColor: "rgba(66, 88, 138)",
+                highlightFill: "rgba(90, 0, 0)",
+                highlightStroke: "rgba(90, 0, 0)",
+                data: Object.entries(res["Time Series (Daily)"]).map(day => day[1]["4. close"])
+              }]
+            },
+            allData: res
+          })
+        })
+      }
+
+      else if (this.state.primarySymbol === nextProps.primarySymbol) {
+        let SYMBOL = "&symbol=" + this.state.primarySymbol
+        Adapter.makeFetch(URL1 + DAILY + SYMBOL + ONEMINUTE + API)
+        .then(res => {
+          this.setState({
+            chartData:{
+              labels: Object.entries(res["Time Series (Daily)"]).map(day => day[0]),
+              datasets: [{
+                label: "Performance Data",
+                fillColor: "rgba(66, 88, 138, 0.5)",
+                strokeColor: "rgba(66, 88, 138)",
+                highlightFill: "rgba(90, 0, 0)",
+                highlightStroke: "rgba(90, 0, 0)",
+                data: Object.entries(res["Time Series (Daily)"]).map(day => day[1]["4. close"])
+              }]
+            },
+            allData: res
+          })
+        })
+      }
+    }
+
   render(){
-    console.log(this.props.primarySymbol)
     return(
       <div className="MatcherChart">
         <Line data={this.state.chartData}
