@@ -46,26 +46,28 @@ class Spotlight extends React.Component{
     return(
       <div>
         <h2 className="stockSpotlightHeader">Stock Spotlight</h2>
-        <input name="stockSearch" onChange={this.changeStock} />
-        <h3>{this.state.symbolCompanyInfo.companyName}</h3>
-        <div><b>Symbol</b></div>
-        <div>{this.state.symbolQuote.symbol !== undefined ? this.state.symbolQuote.symbol : "-"}</div>
-        <div><b>Change</b></div>
-        <div>{this.state.symbolQuote.symbol !== undefined ? this.state.symbolQuote.change : "-"}</div>
-        <div><b>Bid</b></div>
-        <div>{this.state.symbolQuote.symbol !== undefined ? this.state.symbolQuote.iexBidPrice : "-"}</div>
-        <div><b>Ask</b></div>
-        <div>{this.state.symbolQuote.symbol !== undefined ? this.state.symbolQuote.iexAskPrice : "-"}</div>
-        <div><b>Volume</b></div>
-        <div>{this.state.symbolQuote.symbol !== undefined ? this.state.symbolQuote.latestVolume : "-"}</div>
-        <div><b>TSize</b></div>
-        <div>{this.state.symbolQuote.symbol !== undefined ? this.state.symbolQuote.iexRealtimeSize : "-"}</div>
-        <div><b>High</b></div>
-        <div>{this.state.symbolQuote.symbol !== undefined ? this.state.symbolQuote.high : "-"}</div>
-        <div><b>Low</b></div>
-        <div>{this.state.symbolQuote.symbol !== undefined ? this.state.symbolQuote.low : "-"}</div>
-        <div><b>Close</b></div>
-        <div>{this.state.symbolQuote.symbol !== undefined ? this.state.symbolQuote.close : "-"}</div>
+        <input className="stockSearch" onChange={this.changeStock} /><br/>
+        <h3 className="stockSpotlightCompanyName">{this.state.symbolCompanyInfo.companyName}</h3><br/><br/><br/><br/><br/>
+        <div className="stockInfoContainer">
+          <div><b>Symbol</b></div>
+          <div>{this.state.symbolQuote.symbol !== undefined ? this.state.symbolQuote.symbol : "-"}</div>
+          <div><b>Change</b></div>
+          <div>{this.state.symbolQuote.symbol !== undefined ? this.state.symbolQuote.change : "-"}</div>
+          <div><b>Bid</b></div>
+          <div>{this.state.symbolQuote.symbol !== undefined ? this.state.symbolQuote.iexBidPrice : "-"}</div>
+          <div><b>Ask</b></div>
+          <div>{this.state.symbolQuote.symbol !== undefined ? this.state.symbolQuote.iexAskPrice : "-"}</div>
+          <div><b>Volume</b></div>
+          <div>{this.state.symbolQuote.symbol !== undefined ? this.state.symbolQuote.latestVolume : "-"}</div>
+          <div><b>TSize</b></div>
+          <div>{this.state.symbolQuote.symbol !== undefined ? this.state.symbolQuote.iexRealtimeSize : "-"}</div>
+          <div><b>High</b></div>
+          <div>{this.state.symbolQuote.symbol !== undefined ? this.state.symbolQuote.high : "-"}</div>
+          <div><b>Low</b></div>
+          <div>{this.state.symbolQuote.symbol !== undefined ? this.state.symbolQuote.low : "-"}</div>
+          <div><b>Close</b></div>
+          <div>{this.state.symbolQuote.symbol !== undefined ? this.state.symbolQuote.close : "-"}</div>
+        </div>
         <button>Save This Spotlight</button>
         <h4>Chart of Selected Stock Tabular/Graph</h4>
         {this.state.symbolSearch !== ""

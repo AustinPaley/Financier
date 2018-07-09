@@ -445,3 +445,24 @@ input.input-primary-symbol{
   height: 451px;
   background: rgb(197, 205, 224, 0.2);
 }
+
+.stockSpotlightHeader{
+  float: left;
+  margin-left: 120px;
+  margin-top: 10px;
+}
+
+input.stockSearch{
+  float: left;
+  margin-left: 40px;
+  margin-top: 11px;
+  width: 200px;
+  height: 20px;
+}
+
+.stockSpotlightCompanyName{
+  float: left;
+  margin-left: -380px;
+  margin-top: 40px;
+  font-size: 20px;
+}
