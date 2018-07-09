@@ -1,15 +1,7 @@
 import React from 'react'
-import Stock from './Stock'
-import Form from './Form'
-import StockHistoryContainer from './StockHistoryContainer'
 import SpotlightChart from './components/SpotlightChart'
 import {connect} from 'react-redux'
 import Adapter from './adapters/Adapter'
-
-const API = process.env.REACT_APP_ALPHA_VANTAGE_API
-const URL1 = "https://www.alphavantage.co/query?function"
-const DAILY = `=TIME_SERIES_DAILY`
-const ONEMINUTE = "&interval=1min"
 
 class Spotlight extends React.Component{
   constructor(props){

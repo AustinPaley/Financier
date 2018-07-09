@@ -5,9 +5,7 @@ import {connect} from 'react-redux'
 const API = process.env.REACT_APP_ALPHA_VANTAGE_API
 const URL1 = "https://www.alphavantage.co/query?function"
 const DAILY = `=TIME_SERIES_DAILY`
-let SPXSYMBOL = "&symbol=SPX"
 const ONEMINUTE = "&interval=1min"
-const SPXCALL = URL1 + DAILY + SPXSYMBOL + ONEMINUTE + API
 
 class MatcherChart extends React.Component{
   constructor(props){

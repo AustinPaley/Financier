@@ -1,13 +1,10 @@
 import React from 'react'
 import {Line} from 'react-chartjs'
 import Adapter from '../adapters/Adapter'
-import {connect} from 'react-redux'
 const API = process.env.REACT_APP_ALPHA_VANTAGE_API
 const URL1 = "https://www.alphavantage.co/query?function"
 const DAILY = `=TIME_SERIES_DAILY`
-let SPXSYMBOL = "&symbol=SPX"
 const ONEMINUTE = "&interval=1min"
-const SPXCALL = URL1 + DAILY + SPXSYMBOL + ONEMINUTE + API
 
 class SpotlightChart extends React.Component{
   constructor(props){
