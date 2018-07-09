@@ -47,7 +47,7 @@ class Pattern extends React.Component{
     debugger
     return(
       <div>
-        {this.props.pattern !== undefined && this.props.pattern.length !== undefined ?
+        {this.props.pattern !== undefined && this.props.pattern.length !== undefined && this.props.pattern[0].close !== "" ?
           this.props.pattern.map(pattern => {
             return(
               <div className="patternContainer">
@@ -73,7 +73,7 @@ class Pattern extends React.Component{
           :
           null
         }
-        {this.props.pattern !== undefined && this.props.pattern.id === parseInt(window.location.pathname.replace("/pattern/", "")) ?
+        {this.props.pattern !== undefined && this.props.pattern.id === parseInt(window.location.pathname.replace("/pattern/", "")) && this.props.pattern[0].close !== "" ?
               <div className="patternContainer">
                 <h2>Results:</h2>
                   {this.state.history && Object.entries(relevantHistory).find(entry => entry[1]["4. close"].slice(0, -2) === this.props.pattern.close) !== undefined
@@ -96,7 +96,7 @@ class Pattern extends React.Component{
           null
         }
         <br />
-        {this.state.history && this.props.pattern.length === 1 && Object.entries(relevantHistory).find(entry => entry[1]["4. close"].slice(0, -2) === this.props.pattern[0].close) !== undefined ?
+        {this.state.history && this.props.pattern[0].close !== "" && this.props.pattern.length === 1 && Object.entries(relevantHistory).find(entry => entry[1]["4. close"].slice(0, -2) === this.props.pattern[0].close) !== undefined ?
           <div className="patternReturnInfo">
             <h3><u>Query Information</u></h3>
             <div>
@@ -112,7 +112,7 @@ class Pattern extends React.Component{
           :
           null
         }
-        {this.state.history && this.props.pattern !== undefined && this.props.pattern.id === parseInt(window.location.pathname.replace("/pattern/", "")) ?
+        {this.state.history && this.props.pattern[0].close !== "" && this.props.pattern !== undefined && this.props.pattern.id === parseInt(window.location.pathname.replace("/pattern/", "")) ?
           <div className="patternReturnInfo">
             <h3><u>Query Information</u></h3>
             <div>
@@ -128,7 +128,7 @@ class Pattern extends React.Component{
           :
           null
         }
-        {this.props.pattern !== undefined && this.props.pattern.length !== undefined ?
+        {this.props.pattern !== undefined && this.props.pattern[0].high !== "" && this.props.pattern.length !== undefined ?
           this.props.pattern.map(pattern => {
             return(
               <div className="patternContainer">
@@ -154,7 +154,7 @@ class Pattern extends React.Component{
           :
           null
         }
-        {this.props.pattern !== undefined && this.props.pattern.id === parseInt(window.location.pathname.replace("/pattern/", "")) ?
+        {this.props.pattern !== undefined && this.props.pattern[0].high !== "" && this.props.pattern.id === parseInt(window.location.pathname.replace("/pattern/", "")) ?
               <div className="patternContainer">
                 <h2>Results:</h2>
                   {this.state.history && Object.entries(relevantHistory).find(entry => entry[1]["2. high"].slice(0, -2) === this.props.pattern.high) !== undefined
@@ -177,7 +177,7 @@ class Pattern extends React.Component{
           null
         }
         <br />
-        {this.state.history && this.props.pattern.length === 1 && Object.entries(relevantHistory).find(entry => entry[1]["2. high"].slice(0, -2) === this.props.pattern[0].high) !== undefined ?
+        {this.state.history && this.props.pattern[0].high !== "" && this.props.pattern.length === 1 && Object.entries(relevantHistory).find(entry => entry[1]["2. high"].slice(0, -2) === this.props.pattern[0].high) !== undefined ?
           <div className="patternReturnInfo">
             <h3><u>Query Information</u></h3>
             <div>
@@ -193,7 +193,7 @@ class Pattern extends React.Component{
           :
           null
         }
-        {this.state.history && this.props.pattern !== undefined && this.props.pattern.id === parseInt(window.location.pathname.replace("/pattern/", "")) ?
+        {this.state.history && this.props.pattern[0].high !== "" && this.props.pattern !== undefined && this.props.pattern.id === parseInt(window.location.pathname.replace("/pattern/", "")) ?
           <div className="patternReturnInfo">
             <h3><u>Query Information</u></h3>
             <div>
@@ -210,7 +210,7 @@ class Pattern extends React.Component{
           :
           null
         }
-        {this.props.pattern !== undefined && this.props.pattern.length !== undefined ?
+        {this.props.pattern !== undefined && this.props.pattern[0].low !== "" && this.props.pattern.length !== undefined ?
           this.props.pattern.map(pattern => {
             return(
               <div className="patternContainer">
@@ -236,7 +236,7 @@ class Pattern extends React.Component{
           :
           null
         }
-        {this.props.pattern !== undefined && this.props.pattern.id === parseInt(window.location.pathname.replace("/pattern/", "")) ?
+        {this.props.pattern !== undefined && this.props.pattern[0].low !== "" && this.props.pattern.id === parseInt(window.location.pathname.replace("/pattern/", "")) ?
               <div className="patternContainer">
                 <h2>Results:</h2>
                   {this.state.history && Object.entries(relevantHistory).find(entry => entry[1]["3. low"].slice(0, -2) === this.props.pattern.low) !== undefined
@@ -259,7 +259,7 @@ class Pattern extends React.Component{
           null
         }
         <br />
-        {this.state.history && this.props.pattern.length === 1 && Object.entries(relevantHistory).find(entry => entry[1]["3. low"].slice(0, -2) === this.props.pattern[0].low) !== undefined ?
+        {this.state.history && this.props.pattern[0].low !== "" && this.props.pattern.length === 1 && Object.entries(relevantHistory).find(entry => entry[1]["3. low"].slice(0, -2) === this.props.pattern[0].low) !== undefined ?
           <div className="patternReturnInfo">
             <h3><u>Query Information</u></h3>
             <div>
@@ -275,7 +275,7 @@ class Pattern extends React.Component{
           :
           null
         }
-        {this.state.history && this.props.pattern !== undefined && this.props.pattern.id === parseInt(window.location.pathname.replace("/pattern/", "")) ?
+        {this.state.history && this.props.pattern[0].low !== "" && this.props.pattern !== undefined && this.props.pattern.id === parseInt(window.location.pathname.replace("/pattern/", "")) ?
           <div className="patternReturnInfo">
             <h3><u>Query Information</u></h3>
             <div>
@@ -292,7 +292,7 @@ class Pattern extends React.Component{
           :
           null
         }
-        {this.props.pattern !== undefined && this.props.pattern.length !== undefined ?
+        {this.props.pattern !== undefined && this.props.pattern[0].open !== "" && this.props.pattern.length !== undefined ?
           this.props.pattern.map(pattern => {
             return(
               <div className="patternContainer">
@@ -318,7 +318,7 @@ class Pattern extends React.Component{
           :
           null
         }
-        {this.props.pattern !== undefined && this.props.pattern.id === parseInt(window.location.pathname.replace("/pattern/", "")) ?
+        {this.props.pattern !== undefined && this.props.pattern[0].open !== "" && this.props.pattern.id === parseInt(window.location.pathname.replace("/pattern/", "")) ?
               <div className="patternContainer">
                 <h2>Results:</h2>
                   {this.state.history && Object.entries(relevantHistory).find(entry => entry[1]["1. open"].slice(0, -2) === this.props.pattern.open) !== undefined
@@ -340,7 +340,7 @@ class Pattern extends React.Component{
           :
           null
         }
-        {this.state.history && this.props.pattern.length === 1 && Object.entries(relevantHistory).find(entry => entry[1]["1. open"].slice(0, -2) === this.props.pattern[0].open) !== undefined ?
+        {this.state.history && this.props.pattern[0].open !== "" && this.props.pattern.length === 1 && Object.entries(relevantHistory).find(entry => entry[1]["1. open"].slice(0, -2) === this.props.pattern[0].open) !== undefined ?
           <div className="patternReturnInfo">
             <h3><u>Query Information</u></h3>
             <div>
@@ -356,7 +356,7 @@ class Pattern extends React.Component{
           :
           null
         }
-        {this.state.history && this.props.pattern !== undefined && this.props.pattern.id === parseInt(window.location.pathname.replace("/pattern/", "")) ?
+        {this.state.history && this.props.pattern[0].open !== "" && this.props.pattern !== undefined && this.props.pattern.id === parseInt(window.location.pathname.replace("/pattern/", "")) ?
           <div className="patternReturnInfo">
             <h3><u>Query Information</u></h3>
             <div>
