@@ -53,6 +53,55 @@ class MatcherChart extends React.Component{
     })
   }
 
+  componentWillReceiveProps(nextProps) {
+    if (this.state.primarySymbol !== nextProps.primarySymbol) {
+      debugger
+      let SYMBOL = "&symbol=" + nextProps.primarySymbol
+      Adapter.makeFetch(URL1 + DAILY + SYMBOL + ONEMINUTE + API)
+      .then(res => {
+        if (!(res.hasOwnProperty('Error Message'))){
+          this.setState({
+            chartData:{
+              labels: Object.entries(res["Time Series (Daily)"]).map(day => day[0]),
+              datasets: [{
+                label: "Performance Data",
+                fillColor: "rgba(66, 88, 138, 0.5)",
+                strokeColor: "rgba(66, 88, 138)",
+                highlightFill: "rgba(90, 0, 0)",
+                highlightStroke: "rgba(90, 0, 0)",
+                data: Object.entries(res["Time Series (Daily)"]).map(day => day[1]["4. close"])
+              }]
+            },
+            allData: res
+          })
+        }
+      })
+    }
+
+    else if (this.state.primarySymbol === nextProps.primarySymbol) {
+      let SYMBOL = "&symbol=" + this.state.primarySymbol
+      Adapter.makeFetch(URL1 + DAILY + SYMBOL + ONEMINUTE + API)
+      .then(res => {
+        if (!(res.hasOwnProperty('Error Message'))){
+          this.setState({
+            chartData:{
+              labels: Object.entries(res["Time Series (Daily)"]).map(day => day[0]),
+              datasets: [{
+                label: "Performance Data",
+                fillColor: "rgba(66, 88, 138, 0.5)",
+                strokeColor: "rgba(66, 88, 138)",
+                highlightFill: "rgba(90, 0, 0)",
+                highlightStroke: "rgba(90, 0, 0)",
+                data: Object.entries(res["Time Series (Daily)"]).map(day => day[1]["4. close"])
+              }]
+            },
+            allData: res
+          })
+        }
+      })
+    }
+  }
+
   handleClick = (event) =>{
     if (event.target.name === "open"){
       this.setState({
@@ -123,7 +172,7 @@ class MatcherChart extends React.Component{
   render(){
     return(
       <div className="MatcherChart">
-      <h2>{this.props.symbols.find(symbol => symbol.symbol === this.state.primarySymbol).name} <em>({this.props.primarySymbol})</em> {this.state.selectedDataType}</h2>
+      <h2>{this.props.symbols.find(symbol => symbol.symbol === this.props.primarySymbol).name} <em>({this.props.primarySymbol})</em> {this.state.selectedDataType}</h2>
         <Line data={this.state.chartData}
           width="1200"
           height="400" />
