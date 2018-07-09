@@ -78,7 +78,7 @@ class Spotlight extends React.Component{
           null
         }
         <div className="spotlightNewsContainer">
-          <h4>{this.state.symbolCompanyInfo.companyName} News</h4>
+          {this.state.symbolSearchNews.length !== 0 ? <h4>{this.state.symbolCompanyInfo.companyName} News</h4> : null}
           {this.state.symbolSearchNews.length !== undefined ?
             this.state.symbolSearchNews.map(newsItem => {
               return(
