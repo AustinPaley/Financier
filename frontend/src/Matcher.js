@@ -34,6 +34,7 @@ class Matcher extends React.Component{
       })
     }
     else if (event.target.name === "primary-symbol" && event.target.value !== "Select Company Symbol..."){
+      debugger
       this.setState({
         primarySymbol: event.target.value
       })

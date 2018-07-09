@@ -35,7 +35,6 @@ class MatcherChart extends React.Component{
     let SYMBOL = "&symbol=" + this.props.primarySymbol
     Adapter.makeFetch(URL1 + DAILY + SYMBOL + ONEMINUTE + API)
     .then(res => {
-      debugger
       this.setState({
         chartData:{
           labels: Object.entries(res["Time Series (Daily)"]).map(day => day[0]),
@@ -170,9 +169,10 @@ class MatcherChart extends React.Component{
   }
 
   render(){
+    debugger
     return(
       <div className="MatcherChart">
-      <h2>{this.props.symbols.find(symbol => symbol.symbol === this.props.primarySymbol).name} <em>({this.props.primarySymbol})</em> {this.state.selectedDataType}</h2>
+      <h2>{this.props.symbols.find(symbol => symbol.symbol === this.props.primarySymbol.toUpperCase()).name} <em>({this.props.primarySymbol.toUpperCase()})</em> {this.state.selectedDataType}</h2>
         <Line data={this.state.chartData}
           width="1200"
           height="400" />
