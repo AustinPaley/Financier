@@ -36,20 +36,22 @@ class SpotlightChart extends React.Component{
       let SYMBOL = "&symbol=" + this.props.primarySymbol
       Adapter.makeFetch(URL1 + DAILY + SYMBOL + ONEMINUTE + API)
       .then(res => {
-        this.setState({
-          chartData:{
-            labels: Object.entries(res["Time Series (Daily)"]).map(day => day[0]),
-            datasets: [{
-              label: "Performance Data",
-              fillColor: "rgba(66, 88, 138, 0.5)",
-              strokeColor: "rgba(66, 88, 138)",
-              highlightFill: "rgba(90, 0, 0)",
-              highlightStroke: "rgba(90, 0, 0)",
-              data: Object.entries(res["Time Series (Daily)"]).map(day => day[1]["4. close"])
-            }]
-          },
-          allData: res
-        })
+        if (!(res.hasOwnProperty('Error Message'))){
+          this.setState({
+            chartData:{
+              labels: Object.entries(res["Time Series (Daily)"]).map(day => day[0]),
+              datasets: [{
+                label: "Performance Data",
+                fillColor: "rgba(66, 88, 138, 0.5)",
+                strokeColor: "rgba(66, 88, 138)",
+                highlightFill: "rgba(90, 0, 0)",
+                highlightStroke: "rgba(90, 0, 0)",
+                data: Object.entries(res["Time Series (Daily)"]).map(day => day[1]["4. close"])
+              }]
+            },
+            allData: res
+          })
+        }
       })
     }
   }
@@ -59,20 +61,22 @@ class SpotlightChart extends React.Component{
         let SYMBOL = "&symbol=" + nextProps.primarySymbol
         Adapter.makeFetch(URL1 + DAILY + SYMBOL + ONEMINUTE + API)
         .then(res => {
-          this.setState({
-            chartData:{
-              labels: Object.entries(res["Time Series (Daily)"]).map(day => day[0]),
-              datasets: [{
-                label: "Performance Data",
-                fillColor: "rgba(66, 88, 138, 0.5)",
-                strokeColor: "rgba(66, 88, 138)",
-                highlightFill: "rgba(90, 0, 0)",
-                highlightStroke: "rgba(90, 0, 0)",
-                data: Object.entries(res["Time Series (Daily)"]).map(day => day[1]["4. close"])
-              }]
-            },
-            allData: res
-          })
+          if (!(res.hasOwnProperty('Error Message'))){
+            this.setState({
+              chartData:{
+                labels: Object.entries(res["Time Series (Daily)"]).map(day => day[0]),
+                datasets: [{
+                  label: "Performance Data",
+                  fillColor: "rgba(66, 88, 138, 0.5)",
+                  strokeColor: "rgba(66, 88, 138)",
+                  highlightFill: "rgba(90, 0, 0)",
+                  highlightStroke: "rgba(90, 0, 0)",
+                  data: Object.entries(res["Time Series (Daily)"]).map(day => day[1]["4. close"])
+                }]
+              },
+              allData: res
+            })
+          }
         })
       }
 
@@ -80,20 +84,22 @@ class SpotlightChart extends React.Component{
         let SYMBOL = "&symbol=" + this.state.primarySymbol
         Adapter.makeFetch(URL1 + DAILY + SYMBOL + ONEMINUTE + API)
         .then(res => {
-          this.setState({
-            chartData:{
-              labels: Object.entries(res["Time Series (Daily)"]).map(day => day[0]),
-              datasets: [{
-                label: "Performance Data",
-                fillColor: "rgba(66, 88, 138, 0.5)",
-                strokeColor: "rgba(66, 88, 138)",
-                highlightFill: "rgba(90, 0, 0)",
-                highlightStroke: "rgba(90, 0, 0)",
-                data: Object.entries(res["Time Series (Daily)"]).map(day => day[1]["4. close"])
-              }]
-            },
-            allData: res
-          })
+          if (!(res.hasOwnProperty('Error Message'))){
+            this.setState({
+              chartData:{
+                labels: Object.entries(res["Time Series (Daily)"]).map(day => day[0]),
+                datasets: [{
+                  label: "Performance Data",
+                  fillColor: "rgba(66, 88, 138, 0.5)",
+                  strokeColor: "rgba(66, 88, 138)",
+                  highlightFill: "rgba(90, 0, 0)",
+                  highlightStroke: "rgba(90, 0, 0)",
+                  data: Object.entries(res["Time Series (Daily)"]).map(day => day[1]["4. close"])
+                }]
+              },
+              allData: res
+            })
+          }
         })
       }
     }
