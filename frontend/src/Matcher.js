@@ -99,7 +99,6 @@ class Matcher extends React.Component{
   }
 
   render(){
-    debugger
     return(
       <div>
         {this.state.primarySymbol !== ''

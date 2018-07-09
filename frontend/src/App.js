@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import './App.css';
 import StockContainer from './StockContainer'
+import Spotlight from './Spotlight'
 import NavBar from './Navbar'
 import Login from './Login'
 import { Route, Redirect, withRouter } from 'react-router-dom'
@@ -66,7 +67,7 @@ class App extends Component {
           :
           <Route
             exact path='/stock-spotlight'
-            component={StockContainer} />
+            component={Spotlight} />
         }
         <Route
           exact path='/overview'
