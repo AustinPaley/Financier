@@ -44,6 +44,7 @@ class Pattern extends React.Component{
 
   render(){
     const relevantHistory = this.state.history["Time Series (Daily)"]
+    debugger
     return(
       <div>
         {this.props.pattern !== undefined && this.props.pattern.length !== undefined ?
@@ -123,6 +124,88 @@ class Pattern extends React.Component{
             <div><b>Final Close:</b> {Object.entries(relevantHistory)[Object.entries(relevantHistory).map(entry => entry[0]).indexOf(Object.entries(relevantHistory).find(entry => entry[1]["4. close"].slice(0, -2) === this.props.pattern.close)[0]) - this.props.pattern.days][1]["4. close"]}
             </div>
             <div className="expectedReturn">Based on historical data, you can expect <span className="returnAmount">${Math.trunc(this.props.pattern.investment_size * ((Object.entries(relevantHistory)[Object.entries(relevantHistory).map(entry => entry[0]).indexOf(Object.entries(relevantHistory).find(entry => entry[1]["4. close"].slice(0, -2) === this.props.pattern.close)[0]) - this.props.pattern.days][1]["4. close"]) - (Object.entries(relevantHistory).find(entry => entry[1]["4. close"].slice(0, -2) === this.props.pattern.close)[1]["4. close"])))}</span> in return. </div>
+          </div>
+          :
+          null
+        }
+        {this.props.pattern !== undefined && this.props.pattern.length !== undefined ?
+          this.props.pattern.map(pattern => {
+            return(
+              <div className="patternContainer">
+                <h2>Results:</h2>
+                  {this.state.history && this.props.pattern.length === 1 && Object.entries(relevantHistory).find(entry => entry[1]["2. high"].slice(0, -2) === this.props.pattern[0].high) !== undefined
+                  ?
+                  <PatternChart pattern={Object.entries(relevantHistory).slice((Object.entries(relevantHistory).map(entry => entry[0]).indexOf(Object.entries(relevantHistory).find(entry => entry[1]["2. high"].slice(0, -2) === this.props.pattern[0].high)[0]) - this.props.pattern[0].days), (Object.entries(relevantHistory).map(entry => entry[0]).indexOf(Object.entries(relevantHistory).find(entry => entry[1]["2. high"].slice(0, -2) === this.props.pattern[0].high)[0]))+1).map(date => parseFloat(date[1]["2. high"])).slice(0, -2).reverse()}/>
+                  :
+                  null
+                  }
+                <div className="patternParameters">
+                  <h3><u>Search Parameters:</u></h3>
+                  <div><b>Symbol:</b> {pattern.symbol}</div>
+                  <div><b>Investment Size:</b> {pattern.investment_size}</div>
+                  <div><b>Open:</b> {pattern.open}</div>
+                  <div><b>High:</b> {pattern.high}</div>
+                  <div><b>Low:</b> {pattern.low}</div>
+                  <div><b>Close:</b> {pattern.close}</div><br/>
+                </div>
+              </div>
+            )
+          })
+          :
+          null
+        }
+        {this.props.pattern !== undefined && this.props.pattern.id === parseInt(window.location.pathname.replace("/pattern/", "")) ?
+              <div className="patternContainer">
+                <h2>Results:</h2>
+                  {this.state.history && Object.entries(relevantHistory).find(entry => entry[1]["2. high"].slice(0, -2) === this.props.pattern.high) !== undefined
+                  ?
+                  <PatternChart pattern={Object.entries(relevantHistory).slice((Object.entries(relevantHistory).map(entry => entry[0]).indexOf(Object.entries(relevantHistory).find(entry => entry[1]["2. high"].slice(0, -2) === this.props.pattern.high)[0]) - this.props.pattern.days), (Object.entries(relevantHistory).map(entry => entry[0]).indexOf(Object.entries(relevantHistory).find(entry => entry[1]["2. high"].slice(0, -2) === this.props.pattern.high)[0]))+1).map(date => parseFloat(date[1]["2. high"].slice(0, -2))).reverse()}/>
+                  :
+                  null
+                  }
+                <div className="patternParameters">
+                  <h3><u>Search Parameters:</u></h3>
+                  <div><b>Symbol:</b> {this.props.pattern.symbol}</div>
+                  <div><b>Investment Size:</b> {this.props.pattern.investment_size}</div>
+                  <div><b>Open:</b> {this.props.pattern.open}</div>
+                  <div><b>High:</b> {this.props.pattern.high}</div>
+                  <div><b>Low:</b> {this.props.pattern.low}</div>
+                  <div><b>Close:</b> {this.props.pattern.close}</div><br/>
+                </div>
+              </div>
+          :
+          null
+        }
+        <br />
+        {this.state.history && this.props.pattern.length === 1 && Object.entries(relevantHistory).find(entry => entry[1]["2. high"].slice(0, -2) === this.props.pattern[0].high) !== undefined ?
+          <div className="patternReturnInfo">
+            <h3><u>Query Information</u></h3>
+            <div>
+            <b>Last Time This Happened:</b> {Object.entries(relevantHistory).find(entry => entry[1]["2. high"].slice(0, -2) === this.props.pattern[0].high)[0]}
+            </div>
+            <div>
+            <b>Initial Close:</b> {Object.entries(relevantHistory).find(entry => entry[1]["2. high"].slice(0, -2) === this.props.pattern[0].high)[1]["2. high"]}
+            </div>
+            <div><b>Final Close:</b> {Object.entries(relevantHistory)[Object.entries(relevantHistory).map(entry => entry[0]).indexOf(Object.entries(relevantHistory).find(entry => entry[1]["2. high"].slice(0, -2) === this.props.pattern[0].high)[0]) - this.props.pattern[0].days][1]["2. high"]}
+            </div>
+            <div className="expectedReturn">Based on historical data, you can expect <span className="returnAmount">${Math.trunc(this.props.pattern[0].investment_size * ((Object.entries(relevantHistory)[Object.entries(relevantHistory).map(entry => entry[0]).indexOf(Object.entries(relevantHistory).find(entry => entry[1]["2. high"].slice(0, -2) === this.props.pattern[0].high)[0]) - this.props.pattern[0].days][1]["2. high"]) - (Object.entries(relevantHistory).find(entry => entry[1]["2. high"].slice(0, -2) === this.props.pattern[0].high)[1]["4. close"])))}</span> in return. </div>
+          </div>
+          :
+          null
+        }
+        {this.state.history && this.props.pattern !== undefined && this.props.pattern.id === parseInt(window.location.pathname.replace("/pattern/", "")) ?
+          <div className="patternReturnInfo">
+            <h3><u>Query Information</u></h3>
+            <div>
+            <b>Last Time This Happened:</b> {Object.entries(relevantHistory).find(entry => entry[1]["2. high"].slice(0, -2) === this.props.pattern.high)[0]}
+            </div>
+            <div>
+            <b>Initial Close:</b> {Object.entries(relevantHistory).find(entry =>
+              entry[1]["2. high"].slice(0, -2) === this.props.pattern.high)[1]["2. high"]}
+            </div>
+            <div><b>Final Close:</b> {Object.entries(relevantHistory)[Object.entries(relevantHistory).map(entry => entry[0]).indexOf(Object.entries(relevantHistory).find(entry => entry[1]["2. high"].slice(0, -2) === this.props.pattern.high)[0]) - this.props.pattern.days][1]["2. high"]}
+            </div>
+            <div className="expectedReturn">Based on historical data, you can expect <span className="returnAmount">${Math.trunc(this.props.pattern.investment_size * ((Object.entries(relevantHistory)[Object.entries(relevantHistory).map(entry => entry[0]).indexOf(Object.entries(relevantHistory).find(entry => entry[1]["2. high"].slice(0, -2) === this.props.pattern.high)[0]) - this.props.pattern.days][1]["2. high"]) - (Object.entries(relevantHistory).find(entry => entry[1]["2. high"].slice(0, -2) === this.props.pattern.high)[1]["2. high"])))}</span> in return. </div>
           </div>
           :
           null

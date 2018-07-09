@@ -16,7 +16,6 @@ export default class Chart extends React.Component{
   }
 
   render(){
-    debugger
     return(
       <div className="chart">
         <Line data={this.state.chartData}

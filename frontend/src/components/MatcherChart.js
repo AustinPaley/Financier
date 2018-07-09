@@ -54,7 +54,6 @@ class MatcherChart extends React.Component{
 
   componentWillReceiveProps(nextProps) {
     if (this.state.primarySymbol !== nextProps.primarySymbol) {
-      debugger
       let SYMBOL = "&symbol=" + nextProps.primarySymbol
       Adapter.makeFetch(URL1 + DAILY + SYMBOL + ONEMINUTE + API)
       .then(res => {
@@ -169,7 +168,6 @@ class MatcherChart extends React.Component{
   }
 
   render(){
-    debugger
     return(
       <div className="MatcherChart">
       <h2>{this.props.symbols.find(symbol => symbol.symbol === this.props.primarySymbol.toUpperCase()).name} <em>({this.props.primarySymbol.toUpperCase()})</em> {this.state.selectedDataType}</h2>
