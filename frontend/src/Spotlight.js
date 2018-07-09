@@ -24,9 +24,6 @@ class Spotlight extends React.Component{
     }
   }
 
-  componentDidMount(){
-  }
-
   changeStock = (event) => {
     this.setState({
       symbolSearch: event.target.value
@@ -44,17 +41,6 @@ class Spotlight extends React.Component{
       symbolQuote: res
     })})
   }
-
-  alphavantageFetch = (event) => {
-  const SearchedSymbol = "&symbol=" + event.target.children[0].value.toUpperCase()
-    fetch(URL1 + DAILY + SearchedSymbol + ONEMINUTE + API)
-    .then(response => response.json())
-    .then(res => {this.setState({
-      generalInfo: res
-    })})
-  }
-
-// <StockHistoryContainer handleDelete={this.handleDelete} historicalInfo={this.state.generalInfo["Time Series (Daily)"]} handleHistorySearch={this.handleHistorySearch} />
 
   render(){
     console.log(this.state.symbolSearch)

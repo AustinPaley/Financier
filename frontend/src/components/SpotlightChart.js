@@ -36,7 +36,6 @@ class SpotlightChart extends React.Component{
       let SYMBOL = "&symbol=" + this.props.primarySymbol
       Adapter.makeFetch(URL1 + DAILY + SYMBOL + ONEMINUTE + API)
       .then(res => {
-        debugger
         this.setState({
           chartData:{
             labels: Object.entries(res["Time Series (Daily)"]).map(day => day[0]),
