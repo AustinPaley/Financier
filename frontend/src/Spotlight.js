@@ -21,6 +21,8 @@ class Spotlight extends React.Component{
       generalInfo: [],
       symbolSearch: '',
       symbolSearchNews: [],
+      symbolCompanyInfo: [],
+      symbolQuote: []
     }
   }
 
@@ -34,6 +36,14 @@ class Spotlight extends React.Component{
     Adapter.makeFetch("https://api.iextrading.com/1.0/stock/" + event.target.value + "/news/last/10")
     .then(res => {this.setState({
       symbolSearchNews: res
+    })})
+    Adapter.makeFetch("https://api.iextrading.com/1.0/stock/" + event.target.value + "/company")
+    .then(res => {this.setState({
+      symbolCompanyInfo: res
+    })})
+    Adapter.makeFetch("https://api.iextrading.com/1.0/stock/" + event.target.value + "/quote")
+    .then(res => {this.setState({
+      symbolQuote: res
     })})
   }
 
@@ -49,15 +59,32 @@ class Spotlight extends React.Component{
 // <StockHistoryContainer handleDelete={this.handleDelete} historicalInfo={this.state.generalInfo["Time Series (Daily)"]} handleHistorySearch={this.handleHistorySearch} />
 
   render(){
-    console.log(this.state.symbolSearchNews.length)
     return(
       <div>
         <h2 className="stockSpotlightHeader">Stock Spotlight</h2>
         <input name="stockSearch" onChange={this.changeStock} />
-        <h3>Current Stock Name</h3>
+        <h3>{this.state.symbolCompanyInfo.companyName}</h3>
         <h4>Placeholder for current stock info table</h4>
+        <div>Symbol</div>
+        <div>{this.state.symbolQuote.symbol !== undefined ? this.state.symbolQuote.symbol : "-"}</div>
+        <div>Change</div>
+        <div>{this.state.symbolQuote.symbol !== undefined ? this.state.symbolQuote.change : "-"}</div>
+        <div>Bid</div>
+        <div>{this.state.symbolQuote.symbol !== undefined ? this.state.symbolQuote.iexBidPrice : "-"}</div>
+        <div>Ask</div>
+        <div>{this.state.symbolQuote.symbol !== undefined ? this.state.symbolQuote.iexAskPrice : "-"}</div>
+        <div>Volume</div>
+        <div>{this.state.symbolQuote.symbol !== undefined ? this.state.symbolQuote.latestVolume : "-"}</div>
+        <div>TSize</div>
+        <div>{this.state.symbolQuote.symbol !== undefined ? this.state.symbolQuote.iexRealtimeSize : "-"}</div>
+        <div>High</div>
+        <div>{this.state.symbolQuote.symbol !== undefined ? this.state.symbolQuote.high : "-"}</div>
+        <div>Low</div>
+        <div>{this.state.symbolQuote.symbol !== undefined ? this.state.symbolQuote.low : "-"}</div>
+        <div>Close</div>
+        <div>{this.state.symbolQuote.symbol !== undefined ? this.state.symbolQuote.close : "-"}</div>
         <button>Save This Spotlight</button>
-        <h4>News</h4>
+        <h4>{this.state.symbolCompanyInfo.companyName} News</h4>
         {this.state.symbolSearchNews.length !== undefined ?
           this.state.symbolSearchNews.map(newsItem => {
             return(
