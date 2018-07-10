@@ -59,13 +59,14 @@ class Overview extends React.Component{
   componentDidMount(){
     Adapter.makeFetch(SPXCALL)
     .then(res => {
-      if(!res.Information){
+      debugger
+      if(!res.Information && !res["Error Message"]){
         this.setState({
         todaySPX: Object.entries(res["Time Series (Daily)"])[0][1]["4. close"],
         yesterdaySPX: Object.entries(res["Time Series (Daily)"])[1][1]["4. close"]
         })
       }
-      else if (!!res.Information){
+      else if (!!res.Information && !!res["Error Message"]){
         this.setState({
           todaySPX: 0,
           yesterdaySPX: 0
@@ -75,13 +76,14 @@ class Overview extends React.Component{
 
     Adapter.makeFetch(DJICALL)
     .then(res => {
-      if(!res.Information){
+      debugger
+      if(!res.Information && !res["Error Message"]){
         this.setState({
         todayDJI: Object.entries(res["Time Series (Daily)"])[0][1]["4. close"],
         yesterdayDJI: Object.entries(res["Time Series (Daily)"])[1][1]["4. close"]
         })
       }
-      else if (!!res.Information){
+      else if (!!res.Information && !!res["Error Message"]){
         this.setState({
           todayDJI: 0,
           yesterdayDJI: 0
@@ -91,13 +93,14 @@ class Overview extends React.Component{
 
     Adapter.makeFetch(IXICCALL)
     .then(res => {
-      if(!res.Information){
+      debugger
+      if(!res.Information && !res["Error Message"]){
         this.setState({
         todayIXIC: Object.entries(res["Time Series (Daily)"])[0][1]["4. close"],
         yesterdayIXIC: Object.entries(res["Time Series (Daily)"])[1][1]["4. close"]
         })
       }
-      else if (!!res.Information){
+      else if (!!res.Information && !!res["Error Message"]){
         this.setState({
           todayIXIC: 0,
           yesterdayIXIC: 0
@@ -107,13 +110,14 @@ class Overview extends React.Component{
 
     Adapter.makeFetch(RUTCALL)
     .then(res => {
-      if(!res.Information){
+      debugger
+      if(!res.Information && !res["Error Message"]){
         this.setState({
         todayRUT: Object.entries(res["Time Series (Daily)"])[0][1]["4. close"],
         yesterdayRUT: Object.entries(res["Time Series (Daily)"])[1][1]["4. close"]
         })
       }
-      else if (!!res.Information){
+      else if (!!res.Information && !!res["Error Message"]){
         this.setState({
           todayRUT: 0,
           yesterdayRUT: 0
@@ -123,30 +127,148 @@ class Overview extends React.Component{
 
     Adapter.makeFetch(DAXCALL)
     .then(res => {
-      if(!res.Information){
+      debugger
+      if(!res.Information && !res["Error Message"]){
         this.setState({
         todayDAX: Object.entries(res["Time Series (Daily)"])[0][1]["4. close"],
         yesterdayDAX: Object.entries(res["Time Series (Daily)"])[1][1]["4. close"]
         })
       }
-      else if (!!res.Information){
+      else if (!!res.Information && !!res["Error Message"]){
         this.setState({
           todayDAX: 0,
           yesterdayDAX: 0
         })
       }
     })
+    Adapter.makeFetch(VIXCALL)
+    .then(res => {
+      if(!res.Information && !res["Error Message"]){
+        this.setState({
+        todayVIX: Object.entries(res["Time Series (Daily)"])[0][1]["4. close"],
+        yesterdayVIX: Object.entries(res["Time Series (Daily)"])[1][1]["4. close"]
+        })
+      }
+      else if (!!res.Information && !!res["Error Message"]){
+        this.setState({
+          todayVIX: 0,
+          yesterdayVIX: 0
+        })
+      }
+    })
+
+    setInterval(function(){
+    Adapter.makeFetch(SPXCALL)
+    .then(res => {
+      debugger
+      if(!res.Information && !res["Error Message"]){
+        this.setState({
+        todaySPX: Object.entries(res["Time Series (Daily)"])[0][1]["4. close"],
+        yesterdaySPX: Object.entries(res["Time Series (Daily)"])[1][1]["4. close"]
+        })
+      }
+      else if (!!res.Information && !!res["Error Message"]){
+        this.setState({
+          todaySPX: 0,
+          yesterdaySPX: 0
+        })
+      }
+    })
+
+    Adapter.makeFetch(DJICALL)
+    .then(res => {
+      debugger
+      if(!res.Information && !res["Error Message"]){
+        this.setState({
+        todayDJI: Object.entries(res["Time Series (Daily)"])[0][1]["4. close"],
+        yesterdayDJI: Object.entries(res["Time Series (Daily)"])[1][1]["4. close"]
+        })
+      }
+      else if (!!res.Information && !!res["Error Message"]){
+        this.setState({
+          todayDJI: 0,
+          yesterdayDJI: 0
+        })
+      }
+    })
+
+    Adapter.makeFetch(IXICCALL)
+    .then(res => {
+      debugger
+      if(!res.Information && !res["Error Message"]){
+        this.setState({
+        todayIXIC: Object.entries(res["Time Series (Daily)"])[0][1]["4. close"],
+        yesterdayIXIC: Object.entries(res["Time Series (Daily)"])[1][1]["4. close"]
+        })
+      }
+      else if (!!res.Information && !!res["Error Message"]){
+        this.setState({
+          todayIXIC: 0,
+          yesterdayIXIC: 0
+        })
+      }
+    })
+
+    Adapter.makeFetch(RUTCALL)
+    .then(res => {
+      debugger
+      if(!res.Information && !res["Error Message"]){
+        this.setState({
+        todayRUT: Object.entries(res["Time Series (Daily)"])[0][1]["4. close"],
+        yesterdayRUT: Object.entries(res["Time Series (Daily)"])[1][1]["4. close"]
+        })
+      }
+      else if (!!res.Information && !!res["Error Message"]){
+        this.setState({
+          todayRUT: 0,
+          yesterdayRUT: 0
+        })
+      }
+    })
+
+    Adapter.makeFetch(DAXCALL)
+    .then(res => {
+      debugger
+      if(!res.Information && !res["Error Message"]){
+        this.setState({
+        todayDAX: Object.entries(res["Time Series (Daily)"])[0][1]["4. close"],
+        yesterdayDAX: Object.entries(res["Time Series (Daily)"])[1][1]["4. close"]
+        })
+      }
+      else if (!!res.Information && !!res["Error Message"]){
+        this.setState({
+          todayDAX: 0,
+          yesterdayDAX: 0
+        })
+      }
+    })
+    Adapter.makeFetch(VIXCALL)
+    .then(res => {
+      if(!res.Information && !res["Error Message"]){
+        this.setState({
+        todayVIX: Object.entries(res["Time Series (Daily)"])[0][1]["4. close"],
+        yesterdayVIX: Object.entries(res["Time Series (Daily)"])[1][1]["4. close"]
+        })
+      }
+      else if (!!res.Information && !!res["Error Message"]){
+        this.setState({
+          todayVIX: 0,
+          yesterdayVIX: 0
+        })
+      }
+    })
+  }.bind(this), 60000);
 
     setInterval(function(){
       Adapter.makeFetch(NIKKEICALL)
       .then(res => {
-        if(!res.Information){
+        if(!res.Information && !res["Error Message"]){
           this.setState({
           todayNIKKEI: Object.entries(res["Time Series (Daily)"])[0][1]["4. close"],
           yesterdayNIKKEI: Object.entries(res["Time Series (Daily)"])[1][1]["4. close"]
           })
         }
-        else if (!!res.Information){
+        else if (!!res.Information && !!res["Error Message"]){
           this.setState({
             todayNIKKEI: 0,
             yesterdayNIKKEI: 0
@@ -156,32 +278,29 @@ class Overview extends React.Component{
 
       Adapter.makeFetch(HSICALL)
       .then(res => {
-        if(!res.Information){
+        if(!res.Information && !res["Error Message"]){
           this.setState({
           todayHSI: Object.entries(res["Time Series (Daily)"])[0][1]["4. close"],
           yesterdayHSI: Object.entries(res["Time Series (Daily)"])[1][1]["4. close"]
           })
         }
-        else if (!!res.Information){
+        else if (!!res.Information && !!res["Error Message"]){
           this.setState({
             todayHSI: 0,
             yesterdayHSI: 0
           })
         }
       })
-    }.bind(this), 5000);
-
-    setInterval(function(){
     Adapter.makeFetch(FTSECALL)
     .then(res => {
       debugger
-      if(!res.Information){
+      if(!res.Information && !res["Error Message"]){
         this.setState({
         todayFTSE: Object.entries(res["Time Series (Daily)"])[0][1]["4. close"],
         yesterdayFTSE: Object.entries(res["Time Series (Daily)"])[1][1]["4. close"]
         })
       }
-      else if (!!res.Information){
+      else if (!!res.Information && !!res["Error Message"]){
         this.setState({
           todayFTSE: 0,
           yesterdayFTSE: 0
@@ -191,36 +310,20 @@ class Overview extends React.Component{
 
     Adapter.makeFetch(CAC40CALL)
     .then(res => {
-      if(!res.Information){
+      if(!res.Information && !res["Error Message"]){
         this.setState({
         todayCAC40: Object.entries(res["Time Series (Daily)"])[0][1]["4. close"],
         yesterdayCAC40: Object.entries(res["Time Series (Daily)"])[1][1]["4. close"]
         })
       }
-      else if (!!res.Information){
+      else if (!!res.Information && !!res["Error Message"]){
         this.setState({
           todayCAC40: 0,
           yesterdayCAC40: 0
         })
       }
     })
-  }.bind(this), 10000);
-
-    Adapter.makeFetch(VIXCALL)
-    .then(res => {
-      if(!res.Information){
-        this.setState({
-        todayVIX: Object.entries(res["Time Series (Daily)"])[0][1]["4. close"],
-        yesterdayVIX: Object.entries(res["Time Series (Daily)"])[1][1]["4. close"]
-        })
-      }
-      else if (!!res.Information){
-        this.setState({
-          todayVIX: 0,
-          yesterdayVIX: 0
-        })
-      }
-    })
+  }.bind(this), 30000);
 
     Adapter.makeFetch(WORLDWIDENEWS).then(res => {this.setState({worldwidenews: res})})
 
