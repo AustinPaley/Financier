@@ -521,3 +521,9 @@ button.saveSpotlight{
   font-size: 14px;
   margin-left: 100px;
 }
+
+.registrationError{
+  color: red;
+  font-size: 14px;
+  margin-left: 130px;
+}

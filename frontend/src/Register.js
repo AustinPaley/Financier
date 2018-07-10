@@ -12,7 +12,8 @@ class Register extends React.Component{
       username: "Username",
       emailaddress: 'Email Address',
       password: 'Password',
-      token: ''
+      token: '',
+      error: ''
     }
   }
 
@@ -72,10 +73,16 @@ class Register extends React.Component{
     })
     .then(res => res.json())
     .then(res => {
+      debugger
       if (!res.errors){
         localStorage.setItem('token', res.token)
         localStorage.setItem('id', res.id)
         this.props.history.push("/")
+      }
+      else if (!!res.errors){
+        this.setState({
+          error: "Account already exists."
+        })
       }
     })
   }
@@ -93,6 +100,7 @@ class Register extends React.Component{
               <input type="text" value={this.state.emailaddress} id="email-input" name="email-input" className="registration-input" onClick={this.clear} onChange={this.handleChange} />
               <input type="text" value={this.state.password} id="password-input" name="password-input" className="registration-input" onClick={this.clear} onChange={this.handleChange} />
               <input type="submit" value="Register" id="register-button" />
+              {this.state.error !== "" ? <span className="registrationError">{this.state.error}</span> : null}
               <p id="registration-login-text">Already have an account? Sign in <Link to='/login'>here</Link>.</p>
             </form>
           </div>
