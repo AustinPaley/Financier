@@ -29,7 +29,6 @@ class Matcher extends React.Component{
   componentDidMount(){
     Adapter.patternFetch("http://localhost:4000/api/v1/patterns")
     .then(res => {
-      debugger
       if(res.message !== "Not Authorized"){
         this.props.addPattern({
         type: "ADD_PATTERN", payload: res})
@@ -144,7 +143,7 @@ class Matcher extends React.Component{
         </div>
         <div className="saved-patterns">
           <h3>Saved Patterns</h3>
-            {this.props.patterns.length > 0 ? this.props.patterns[0].patterns.payload.map(pattern =>{
+            {this.props.patterns.length > 0 ? this.props.patterns[this.props.patterns.length-1].patterns.payload.map(pattern =>{
               return(
               <div id={pattern.id}>
                 <Link to={'/pattern/' + pattern.id}>Pattern: {pattern.id}</Link>
