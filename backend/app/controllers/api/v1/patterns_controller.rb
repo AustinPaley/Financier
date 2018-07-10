@@ -1,5 +1,5 @@
 class Api::V1::PatternsController < ApplicationController
-  before_action :requires_login, only: [:index]
+  before_action :requires_login, only: [:index, :destroy]
 
   def index
       @patterns = Pattern.all
