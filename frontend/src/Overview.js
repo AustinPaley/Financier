@@ -137,21 +137,72 @@ class Overview extends React.Component{
       }
     })
 
-    Adapter.makeFetch(FTSECALL)
-    .then(res => {
-      if(!res.Information){
-        this.setState({
-        todayFTSE: Object.entries(res["Time Series (Daily)"])[0][1]["4. close"],
-        yesterdayFTSE: Object.entries(res["Time Series (Daily)"])[1][1]["4. close"]
-        })
-      }
-      else if (!!res.Information){
-        this.setState({
-          todayFTSE: 0,
-          yesterdayFTSE: 0
-        })
-      }
-    })
+    setInterval(function(){
+      Adapter.makeFetch(FTSECALL)
+      .then(res => {
+        debugger
+        if(!res.Information){
+          this.setState({
+          todayFTSE: Object.entries(res["Time Series (Daily)"])[0][1]["4. close"],
+          yesterdayFTSE: Object.entries(res["Time Series (Daily)"])[1][1]["4. close"]
+          })
+        }
+        else if (!!res.Information){
+          this.setState({
+            todayFTSE: 0,
+            yesterdayFTSE: 0
+          })
+        }
+      })
+
+      Adapter.makeFetch(CAC40CALL)
+      .then(res => {
+        if(!res.Information){
+          this.setState({
+          todayCAC40: Object.entries(res["Time Series (Daily)"])[0][1]["4. close"],
+          yesterdayCAC40: Object.entries(res["Time Series (Daily)"])[1][1]["4. close"]
+          })
+        }
+        else if (!!res.Information){
+          this.setState({
+            todayCAC40: 0,
+            yesterdayCAC40: 0
+          })
+        }
+      })
+
+      Adapter.makeFetch(NIKKEICALL)
+      .then(res => {
+        if(!res.Information){
+          this.setState({
+          todayNIKKEI: Object.entries(res["Time Series (Daily)"])[0][1]["4. close"],
+          yesterdayNIKKEI: Object.entries(res["Time Series (Daily)"])[1][1]["4. close"]
+          })
+        }
+        else if (!!res.Information){
+          this.setState({
+            todayNIKKEI: 0,
+            yesterdayNIKKEI: 0
+          })
+        }
+      })
+
+      Adapter.makeFetch(HSICALL)
+      .then(res => {
+        if(!res.Information){
+          this.setState({
+          todayHSI: Object.entries(res["Time Series (Daily)"])[0][1]["4. close"],
+          yesterdayHSI: Object.entries(res["Time Series (Daily)"])[1][1]["4. close"]
+          })
+        }
+        else if (!!res.Information){
+          this.setState({
+            todayHSI: 0,
+            yesterdayHSI: 0
+          })
+        }
+      })
+    }.bind(this), 3000);
 
     Adapter.makeFetch(VIXCALL)
     .then(res => {
@@ -165,54 +216,6 @@ class Overview extends React.Component{
         this.setState({
           todayVIX: 0,
           yesterdayVIX: 0
-        })
-      }
-    })
-
-    Adapter.makeFetch(CAC40CALL)
-    .then(res => {
-      if(!res.Information){
-        this.setState({
-        todayCAC40: Object.entries(res["Time Series (Daily)"])[0][1]["4. close"],
-        yesterdayCAC40: Object.entries(res["Time Series (Daily)"])[1][1]["4. close"]
-        })
-      }
-      else if (!!res.Information){
-        this.setState({
-          todayCAC40: 0,
-          yesterdayCAC40: 0
-        })
-      }
-    })
-
-    Adapter.makeFetch(NIKKEICALL)
-    .then(res => {
-      if(!res.Information){
-        this.setState({
-        todayNIKKEI: Object.entries(res["Time Series (Daily)"])[0][1]["4. close"],
-        yesterdayNIKKEI: Object.entries(res["Time Series (Daily)"])[1][1]["4. close"]
-        })
-      }
-      else if (!!res.Information){
-        this.setState({
-          todayNIKKEI: 0,
-          yesterdayNIKKEI: 0
-        })
-      }
-    })
-
-    Adapter.makeFetch(HSICALL)
-    .then(res => {
-      if(!res.Information){
-        this.setState({
-        todayHSI: Object.entries(res["Time Series (Daily)"])[0][1]["4. close"],
-        yesterdayHSI: Object.entries(res["Time Series (Daily)"])[1][1]["4. close"]
-        })
-      }
-      else if (!!res.Information){
-        this.setState({
-          todayHSI: 0,
-          yesterdayHSI: 0
         })
       }
     })

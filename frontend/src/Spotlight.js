@@ -28,6 +28,7 @@ class Spotlight extends React.Component{
     .then(res => {this.setState({
       symbolCompanyInfo: res
     })})
+
     Adapter.makeFetch("https://api.iextrading.com/1.0/stock/" + event.target.value + "/quote")
     .then(res => {this.setState({
       symbolQuote: res
