@@ -33,7 +33,7 @@ class SpotlightChart extends React.Component{
       let SYMBOL = "&symbol=" + this.props.primarySymbol
       Adapter.makeFetch(URL1 + DAILY + SYMBOL + ONEMINUTE + API)
       .then(res => {
-        if (!(res.hasOwnProperty('Error Message'))){
+        if (!(res.hasOwnProperty('Error Message')) && !(res.hasOwnProperty('Information'))){
           this.setState({
             chartData:{
               labels: Object.entries(res["Time Series (Daily)"]).map(day => day[0]).reverse(),
@@ -58,7 +58,8 @@ class SpotlightChart extends React.Component{
         let SYMBOL = "&symbol=" + nextProps.primarySymbol
         Adapter.makeFetch(URL1 + DAILY + SYMBOL + ONEMINUTE + API)
         .then(res => {
-          if (!(res.hasOwnProperty('Error Message'))){
+          if (!(res.hasOwnProperty('Error Message')) && !(res.hasOwnProperty('Information'))){
+            debugger
             this.setState({
               chartData:{
                 labels: Object.entries(res["Time Series (Daily)"]).map(day => day[0]).reverse(),
@@ -81,7 +82,8 @@ class SpotlightChart extends React.Component{
         let SYMBOL = "&symbol=" + this.state.primarySymbol
         Adapter.makeFetch(URL1 + DAILY + SYMBOL + ONEMINUTE + API)
         .then(res => {
-          if (!(res.hasOwnProperty('Error Message'))){
+          if (!(res.hasOwnProperty('Error Message')) && !(res.hasOwnProperty('Information'))){
+            debugger
             this.setState({
               chartData:{
                 labels: Object.entries(res["Time Series (Daily)"]).map(day => day[0]).reverse(),
