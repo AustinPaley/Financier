@@ -40,6 +40,7 @@ class ApplicationController < ActionController::API
 
   def requires_user_match
     @user = User.find_by(id: params[:user_id])
+    byebug
     if @user.id != get_decoded_token[0]["id"]
       render json: {
         message: "Not authorized to access."
