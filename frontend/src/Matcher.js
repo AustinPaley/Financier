@@ -26,6 +26,17 @@ class Matcher extends React.Component{
     }
   }
 
+  componentDidMount(){
+    Adapter.patternFetch("http://localhost:4000/api/v1/patterns")
+    .then(res => {
+      debugger
+      if(res.message !== "Not Authorized"){
+        this.props.addPattern({
+        type: "ADD_PATTERN", payload: res})
+      }
+    })
+  }
+
   handleInput = (event) => {
     if (event.target.name === "amount-investing"){
       this.setState({

@@ -44,7 +44,6 @@ class Pattern extends React.Component{
 
   render(){
     const relevantHistory = this.state.history["Time Series (Daily)"]
-    debugger
     return(
       <div>
         {this.props.pattern !== undefined && this.props.pattern.length !== undefined && this.props.pattern[0].close !== "" ?

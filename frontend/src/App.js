@@ -32,9 +32,10 @@ class App extends Component {
 
     Adapter.patternFetch("http://localhost:4000/api/v1/patterns")
     .then(res => {
+      debugger
       if(res.message !== "Not Authorized"){
         this.props.addPattern({
-        type: "ADD_PATTERN", payload: res.filter(pattern => pattern.user_id === parseInt(localStorage.getItem("id")))})
+        type: "ADD_PATTERN", payload: res})
       }
     })
 

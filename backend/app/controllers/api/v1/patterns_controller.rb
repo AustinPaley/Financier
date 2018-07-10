@@ -2,8 +2,9 @@ class Api::V1::PatternsController < ApplicationController
   before_action :requires_login, only: [:index, :destroy]
 
   def index
-      @patterns = Pattern.all
-      render json: @patterns
+    user = get_decoded_token[0]["id"]
+    @patterns = Pattern.all.where(user_id: user)
+    render json: @patterns
   end
 
   def create
