@@ -3,6 +3,8 @@ import SpotlightChart from './components/SpotlightChart'
 import {connect} from 'react-redux'
 import Adapter from './adapters/Adapter'
 
+let Yes = null
+
 class Spotlight extends React.Component{
   constructor(props){
     super(props);
@@ -16,10 +18,16 @@ class Spotlight extends React.Component{
     }
   }
 
+
   changeStock = (event) => {
-    this.setState({
-      symbolSearch: event.target.value
-    })
+    const SymbolSearched = event.target.value
+    clearTimeout(Yes)
+    Yes = setTimeout(() => {
+      this.setState({
+        symbolSearch: SymbolSearched
+      })
+    }, 5000)
+
     Adapter.makeFetch("https://api.iextrading.com/1.0/stock/" + event.target.value + "/news/last/10")
     .then(res => {this.setState({
       symbolSearchNews: res
@@ -35,7 +43,7 @@ class Spotlight extends React.Component{
   }
 
   render(){
-    debugger
+    console.log("SYMBOL", this.state.symbolSearch)
     return(
       <div>
         <h2 className="stockSpotlightHeader">Stock Spotlight</h2>
