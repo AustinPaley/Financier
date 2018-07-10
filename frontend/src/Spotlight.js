@@ -28,7 +28,6 @@ class Spotlight extends React.Component{
     .then(res => {this.setState({
       symbolCompanyInfo: res
     })})
-
     Adapter.makeFetch("https://api.iextrading.com/1.0/stock/" + event.target.value + "/quote")
     .then(res => {this.setState({
       symbolQuote: res
@@ -36,7 +35,7 @@ class Spotlight extends React.Component{
   }
 
   render(){
-    console.log("SYMBOL", this.state.symbolCompanyInfo.symbol !== undefined)
+    debugger
     return(
       <div>
         <h2 className="stockSpotlightHeader">Stock Spotlight</h2>
@@ -74,10 +73,10 @@ class Spotlight extends React.Component{
         <div className="spotlightNewsContainer">
           {this.state.symbolSearchNews.length !== 0 && this.state.symbolSearchNews.length !== undefined ? <h4>{this.state.symbolCompanyInfo.companyName} News</h4> : null}
           {this.state.symbolSearchNews.length !== 0 && this.state.symbolSearchNews.length !== undefined ?
-            this.state.symbolSearchNews.map(newsItem => {
+            this.state.symbolSearchNews.slice(0, 6).map(newsItem => {
               return(
                 <div>
-                  <div className="newsItem"><a href={newsItem.url}>{newsItem.headline.toString().substring(0, 50) + "..."}</a></div>
+                  <div className="newsItem"><a href={newsItem.url}>{newsItem.headline.toString().substring(0, 40) + "..."}</a></div>
                   <div className="recent-news-source">{newsItem.source}</div>
                   <div className="recent-news-date">{newsItem.datetime}</div>
                   <br/>

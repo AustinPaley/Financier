@@ -6,7 +6,8 @@ export default class Login extends React.Component{
     super(props)
     this.state={
       username: "Username",
-      password: 'Password'
+      password: 'Password',
+      error: ''
     }
   }
 
@@ -57,10 +58,16 @@ export default class Login extends React.Component{
         localStorage.setItem('id', res.id)
         this.props.history.push("/")
       }
+      else if (!!res.errors){
+        this.setState({
+          error: res.errors
+        })
+      }
     })
   }
 
   render(){
+    console.log(this.state.error)
     return(
       <div className="Registration">
         <div className="Overlay">
@@ -72,6 +79,7 @@ export default class Login extends React.Component{
               <input type="text" value={this.state.username} id="username-input" name="username-input" className="login-input" onClick={this.clear} onChange={this.handleChange} />
               <input type="text" value={this.state.password} id="password-input" name="password-input" className="login-input" onClick={this.clear} onChange={this.handleChange} />
               <input type="submit" value="Sign In" id="login-button" />
+              {this.state.error !== "" ? <span className="loginError">{this.state.error}</span> : null}
             </form>
           </div>
         </div>

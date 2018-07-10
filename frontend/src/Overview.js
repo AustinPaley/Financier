@@ -59,7 +59,6 @@ class Overview extends React.Component{
   componentDidMount(){
     Adapter.makeFetch(SPXCALL)
     .then(res => {
-      debugger
       if(!res.Information && !res["Error Message"]){
         this.setState({
         todaySPX: Object.entries(res["Time Series (Daily)"])[0][1]["4. close"],
@@ -76,7 +75,6 @@ class Overview extends React.Component{
 
     Adapter.makeFetch(DJICALL)
     .then(res => {
-      debugger
       if(!res.Information && !res["Error Message"]){
         this.setState({
         todayDJI: Object.entries(res["Time Series (Daily)"])[0][1]["4. close"],
@@ -93,7 +91,6 @@ class Overview extends React.Component{
 
     Adapter.makeFetch(IXICCALL)
     .then(res => {
-      debugger
       if(!res.Information && !res["Error Message"]){
         this.setState({
         todayIXIC: Object.entries(res["Time Series (Daily)"])[0][1]["4. close"],
@@ -110,7 +107,6 @@ class Overview extends React.Component{
 
     Adapter.makeFetch(RUTCALL)
     .then(res => {
-      debugger
       if(!res.Information && !res["Error Message"]){
         this.setState({
         todayRUT: Object.entries(res["Time Series (Daily)"])[0][1]["4. close"],
@@ -127,7 +123,6 @@ class Overview extends React.Component{
 
     Adapter.makeFetch(DAXCALL)
     .then(res => {
-      debugger
       if(!res.Information && !res["Error Message"]){
         this.setState({
         todayDAX: Object.entries(res["Time Series (Daily)"])[0][1]["4. close"],
@@ -160,7 +155,6 @@ class Overview extends React.Component{
     setInterval(function(){
     Adapter.makeFetch(SPXCALL)
     .then(res => {
-      debugger
       if(!res.Information && !res["Error Message"]){
         this.setState({
         todaySPX: Object.entries(res["Time Series (Daily)"])[0][1]["4. close"],
@@ -177,7 +171,6 @@ class Overview extends React.Component{
 
     Adapter.makeFetch(DJICALL)
     .then(res => {
-      debugger
       if(!res.Information && !res["Error Message"]){
         this.setState({
         todayDJI: Object.entries(res["Time Series (Daily)"])[0][1]["4. close"],
@@ -194,7 +187,6 @@ class Overview extends React.Component{
 
     Adapter.makeFetch(IXICCALL)
     .then(res => {
-      debugger
       if(!res.Information && !res["Error Message"]){
         this.setState({
         todayIXIC: Object.entries(res["Time Series (Daily)"])[0][1]["4. close"],
@@ -211,7 +203,6 @@ class Overview extends React.Component{
 
     Adapter.makeFetch(RUTCALL)
     .then(res => {
-      debugger
       if(!res.Information && !res["Error Message"]){
         this.setState({
         todayRUT: Object.entries(res["Time Series (Daily)"])[0][1]["4. close"],
@@ -228,7 +219,6 @@ class Overview extends React.Component{
 
     Adapter.makeFetch(DAXCALL)
     .then(res => {
-      debugger
       if(!res.Information && !res["Error Message"]){
         this.setState({
         todayDAX: Object.entries(res["Time Series (Daily)"])[0][1]["4. close"],
@@ -293,7 +283,6 @@ class Overview extends React.Component{
       })
     Adapter.makeFetch(FTSECALL)
     .then(res => {
-      debugger
       if(!res.Information && !res["Error Message"]){
         this.setState({
         todayFTSE: Object.entries(res["Time Series (Daily)"])[0][1]["4. close"],

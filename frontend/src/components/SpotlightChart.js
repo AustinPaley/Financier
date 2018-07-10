@@ -83,7 +83,6 @@ class SpotlightChart extends React.Component{
         Adapter.makeFetch(URL1 + DAILY + SYMBOL + ONEMINUTE + API)
         .then(res => {
           if (!(res.hasOwnProperty('Error Message')) && !(res.hasOwnProperty('Information'))){
-            debugger
             this.setState({
               chartData:{
                 labels: Object.entries(res["Time Series (Daily)"]).map(day => day[0]).reverse(),

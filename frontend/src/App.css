@@ -511,3 +511,13 @@ button.saveSpotlight{
   font-size: 14px;
   border-radius: 10px;
 }
+
+.spotlightNewsContainer h4{
+  margin-top: 7px;
+}
+
+.loginError{
+  color: red;
+  font-size: 14px;
+  margin-left: 100px;
+}
