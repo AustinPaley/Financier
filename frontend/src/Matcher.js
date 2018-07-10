@@ -5,6 +5,7 @@ import { Link } from 'react-router-dom'
 import { addPattern, removePattern } from './actions'
 import MatcherChart from './components/MatcherChart'
 const DeleteButton = require('./images/delete-icon.png')
+let Yes = null
 
 const POSTURL = "http://localhost:4000/api/v1/patterns"
 const DELETEURL = "http://localhost:4000/api/v1/patterns/"
@@ -42,10 +43,15 @@ class Matcher extends React.Component{
         amountInvesting: event.target.value
       })
     }
+
     else if (event.target.name === "primary-symbol" && event.target.value !== "Select Company Symbol..."){
-      this.setState({
-        primarySymbol: event.target.value.toUpperCase()
-      })
+      const SymbolSearched = event.target.value.toUpperCase()
+      clearTimeout(Yes)
+      Yes = setTimeout(() => {
+        this.setState({
+          primarySymbol: SymbolSearched
+        })
+      }, 5000)
     }
 
     else if (event.target.name === "primary-symbol" && event.target.value === "Select Company Symbol..."){

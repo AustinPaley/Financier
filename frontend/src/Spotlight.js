@@ -43,7 +43,6 @@ class Spotlight extends React.Component{
   }
 
   render(){
-    console.log("SYMBOL", this.state.symbolSearch)
     return(
       <div>
         <h2 className="stockSpotlightHeader">Stock Spotlight</h2>

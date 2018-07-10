@@ -29,6 +29,7 @@ class SpotlightChart extends React.Component{
   }
 
   componentDidMount(){
+    console.log("PATTERN PROPS", this.props.primarySymbol)
     if(this.props.primarySymbol !== ""){
       let SYMBOL = "&symbol=" + this.props.primarySymbol
       Adapter.makeFetch(URL1 + DAILY + SYMBOL + ONEMINUTE + API)
@@ -54,12 +55,14 @@ class SpotlightChart extends React.Component{
   }
 
     componentWillReceiveProps(nextProps) {
+      console.log("PATTERN STATE", this.state.primarySymbol)
+      console.log("PATTERN NEXTPROPS", nextProps.primarySymbol)
       if (this.state.primarySymbol !== nextProps.primarySymbol) {
         let SYMBOL = "&symbol=" + nextProps.primarySymbol
         Adapter.makeFetch(URL1 + DAILY + SYMBOL + ONEMINUTE + API)
         .then(res => {
+          debugger
           if (!(res.hasOwnProperty('Error Message')) && !(res.hasOwnProperty('Information'))){
-            debugger
             this.setState({
               chartData:{
                 labels: Object.entries(res["Time Series (Daily)"]).map(day => day[0]).reverse(),
