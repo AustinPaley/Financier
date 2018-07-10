@@ -81,14 +81,14 @@ class MatcherChart extends React.Component{
         if (!(res.hasOwnProperty('Error Message'))){
           this.setState({
             chartData:{
-              labels: Object.entries(res["Time Series (Daily)"]).map(day => day[0]),
+              labels: Object.entries(res["Time Series (Daily)"]).map(day => day[0]).reverse(),
               datasets: [{
                 label: "Performance Data",
                 fillColor: "rgba(66, 88, 138, 0.5)",
                 strokeColor: "rgba(66, 88, 138)",
                 highlightFill: "rgba(90, 0, 0)",
                 highlightStroke: "rgba(90, 0, 0)",
-                data: Object.entries(res["Time Series (Daily)"]).map(day => day[1]["4. close"])
+                data: Object.entries(res["Time Series (Daily)"]).map(day => day[1]["4. close"]).reverse()
               }]
             },
             allData: res
