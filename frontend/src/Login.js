@@ -75,7 +75,7 @@ export default class Login extends React.Component{
             <h1 id="login-header">
               Sign in to Financier
             </h1>
-            <form onSubmit={this.loginUser}>
+            <form onSubmit={this.loginUser} autocomplete="off">
               <input type="text" value={this.state.username} id="username-input" name="username-input" className="login-input" onClick={this.clear} onChange={this.handleChange} />
               <input type="text" value={this.state.password} id="password-input" name="password-input" className="login-input" onClick={this.clear} onChange={this.handleChange} />
               <input type="submit" value="Sign In" id="login-button" />
