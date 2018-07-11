@@ -25,7 +25,8 @@ class MatcherChart extends React.Component{
         }]
       },
       allData: [],
-      selectedDataType: "Closes"
+      selectedDataType: "Closes",
+      unavailable: false
     }
   }
 
@@ -46,7 +47,8 @@ class MatcherChart extends React.Component{
               data: Object.entries(res["Time Series (Daily)"]).map(day => day[1]["4. close"]).reverse()
             }]
           },
-          allData: res
+          allData: res,
+          unavailable: false
         })
       }
     })
@@ -70,7 +72,8 @@ class MatcherChart extends React.Component{
                 data: Object.entries(res["Time Series (Daily)"]).map(day => day[1]["4. close"]).reverse()
               }]
             },
-            allData: res
+            allData: res,
+            unavailable: false,
           })
         }
       })
@@ -93,9 +96,15 @@ class MatcherChart extends React.Component{
                 data: Object.entries(res["Time Series (Daily)"]).map(day => day[1]["4. close"]).reverse()
               }]
             },
-            allData: res
+            allData: res,
+            unavailable: false
           })
         }
+      })
+    }
+    else {
+      this.setState({
+        unavailable: true
       })
     }
   }
@@ -168,9 +177,11 @@ class MatcherChart extends React.Component{
   }
 
   render(){
+    console.log("UNAVAILABLE STATE", this.state.unavailable)
+    debugger
     return(
       <div className="MatcherChart">
-      <h2>{this.props.symbols.find(symbol => symbol.symbol === this.props.primarySymbol.toUpperCase()).name} <em>({this.props.primarySymbol.toUpperCase()})</em> {this.state.selectedDataType}</h2>
+      <h2>{this.props.symbols.find(symbol => symbol.symbol === this.props.primarySymbol.toUpperCase()) !== undefined ? this.props.symbols.find(symbol => symbol.symbol === this.props.primarySymbol.toUpperCase()).name : "INFORMATION NOT AVAILABLE"} <em>({this.props.primarySymbol.toUpperCase()})</em> {this.state.selectedDataType}</h2>
         <Line data={this.state.chartData}
           width="1200"
           height="400" />
