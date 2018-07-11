@@ -197,7 +197,24 @@
   font-size: 10px;
   text-decoration: none;
   width: 6%;
+  font-size: 14px;
+  height: 23px;
   margin-top: 25px;
+  border-radius: 5px;
+}
+
+.navigation .logout_button:hover{
+  display:inline-block;
+  font-size: 10px;
+  text-decoration: none;
+  width: 6%;
+  font-size: 14px;
+  height: 23px;
+  margin-top: 25px;
+  border-radius: 5px;
+  background-color: #AEA4CE;
+  border-color: #AEA4CE;
+  cursor:pointer;
 }
 
 .navigation .clock{
