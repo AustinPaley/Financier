@@ -14,6 +14,10 @@ class SpotlightChart extends React.Component{
       primarySymbol: this.props.primarySymbol,
       chartData: {
         labels: [],
+        options: {
+          tooltips: {enabled: false},
+          hover: {mode: null},
+        },
         datasets: [{
           label: "Performance Data",
           fillColor: "rgba(66, 88, 138, 0.5)",
@@ -105,6 +109,7 @@ class SpotlightChart extends React.Component{
     }
 
   render(){
+    // debugger
     return(
       <div className="SpotlightChart">
         <h2 className="SpotlightChartHeader">Recent Performance</h2>
