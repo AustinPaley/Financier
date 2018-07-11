@@ -527,3 +527,9 @@ button.saveSpotlight{
   font-size: 14px;
   margin-left: 115px;
 }
+
+#login-registration-text{
+  margin-left: 23%;
+  margin-top: 6%;
+  color: #FFF5C4;
+}

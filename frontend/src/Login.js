@@ -1,5 +1,5 @@
 import React from 'react'
-// import { Link } from 'react-router-dom'
+import { Link } from 'react-router-dom'
 
 export default class Login extends React.Component{
   constructor(props){
@@ -80,6 +80,7 @@ export default class Login extends React.Component{
               <input type="password" value={this.state.password} id="password-input" name="password-input" className="login-input" onClick={this.clear} onChange={this.handleChange} />
               <input type="submit" value="Sign In" id="login-button" />
               {this.state.error !== "" ? <span className="loginError">{this.state.error}</span> : null}
+              <p id="login-registration-text">Need an account? Sign up <Link to='/register'>here</Link>.</p>
             </form>
           </div>
         </div>
