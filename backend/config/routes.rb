@@ -4,6 +4,7 @@ Rails.application.routes.draw do
       resources :users
       resources :patterns
       resources :sessions
+      resources :spotlights
       get '/users/:user_id/patterns', to: 'users#user_patterns'
     end
   end
