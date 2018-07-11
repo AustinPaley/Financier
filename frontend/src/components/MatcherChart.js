@@ -37,7 +37,18 @@ class MatcherChart extends React.Component{
       if (!(res.hasOwnProperty('Error Message')) && !(res.hasOwnProperty('Information'))){
         this.setState({
           chartData:{
-            labels: Object.entries(res["Time Series (Daily)"]).map(day => day[0]).reverse(),
+            labels: [],
+            options: {
+              scales: {
+                xAxes: [{
+                  type: 'time',
+                  ticks: {
+                    autoSkip: true,
+                    maxTicksLimit: 5
+                  }
+                }]
+              }
+            },
             datasets: [{
               label: "Performance Data",
               fillColor: "rgba(66, 88, 138, 0.5)",
@@ -60,9 +71,10 @@ class MatcherChart extends React.Component{
       Adapter.makeFetch(URL1 + DAILY + SYMBOL + ONEMINUTE + API)
       .then(res => {
         if (!(res.hasOwnProperty('Error Message')) && !(res.hasOwnProperty('Information'))){
+          debugger
           this.setState({
             chartData:{
-              labels: Object.entries(res["Time Series (Daily)"]).map(day => day[0]).reverse(),
+              labels: [],
               datasets: [{
                 label: "Performance Data",
                 fillColor: "rgba(66, 88, 138, 0.5)",
@@ -84,9 +96,10 @@ class MatcherChart extends React.Component{
       Adapter.makeFetch(URL1 + DAILY + SYMBOL + ONEMINUTE + API)
       .then(res => {
         if (!(res.hasOwnProperty('Error Message')) && !(res.hasOwnProperty('Information'))){
+          debugger
           this.setState({
             chartData:{
-              labels: Object.entries(res["Time Series (Daily)"]).map(day => day[0]).reverse(),
+              labels: [],
               datasets: [{
                 label: "Performance Data",
                 fillColor: "rgba(66, 88, 138, 0.5)",
@@ -103,6 +116,7 @@ class MatcherChart extends React.Component{
       })
     }
     else {
+      debugger
       this.setState({
         unavailable: true
       })
@@ -113,7 +127,7 @@ class MatcherChart extends React.Component{
     if (event.target.name === "open"){
       this.setState({
         chartData:{
-          labels: Object.entries(this.state.allData["Time Series (Daily)"]).map(day => day[0]),
+          labels: [],
           datasets: [{
             label: "Performance Data",
             fillColor: "rgba(66, 88, 138, 0.5)",
@@ -129,7 +143,7 @@ class MatcherChart extends React.Component{
     else if (event.target.name === "close"){
       this.setState({
         chartData:{
-          labels: Object.entries(this.state.allData["Time Series (Daily)"]).map(day => day[0]),
+          labels: [],
           datasets: [{
             label: "Performance Data",
             fillColor: "rgba(66, 88, 138, 0.5)",
@@ -145,7 +159,7 @@ class MatcherChart extends React.Component{
     else if (event.target.name === "high"){
       this.setState({
         chartData:{
-          labels: Object.entries(this.state.allData["Time Series (Daily)"]).map(day => day[0]),
+          labels: [],
           datasets: [{
             label: "Performance Data",
             fillColor: "rgba(66, 88, 138, 0.5)",
@@ -161,7 +175,7 @@ class MatcherChart extends React.Component{
     else if (event.target.name === "low"){
       this.setState({
         chartData:{
-          labels: Object.entries(this.state.allData["Time Series (Daily)"]).map(day => day[0]),
+          labels: [],
           datasets: [{
             label: "Performance Data",
             fillColor: "rgba(66, 88, 138, 0.5)",
@@ -178,7 +192,6 @@ class MatcherChart extends React.Component{
 
   render(){
     console.log("UNAVAILABLE STATE", this.state.unavailable)
-    debugger
     return(
       <div className="MatcherChart">
       <h2>{this.props.symbols.find(symbol => symbol.symbol === this.props.primarySymbol.toUpperCase()) !== undefined ? this.props.symbols.find(symbol => symbol.symbol === this.props.primarySymbol.toUpperCase()).name : "INFORMATION NOT AVAILABLE"} <em>({this.props.primarySymbol.toUpperCase()})</em> {this.state.selectedDataType}</h2>

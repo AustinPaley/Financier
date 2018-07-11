@@ -41,7 +41,7 @@ class SpotlightChart extends React.Component{
         if (!(res.hasOwnProperty('Error Message')) && !(res.hasOwnProperty('Information'))){
           this.setState({
             chartData:{
-              labels: Object.entries(res["Time Series (Daily)"]).map(day => day[0]).reverse(),
+              labels: [],
               datasets: [{
                 label: "Performance Data",
                 fillColor: "rgba(66, 88, 138, 0.5)",
@@ -68,7 +68,7 @@ class SpotlightChart extends React.Component{
           if (!(res.hasOwnProperty('Error Message')) && !(res.hasOwnProperty('Information'))){
             this.setState({
               chartData:{
-                labels: Object.entries(res["Time Series (Daily)"]).map(day => day[0]).reverse(),
+                labels: [],
                 datasets: [{
                   label: "Performance Data",
                   fillColor: "rgba(66, 88, 138, 0.5)",
@@ -91,7 +91,7 @@ class SpotlightChart extends React.Component{
           if (!(res.hasOwnProperty('Error Message')) && !(res.hasOwnProperty('Information'))){
             this.setState({
               chartData:{
-                labels: Object.entries(res["Time Series (Daily)"]).map(day => day[0]).reverse(),
+                labels: [],
                 datasets: [{
                   label: "Performance Data",
                   fillColor: "rgba(66, 88, 138, 0.5)",
@@ -109,7 +109,6 @@ class SpotlightChart extends React.Component{
     }
 
   render(){
-    // debugger
     return(
       <div className="SpotlightChart">
         <h2 className="SpotlightChartHeader">Recent Performance</h2>
