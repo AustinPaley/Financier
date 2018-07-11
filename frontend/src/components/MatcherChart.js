@@ -38,17 +38,6 @@ class MatcherChart extends React.Component{
         this.setState({
           chartData:{
             labels: [],
-            options: {
-              scales: {
-                xAxes: [{
-                  type: 'time',
-                  ticks: {
-                    autoSkip: true,
-                    maxTicksLimit: 5
-                  }
-                }]
-              }
-            },
             datasets: [{
               label: "Performance Data",
               fillColor: "rgba(66, 88, 138, 0.5)",
@@ -196,6 +185,7 @@ class MatcherChart extends React.Component{
       <div className="MatcherChart">
       <h2>{this.props.symbols.find(symbol => symbol.symbol === this.props.primarySymbol.toUpperCase()) !== undefined ? this.props.symbols.find(symbol => symbol.symbol === this.props.primarySymbol.toUpperCase()).name : "INFORMATION NOT AVAILABLE"} <em>({this.props.primarySymbol.toUpperCase()})</em> {this.state.selectedDataType}</h2>
         <Line data={this.state.chartData}
+          options={{pointHitDetectionRadius: 1}}
           width="1200"
           height="400" />
         <br/>
