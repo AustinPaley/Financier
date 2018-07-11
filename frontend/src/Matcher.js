@@ -24,6 +24,7 @@ class Matcher extends React.Component{
       user_id: localStorage.getItem("id"),
       user_patterns: [],
       symbol_options: this.props.symbols,
+      symbolInput: ''
     }
   }
 
@@ -39,12 +40,15 @@ class Matcher extends React.Component{
   handleInput = (event) => {
     if (event.target.name === "amount-investing"){
       this.setState({
-        amountInvesting: event.target.value
+        amountInvesting: event.target.value,
       })
     }
 
     else if (event.target.name === "primary-symbol" && event.target.value !== "Select Company Symbol..."){
       const SymbolSearched = event.target.value.toUpperCase()
+      this.setState({
+        symbolInput: event.target.value
+      })
       clearTimeout(Yes)
       Yes = setTimeout(() => {
         this.setState({
@@ -92,7 +96,7 @@ class Matcher extends React.Component{
 
   handleSubmit = (event) => {
     event.preventDefault()
-    Adapter.postPattern(POSTURL, this.state.user_id, this.state.primarySymbol, this.state.open, this.state.close, this.state.high, this.state.low, this.state.amountInvesting, this.state.days)
+    Adapter.postPattern(POSTURL, this.state.user_id, this.state.symbolInput, this.state.open, this.state.close, this.state.high, this.state.low, this.state.amountInvesting, this.state.days)
     .then(res => {
       this.props.createPattern(res)
       this.props.history.push(`/pattern/${res.id}`)
@@ -110,9 +114,6 @@ class Matcher extends React.Component{
   }
 
   render(){
-    console.log(this.state.primarySymbol);
-    console.log(this.state);
-    console.log("----");
     return(
       <div>
         {this.state.primarySymbol !== ''
@@ -127,7 +128,7 @@ class Matcher extends React.Component{
         <div className="pattern-form">
           <form onSubmit={this.handleSubmit}>
             <div className="form-amount-investing">Amount Investing: <input className="input-amount-investing" name="amount-investing" type="text" onChange={this.handleInput} /></div><br/>
-            <div className="form-primary-symbol">Primary Symbol Name: <input className="input-primary-symbol" name="primary-symbol" type="text" onChange={this.handleInput} value={this.state.primarySymbol} /><br/>
+            <div className="form-primary-symbol">Primary Symbol Name: <input className="input-primary-symbol" name="primary-symbol" type="text" onChange={this.handleInput} value={this.state.symbolInput} /><br/>
              <em>or</em>
             <select className="input-primary-symbol" name="primary-symbol" type="select" onChange={this.handleInput}>
             <option default>Select Company Symbol...</option>

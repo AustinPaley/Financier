@@ -113,7 +113,7 @@ class SpotlightChart extends React.Component{
       <div className="SpotlightChart">
         <h2 className="SpotlightChartHeader">Recent Performance</h2>
         <Line data={this.state.chartData}
-          options={{pointHitDetectionRadius: 1}}
+          options={{pointHitDetectionRadius: 1, pointDotRadius: 4, pointDot: true}}
           width="800"
           height="400" />
       </div>
