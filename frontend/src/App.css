@@ -550,3 +550,9 @@ button.saveSpotlight{
   margin-top: 6%;
   color: #FFF5C4;
 }
+
+h2.SpotlightChartHeader{
+  margin-left: -800px;
+  margin-top: 0px;
+  margin-bottom: -37px;
+}

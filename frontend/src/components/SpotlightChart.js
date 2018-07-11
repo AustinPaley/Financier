@@ -107,6 +107,7 @@ class SpotlightChart extends React.Component{
   render(){
     return(
       <div className="SpotlightChart">
+        <h2 className="SpotlightChartHeader">Recent Performance</h2>
         <Line data={this.state.chartData}
           width="800"
           height="400" />
