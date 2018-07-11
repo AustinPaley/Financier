@@ -11,6 +11,8 @@ import Adapter from './adapters/Adapter'
 import Overview from './Overview'
 import Matcher from './Matcher'
 import Pattern from './Pattern'
+import QuoteWindow from './QuoteWindow'
+import TradeNow from './TradeNow'
 import { addPattern, addSymbols } from './actions'
 
 const EXISTINGACCOUNTURL = 'http://localhost:4000/api/v1/users'
@@ -76,6 +78,12 @@ class App extends Component {
         <Route
           path='/pattern/:patternid'
           component={Pattern} />
+        <Route
+          exact path='/quote-window'
+          component={QuoteWindow} />
+          <Route
+            exact path='/trade'
+            component={TradeNow} />
       </div>
       </div>
     );
