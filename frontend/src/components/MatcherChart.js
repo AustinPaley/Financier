@@ -33,20 +33,22 @@ class MatcherChart extends React.Component{
     let SYMBOL = "&symbol=" + this.props.primarySymbol
     Adapter.makeFetch(URL1 + DAILY + SYMBOL + ONEMINUTE + API)
     .then(res => {
-      this.setState({
-        chartData:{
-          labels: Object.entries(res["Time Series (Daily)"]).map(day => day[0]).reverse(),
-          datasets: [{
-            label: "Performance Data",
-            fillColor: "rgba(66, 88, 138, 0.5)",
-            strokeColor: "rgba(66, 88, 138)",
-            highlightFill: "rgba(90, 0, 0)",
-            highlightStroke: "rgba(90, 0, 0)",
-            data: Object.entries(res["Time Series (Daily)"]).map(day => day[1]["4. close"]).reverse()
-          }]
-        },
-        allData: res
-      })
+      if (!(res.hasOwnProperty('Error Message')) && !(res.hasOwnProperty('Information'))){
+        this.setState({
+          chartData:{
+            labels: Object.entries(res["Time Series (Daily)"]).map(day => day[0]).reverse(),
+            datasets: [{
+              label: "Performance Data",
+              fillColor: "rgba(66, 88, 138, 0.5)",
+              strokeColor: "rgba(66, 88, 138)",
+              highlightFill: "rgba(90, 0, 0)",
+              highlightStroke: "rgba(90, 0, 0)",
+              data: Object.entries(res["Time Series (Daily)"]).map(day => day[1]["4. close"]).reverse()
+            }]
+          },
+          allData: res
+        })
+      }
     })
   }
 
@@ -55,7 +57,7 @@ class MatcherChart extends React.Component{
       let SYMBOL = "&symbol=" + nextProps.primarySymbol
       Adapter.makeFetch(URL1 + DAILY + SYMBOL + ONEMINUTE + API)
       .then(res => {
-        if (!(res.hasOwnProperty('Error Message'))){
+        if (!(res.hasOwnProperty('Error Message')) && !(res.hasOwnProperty('Information'))){
           this.setState({
             chartData:{
               labels: Object.entries(res["Time Series (Daily)"]).map(day => day[0]).reverse(),
@@ -78,7 +80,7 @@ class MatcherChart extends React.Component{
       let SYMBOL = "&symbol=" + this.state.primarySymbol
       Adapter.makeFetch(URL1 + DAILY + SYMBOL + ONEMINUTE + API)
       .then(res => {
-        if (!(res.hasOwnProperty('Error Message'))){
+        if (!(res.hasOwnProperty('Error Message')) && !(res.hasOwnProperty('Information'))){
           this.setState({
             chartData:{
               labels: Object.entries(res["Time Series (Daily)"]).map(day => day[0]).reverse(),

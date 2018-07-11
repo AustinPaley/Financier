@@ -2,7 +2,7 @@ import React from 'react';
 import Adapter from './adapters/Adapter'
 import {connect} from 'react-redux'
 import { Link } from 'react-router-dom'
-import { addPattern, removePattern } from './actions'
+import { addPattern, removePattern, createPattern } from './actions'
 import MatcherChart from './components/MatcherChart'
 const DeleteButton = require('./images/delete-icon.png')
 let Yes = null
@@ -31,8 +31,7 @@ class Matcher extends React.Component{
     Adapter.patternFetch("http://localhost:4000/api/v1/patterns")
     .then(res => {
       if(res.message !== "Not Authorized"){
-        this.props.addPattern({
-        type: "ADD_PATTERN", payload: res})
+        this.props.addPattern(res)
       }
     })
   }
@@ -95,7 +94,7 @@ class Matcher extends React.Component{
     event.preventDefault()
     Adapter.postPattern(POSTURL, this.state.user_id, this.state.primarySymbol, this.state.open, this.state.close, this.state.high, this.state.low, this.state.amountInvesting, this.state.days)
     .then(res => {
-      this.props.addPattern(res)
+      this.props.createPattern(res)
       this.props.history.push(`/pattern/${res.id}`)
     })
   }
@@ -106,9 +105,7 @@ class Matcher extends React.Component{
     Adapter.deletePattern(DELETEURL + DELETEID)
     .then(res => {
       alert("Pattern " + res.item.id + " has been removed.")
-      this.props.removePattern({
-      type: "DELETE_PATTERN",
-      payload: res.item})
+      this.props.removePattern(res.item)
     })
   }
 
@@ -149,7 +146,7 @@ class Matcher extends React.Component{
         </div>
         <div className="saved-patterns">
           <h3>Saved Patterns</h3>
-            {this.props.patterns.length > 0 ? this.props.patterns[this.props.patterns.length-1].patterns.payload.map(pattern =>{
+            {this.props.patterns.length > 0 ? this.props.patterns.map(pattern =>{
               return(
               <div id={pattern.id}>
                 <Link to={'/pattern/' + pattern.id}>Pattern: {pattern.id}</Link>
@@ -173,6 +170,9 @@ const mapDispatchToProps = (dispatch) => {
     },
     removePattern: (res) => {
       dispatch(removePattern(res))
+    },
+    createPattern: (res) => {
+      dispatch(createPattern(res))
     }
   }
 }

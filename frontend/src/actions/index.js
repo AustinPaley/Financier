@@ -8,18 +8,21 @@ export function addUser(name, email, password){
 export function addPattern(res){
   return{
     type: "ADD_PATTERN",
-    payload: {
-      patterns: res
-    }
+    payload: res
   }
 }
 
 export function removePattern(res){
   return{
     type: "DELETE_PATTERN",
-    payload: {
-      patterns: res
-    }
+    payload: res
+  }
+}
+
+export function createPattern(res){
+  return{
+    type: "CREATE_PATTERN",
+    payload: res
   }
 }
 

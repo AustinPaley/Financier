@@ -33,8 +33,7 @@ class App extends Component {
     Adapter.patternFetch("http://localhost:4000/api/v1/patterns")
     .then(res => {
       if(res.message !== "Not Authorized"){
-        this.props.addPattern({
-        type: "ADD_PATTERN", payload: res})
+        this.props.addPattern(res)
       }
     })
 

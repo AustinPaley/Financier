@@ -5,10 +5,12 @@ const initialState = {
 const patternReducer = (state = initialState, action) => {
   switch(action.type){
     case "ADD_PATTERN":
-      return {...state, patterns: [...state.patterns, action.payload]}
+      return {...state, patterns: action.payload}
     case "DELETE_PATTERN":
-      const UpdatedPatterns = state.patterns[0].patterns.payload.filter(pattern => pattern.id !== action.payload.patterns.payload.id)
-      return {...state, patterns: [{patterns: {payload: UpdatedPatterns}}]}
+      const UpdatedPatterns = state.patterns.filter(pattern => pattern.id !== action.payload.id)
+      return {...state, patterns: UpdatedPatterns}
+    case "CREATE_PATTERN":
+      return {...state, patterns: [...state.patterns, action.payload]}
     default:
       return state;
   }
