@@ -73,7 +73,6 @@ class Register extends React.Component{
     })
     .then(res => res.json())
     .then(res => {
-      debugger
       if (!res.errors){
         localStorage.setItem('token', res.token)
         localStorage.setItem('id', res.id)
@@ -81,7 +80,7 @@ class Register extends React.Component{
       }
       else if (!!res.errors){
         this.setState({
-          error: "Account already exists."
+          error: "Username or email is invalid."
         })
       }
     })
@@ -98,7 +97,7 @@ class Register extends React.Component{
             <form onSubmit={this.createUser} autocomplete="off">
               <input type="text" value={this.state.username} id="username-input" name="username-input" className="registration-input" onClick={this.clear} onChange={this.handleChange} />
               <input type="text" value={this.state.emailaddress} id="email-input" name="email-input" className="registration-input" onClick={this.clear} onChange={this.handleChange} />
-              <input type="text" value={this.state.password} id="password-input" name="password-input" className="registration-input" onClick={this.clear} onChange={this.handleChange} />
+              <input type="password" value={this.state.password} id="password-input" name="password-input" className="registration-input" onClick={this.clear} onChange={this.handleChange} />
               <input type="submit" value="Register" id="register-button" />
               {this.state.error !== "" ? <span className="registrationError">{this.state.error}</span> : null}
               <p id="registration-login-text">Already have an account? Sign in <Link to='/login'>here</Link>.</p>
