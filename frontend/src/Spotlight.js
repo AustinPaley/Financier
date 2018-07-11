@@ -32,6 +32,18 @@ class Spotlight extends React.Component{
     })
   }
 
+  saveSpotlight = () => {
+    Adapter.spotlightSave("http://localhost:4000/api/v1/spotlights", this.state.symbolQuote.symbol, this.state.user_id)
+    .then(res => {
+      debugger
+      if(res.message !== "Not Authorized"){
+        this.setState({
+          saved_patterns: res
+        })
+      }
+    })
+  }
+
 
   changeStock = (event) => {
     const SymbolSearched = event.target.value
@@ -96,7 +108,7 @@ class Spotlight extends React.Component{
             <div className="stockInfoData">{this.state.symbolQuote.symbol !== undefined && this.state.symbolQuote.length === undefined ? this.state.symbolQuote.low : "-"}</div>
             <div className="stockInfoData">{this.state.symbolQuote.symbol !== undefined && this.state.symbolQuote.length === undefined ? this.state.symbolQuote.close : "-"}</div>
           </div>
-          <button className="saveSpotlight">Save Spotlight</button>
+          <button className="saveSpotlight" onClick={this.saveSpotlight}>Save Spotlight</button>
         </div>
         {this.state.symbolSearch !== ""
           ?

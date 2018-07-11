@@ -70,6 +70,23 @@ class Adapter {
     })
     .then(response => response.json())
   }
+
+  static spotlightSave(fetchurl, symbol, user_id){
+    return fetch(fetchurl, {
+      method: 'POST',
+      headers:{
+        'Content-Type' : 'application/json',
+        'Authorization' : localStorage.getItem("token")
+      },
+      body: JSON.stringify({
+        spotlight: {user_id: user_id,
+        symbol: symbol,
+        }
+      })
+    })
+    .then(response => response.json())
+  }
+
 }
 
 export default Adapter

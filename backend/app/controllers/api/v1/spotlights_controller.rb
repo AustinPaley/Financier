@@ -8,8 +8,10 @@ class Api::V1::SpotlightsController < ApplicationController
   end
 
   def create
+    user = get_decoded_token[0]["id"]
     @spotlight = Spotlight.create(spotlight_params)
-    render json: @spotlight
+    @spotlights = Spotlight.all.where(user_id: user)
+    render json: @spotlights
   end
 
   def show
