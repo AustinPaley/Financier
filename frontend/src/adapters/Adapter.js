@@ -59,6 +59,17 @@ class Adapter {
     })
     .then(response => response.json())
   }
+
+  static spotlightFetch(fetchurl){
+    return fetch(fetchurl, {
+      method: 'GET',
+      headers:{
+        'Content-Type' : 'application/json',
+        'Authorization' : localStorage.getItem("token")
+      }
+    })
+    .then(response => response.json())
+  }
 }
 
 export default Adapter

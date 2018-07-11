@@ -15,8 +15,21 @@ class Spotlight extends React.Component{
       symbolSearch: '',
       symbolSearchNews: [],
       symbolCompanyInfo: [],
-      symbolQuote: []
+      symbolQuote: [],
+      user_id: localStorage.getItem("id"),
+      saved_patterns: []
     }
+  }
+
+  componentDidMount(){
+    Adapter.spotlightFetch("http://localhost:4000/api/v1/spotlights")
+    .then(res => {
+      if(res.message !== "Not Authorized"){
+        this.setState({
+          saved_patterns: res
+        })
+      }
+    })
   }
 
 
@@ -48,7 +61,7 @@ class Spotlight extends React.Component{
   }
 
   render(){
-    console.log("state is", this.state);
+    console.log("saved patterns", this.state.saved_patterns);
     return(
       <div>
         <h2 className="stockSpotlightHeader">Stock Spotlight</h2>
@@ -76,6 +89,14 @@ class Spotlight extends React.Component{
             <div className="stockInfoData">{this.state.symbolQuote.symbol !== undefined && this.state.symbolQuote.length === undefined ? this.state.symbolQuote.close : "-"}</div>
           </div>
           <button className="saveSpotlight">Save Spotlight</button>
+          <select className="savedPatterns" onChange={this.changeStock}>
+            <option default selected disabled>Your Saved Symbols...</option>
+            {this.state.saved_patterns.map(pattern => {
+              return(
+              <option>{pattern.symbol}</option>
+              )
+            })}
+          </select>
         </div>
         {this.state.symbolSearch !== ""
           ?
