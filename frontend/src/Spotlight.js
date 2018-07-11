@@ -61,11 +61,19 @@ class Spotlight extends React.Component{
   }
 
   render(){
-    console.log("saved patterns", this.state.saved_patterns);
     return(
       <div>
         <h2 className="stockSpotlightHeader">Stock Spotlight</h2>
-        <input className="stockSearch" onChange={this.changeStock} /><br/>
+        <input className="stockSearch" onChange={this.changeStock} />
+        <select className="savedPatterns" onChange={this.changeStock}>
+          <option default selected disabled>Your Saved Symbols...</option>
+          {this.state.saved_patterns.map(pattern => {
+            return(
+            <option>{pattern.symbol}</option>
+            )
+          })}
+        </select>
+        <br/>
         {this.state.symbolCompanyInfo.symbol !== undefined ? <h3 className="stockSpotlightCompanyName">{this.state.symbolCompanyInfo.companyName} ({this.state.symbolCompanyInfo.symbol})</h3> : <h3 className="stockSpotlightCompanyName">Search a Stock Symbol To Begin</h3>}<br/><br/><br/><br/><br/>
         <div className="stockTicker">
           <div className="stockInfoContainer">
@@ -89,14 +97,6 @@ class Spotlight extends React.Component{
             <div className="stockInfoData">{this.state.symbolQuote.symbol !== undefined && this.state.symbolQuote.length === undefined ? this.state.symbolQuote.close : "-"}</div>
           </div>
           <button className="saveSpotlight">Save Spotlight</button>
-          <select className="savedPatterns" onChange={this.changeStock}>
-            <option default selected disabled>Your Saved Symbols...</option>
-            {this.state.saved_patterns.map(pattern => {
-              return(
-              <option>{pattern.symbol}</option>
-              )
-            })}
-          </select>
         </div>
         {this.state.symbolSearch !== ""
           ?

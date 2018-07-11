@@ -491,7 +491,7 @@ input.stockSearch{
 
 .stockSpotlightCompanyName{
   float: left;
-  margin-left: -380px;
+  margin-left: -600px;
   margin-top: 40px;
   font-size: 20px;
 }
@@ -555,4 +555,12 @@ h2.SpotlightChartHeader{
   margin-left: -800px;
   margin-top: 0px;
   margin-bottom: -37px;
+}
+
+select.savedPatterns{
+  float: left;
+  margin-left: 40px;
+  margin-top: 14px;
+  width: 200px;
+  height: 20px;
 }
