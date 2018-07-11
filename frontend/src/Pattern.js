@@ -1,6 +1,7 @@
 import React from 'react'
 import { connect } from 'react-redux'
 import Adapter from './adapters/Adapter'
+import JSXAdapter from './adapters/JSXAdapter'
 import PatternChart from './components/PatternChart'
 const API = process.env.REACT_APP_ALPHA_VANTAGE_API
 const URL1 = "https://www.alphavantage.co/query?function"
@@ -45,7 +46,6 @@ class Pattern extends React.Component{
 
   render(){
     const relevantHistory = this.state.history["Time Series (Daily)"]
-    debugger
     return(
       <div>
         {this.props.patterns.filter(pattern => pattern.id === parseInt(window.location.pathname.replace("/pattern/", "")))[0] !== undefined && this.props.patterns.filter(pattern => pattern.id === parseInt(window.location.pathname.replace("/pattern/", "")))[0].close !== "" ?

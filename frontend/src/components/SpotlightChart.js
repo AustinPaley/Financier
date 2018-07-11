@@ -61,7 +61,6 @@ class SpotlightChart extends React.Component{
         let SYMBOL = "&symbol=" + nextProps.primarySymbol
         Adapter.makeFetch(URL1 + DAILY + SYMBOL + ONEMINUTE + API)
         .then(res => {
-          debugger
           if (!(res.hasOwnProperty('Error Message')) && !(res.hasOwnProperty('Information'))){
             this.setState({
               chartData:{

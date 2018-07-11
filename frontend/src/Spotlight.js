@@ -4,6 +4,7 @@ import {connect} from 'react-redux'
 import Adapter from './adapters/Adapter'
 
 let Yes = null
+let IntervalCall = null
 
 class Spotlight extends React.Component{
   constructor(props){
@@ -28,21 +29,26 @@ class Spotlight extends React.Component{
       })
     }, 5000)
 
-    Adapter.makeFetch("https://api.iextrading.com/1.0/stock/" + event.target.value + "/news/last/10")
-    .then(res => {this.setState({
-      symbolSearchNews: res
-    })})
-    Adapter.makeFetch("https://api.iextrading.com/1.0/stock/" + event.target.value + "/company")
-    .then(res => {this.setState({
-      symbolCompanyInfo: res
-    })})
-    Adapter.makeFetch("https://api.iextrading.com/1.0/stock/" + event.target.value + "/quote")
-    .then(res => {this.setState({
-      symbolQuote: res
-    })})
+
+    clearInterval(IntervalCall)
+    IntervalCall = setInterval(() => {
+      Adapter.makeFetch("https://api.iextrading.com/1.0/stock/" + SymbolSearched + "/quote")
+      .then(res => {this.setState({
+        symbolQuote: res
+      })})
+      Adapter.makeFetch("https://api.iextrading.com/1.0/stock/" + SymbolSearched + "/news/last/10")
+      .then(res => {this.setState({
+        symbolSearchNews: res
+      })})
+      Adapter.makeFetch("https://api.iextrading.com/1.0/stock/" + SymbolSearched + "/company")
+      .then(res => {this.setState({
+        symbolCompanyInfo: res
+      })})
+    }, 2500)
   }
 
   render(){
+    console.log("state is", this.state);
     return(
       <div>
         <h2 className="stockSpotlightHeader">Stock Spotlight</h2>
@@ -59,15 +65,15 @@ class Spotlight extends React.Component{
             <div className="stockInfoHeader"><b>High</b></div>
             <div className="stockInfoHeader"><b>Low</b></div>
             <div className="stockInfoHeader"><b>Close</b></div>
-            <div className="stockInfoData">{this.state.symbolQuote.symbol !== undefined ? this.state.symbolQuote.symbol : "-"}</div>
-            <div className="stockInfoData">{this.state.symbolQuote.symbol !== undefined ? this.state.symbolQuote.change : "-"}</div>
-            <div className="stockInfoData">{this.state.symbolQuote.symbol !== undefined ? this.state.symbolQuote.iexBidPrice : "-"}</div>
-            <div className="stockInfoData">{this.state.symbolQuote.symbol !== undefined ? this.state.symbolQuote.iexAskPrice : "-"}</div>
-            <div className="stockInfoData">{this.state.symbolQuote.symbol !== undefined ? this.state.symbolQuote.latestVolume : "-"}</div>
-            <div className="stockInfoData">{this.state.symbolQuote.symbol !== undefined ? this.state.symbolQuote.iexRealtimeSize : "-"}</div>
-            <div className="stockInfoData">{this.state.symbolQuote.symbol !== undefined ? this.state.symbolQuote.high : "-"}</div>
-            <div className="stockInfoData">{this.state.symbolQuote.symbol !== undefined ? this.state.symbolQuote.low : "-"}</div>
-            <div className="stockInfoData">{this.state.symbolQuote.symbol !== undefined ? this.state.symbolQuote.close : "-"}</div>
+            <div className="stockInfoData">{this.state.symbolQuote.symbol !== undefined && this.state.symbolQuote.length === undefined ? this.state.symbolQuote.symbol : "-"}</div>
+            <div className="stockInfoData">{this.state.symbolQuote.symbol !== undefined && this.state.symbolQuote.length === undefined ? this.state.symbolQuote.change : "-"}</div>
+            <div className="stockInfoData">{this.state.symbolQuote.symbol !== undefined && this.state.symbolQuote.length === undefined ? this.state.symbolQuote.iexBidPrice : "-"}</div>
+            <div className="stockInfoData">{this.state.symbolQuote.symbol !== undefined && this.state.symbolQuote.length === undefined ? this.state.symbolQuote.iexAskPrice : "-"}</div>
+            <div className="stockInfoData">{this.state.symbolQuote.symbol !== undefined && this.state.symbolQuote.length === undefined ? this.state.symbolQuote.latestVolume : "-"}</div>
+            <div className="stockInfoData">{this.state.symbolQuote.symbol !== undefined && this.state.symbolQuote.length === undefined ? this.state.symbolQuote.iexRealtimeSize : "-"}</div>
+            <div className="stockInfoData">{this.state.symbolQuote.symbol !== undefined && this.state.symbolQuote.length === undefined ? this.state.symbolQuote.high : "-"}</div>
+            <div className="stockInfoData">{this.state.symbolQuote.symbol !== undefined && this.state.symbolQuote.length === undefined ? this.state.symbolQuote.low : "-"}</div>
+            <div className="stockInfoData">{this.state.symbolQuote.symbol !== undefined && this.state.symbolQuote.length === undefined ? this.state.symbolQuote.close : "-"}</div>
           </div>
           <button className="saveSpotlight">Save Spotlight</button>
         </div>
