@@ -110,11 +110,14 @@ class Matcher extends React.Component{
   }
 
   render(){
+    console.log(this.state.primarySymbol);
+    console.log(this.state);
+    console.log("----");
     return(
       <div>
         {this.state.primarySymbol !== ''
           ?
-          <MatcherChart primarySymbol={this.state.primarySymbol} fullSymbol={this.state}/>
+          <MatcherChart primarySymbol={this.state.primarySymbol}/>
           :
           <div className="Spaceholder">
             <br />
