@@ -628,3 +628,9 @@ select.savedPatterns{
   width: 200px;
   margin-top: 50px;
 }
+
+.SpotlightLoadWheel{
+  height: 150px;
+  width: 150px;
+  margin-top: 150px;
+}

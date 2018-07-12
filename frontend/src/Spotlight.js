@@ -2,6 +2,7 @@ import React from 'react'
 import SpotlightChart from './components/SpotlightChart'
 import {connect} from 'react-redux'
 import Adapter from './adapters/Adapter'
+const LoadingWheel = require('./images/loading-wheel.gif')
 
 let Yes = null
 let IntervalCall = null
@@ -17,7 +18,8 @@ class Spotlight extends React.Component{
       symbolCompanyInfo: [],
       symbolQuote: [],
       user_id: localStorage.getItem("id"),
-      saved_patterns: []
+      saved_patterns: [],
+      loading: false,
     }
   }
 
@@ -47,10 +49,14 @@ class Spotlight extends React.Component{
 
   changeStock = (event) => {
     const SymbolSearched = event.target.value
+    this.setState({
+      loading: true
+    })
     clearTimeout(Yes)
     Yes = setTimeout(() => {
       this.setState({
-        symbolSearch: SymbolSearched
+        symbolSearch: SymbolSearched,
+        loading: false,
       })
     }, 5000)
 
@@ -63,7 +69,8 @@ class Spotlight extends React.Component{
       })})
       Adapter.makeFetch("https://api.iextrading.com/1.0/stock/" + SymbolSearched + "/news/last/10")
       .then(res => {this.setState({
-        symbolSearchNews: res
+        symbolSearchNews: res,
+        loading: false
       })})
       Adapter.makeFetch("https://api.iextrading.com/1.0/stock/" + SymbolSearched + "/company")
       .then(res => {this.setState({
@@ -114,7 +121,10 @@ class Spotlight extends React.Component{
           ?
           <SpotlightChart primarySymbol={this.state.symbolSearch}/>
           :
-          null
+          this.state.loading === true ?
+            <img className="SpotlightLoadWheel" src={LoadingWheel} />
+          :
+            null
         }
         <div className="spotlightNewsContainer">
           {this.state.symbolSearchNews.length !== 0 && this.state.symbolSearchNews.length !== undefined ? <h4>{this.state.symbolCompanyInfo.companyName} News</h4> : null}
