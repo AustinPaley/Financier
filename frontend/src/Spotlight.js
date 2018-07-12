@@ -35,11 +35,11 @@ class Spotlight extends React.Component{
   saveSpotlight = () => {
     Adapter.spotlightSave("http://localhost:4000/api/v1/spotlights", this.state.symbolQuote.symbol, this.state.user_id)
     .then(res => {
-      debugger
       if(res.message !== "Not Authorized"){
         this.setState({
           saved_patterns: res
         })
+        alert("Symbol " + res[res.length - 1].symbol + " has been added to your saved symbols.")
       }
     })
   }
