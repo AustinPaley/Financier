@@ -5,6 +5,7 @@ import { Link } from 'react-router-dom'
 import { addPattern, removePattern, createPattern } from './actions'
 import MatcherChart from './components/MatcherChart'
 const DeleteButton = require('./images/delete-icon.png')
+const LoadingWheel = require('./images/loading-wheel.gif')
 let Yes = null
 
 const POSTURL = "http://localhost:4000/api/v1/patterns"
@@ -24,7 +25,8 @@ class Matcher extends React.Component{
       user_id: localStorage.getItem("id"),
       user_patterns: [],
       symbol_options: this.props.symbols,
-      symbolInput: ''
+      symbolInput: '',
+      loading: false
     }
   }
 
@@ -47,12 +49,14 @@ class Matcher extends React.Component{
     else if (event.target.name === "primary-symbol" && event.target.value !== "Select Company Symbol..."){
       const SymbolSearched = event.target.value.toUpperCase()
       this.setState({
-        symbolInput: event.target.value
+        symbolInput: event.target.value,
+        loading: true
       })
       clearTimeout(Yes)
       Yes = setTimeout(() => {
         this.setState({
-          primarySymbol: SymbolSearched
+          primarySymbol: SymbolSearched,
+          loading: false
         })
       }, 5000)
     }
@@ -120,10 +124,18 @@ class Matcher extends React.Component{
           ?
           <MatcherChart primarySymbol={this.state.primarySymbol}/>
           :
-          <div className="Spaceholder">
+          this.state.loading === false ?
+            <div className="Spaceholder">
             <br />
             <h2>Enter a Symbol to See Historical Data</h2>
-          </div>
+            </div>
+            :
+            <div className="Spaceholder">
+            <br />
+            <h2>Enter a Symbol to See Historical Data</h2>
+            <br />
+            <img className="MatcherLoadingWheel" src={LoadingWheel} />
+            </div>
         }
         <div className="pattern-form">
           <form onSubmit={this.handleSubmit}>

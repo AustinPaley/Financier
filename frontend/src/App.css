@@ -1,6 +1,6 @@
 @font-face{
   font-family: Neosans;
-  src: './images/fonts'(NeoSansMediumItalic.otf)
+  src: url(./images/fonts/NeoSansLightItalic.otf)
 }
 
 .App {
@@ -618,7 +618,13 @@ select.savedPatterns{
   font-style: italic;
   text-decoration: underline;
   color: white;
-  margin-left: 420px;
-  text-shadow: 5px 5px 10px #000000;
-  margin-top: 65px
+  margin-left: 470px;
+  text-shadow: 5px 5px 15px #000000;
+  margin-top: 80px
+}
+
+.MatcherLoadingWheel{
+  height: 200px;
+  width: 200px;
+  margin-top: 50px;
 }
