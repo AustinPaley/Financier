@@ -49,42 +49,42 @@ class Pattern extends React.Component{
     return(
       <div>
         {this.props.patterns.filter(pattern => pattern.id === parseInt(window.location.pathname.replace("/pattern/", "")))[0] !== undefined && this.props.patterns.filter(pattern => pattern.id === parseInt(window.location.pathname.replace("/pattern/", "")))[0].close !== "" ?
-              <div className="patternContainer">
-                <h2>Results:</h2>
-                  {this.state.history && Object.entries(relevantHistory).find(entry => entry[1]["4. close"].slice(0, -2) === this.props.patterns.filter(pattern => pattern.id === parseInt(window.location.pathname.replace("/pattern/", "")))[0].close
-) !== undefined
-                  ?
-                  <PatternChart pattern={Object.entries(relevantHistory).slice((Object.entries(relevantHistory).map(entry => entry[0]).indexOf(Object.entries(relevantHistory).find(entry => entry[1]["4. close"].slice(0, -2) === this.props.patterns.filter(pattern => pattern.id === parseInt(window.location.pathname.replace("/pattern/", "")))[0].close)[0]) - this.props.patterns.filter(pattern => pattern.id === parseInt(window.location.pathname.replace("/pattern/", "")))[0].days), (Object.entries(relevantHistory).map(entry => entry[0]).indexOf(Object.entries(relevantHistory).find(entry => entry[1]["4. close"].slice(0, -2) === this.props.patterns.filter(pattern => pattern.id === parseInt(window.location.pathname.replace("/pattern/", "")))[0].close)[0]))+1).map(date => parseFloat(date[1]["4. close"].slice(0, -2))).reverse()}/>
-                  :
-                  null
-                  }
-                <div className="patternParameters">
-                  <h3><u>Search Parameters:</u></h3>
-                  <div><b>Symbol:</b> {this.props.patterns.filter(pattern => pattern.id === parseInt(window.location.pathname.replace("/pattern/", "")))[0].symbol}</div>
-                  <div><b>Investment Size:</b> {this.props.patterns.filter(pattern => pattern.id === parseInt(window.location.pathname.replace("/pattern/", "")))[0].investment_size}</div>
-                  <div><b>Open:</b> {this.props.patterns.filter(pattern => pattern.id === parseInt(window.location.pathname.replace("/pattern/", "")))[0].open}</div>
-                  <div><b>High:</b> {this.props.patterns.filter(pattern => pattern.id === parseInt(window.location.pathname.replace("/pattern/", "")))[0].high}</div>
-                  <div><b>Low:</b> {this.props.patterns.filter(pattern => pattern.id === parseInt(window.location.pathname.replace("/pattern/", "")))[0].low}</div>
-                  <div><b>Close:</b> {this.props.patterns.filter(pattern => pattern.id === parseInt(window.location.pathname.replace("/pattern/", "")))[0].close}</div><br/>
-                </div>
-              </div>
+          JSXAdapter.closeInformationOne(this.state, relevantHistory, this.props, PatternChart)
           :
           null
         }
-        <br />
         {this.state.history && this.props.patterns.filter(pattern => pattern.id === parseInt(window.location.pathname.replace("/pattern/", "")))[0].close !== "" && Object.entries(relevantHistory).find(entry => entry[1]["4. close"].slice(0, -2) === this.props.patterns.filter(pattern => pattern.id === parseInt(window.location.pathname.replace("/pattern/", "")))[0].close) !== undefined ?
-          <div className="patternReturnInfo">
-            <h3><u>Query Information</u></h3>
-            <div>
-            <b>Last Time This Happened:</b> {Object.entries(relevantHistory).find(entry => entry[1]["4. close"].slice(0, -2) === this.props.patterns.filter(pattern => pattern.id === parseInt(window.location.pathname.replace("/pattern/", "")))[0].close)[0]}
-            </div>
-            <div>
-            <b>Initial Close:</b> {Object.entries(relevantHistory).find(entry => entry[1]["4. close"].slice(0, -2) === this.props.patterns.filter(pattern => pattern.id === parseInt(window.location.pathname.replace("/pattern/", "")))[0].close)[1]["4. close"]}
-            </div>
-            <div><b>Final Close:</b> {Object.entries(relevantHistory)[Object.entries(relevantHistory).map(entry => entry[0]).indexOf(Object.entries(relevantHistory).find(entry => entry[1]["4. close"].slice(0, -2) === this.props.patterns.filter(pattern => pattern.id === parseInt(window.location.pathname.replace("/pattern/", "")))[0].close)[0]) - this.props.patterns.filter(pattern => pattern.id === parseInt(window.location.pathname.replace("/pattern/", "")))[0].days][1]["4. close"]}
-            </div>
-            <div className="expectedReturn">Based on historical data, you can expect <span className="returnAmount">${Math.trunc(this.props.patterns.filter(pattern => pattern.id === parseInt(window.location.pathname.replace("/pattern/", "")))[0].investment_size * ((Object.entries(relevantHistory)[Object.entries(relevantHistory).map(entry => entry[0]).indexOf(Object.entries(relevantHistory).find(entry => entry[1]["4. close"].slice(0, -2) === this.props.patterns.filter(pattern => pattern.id === parseInt(window.location.pathname.replace("/pattern/", "")))[0].close)[0]) - this.props.patterns.filter(pattern => pattern.id === parseInt(window.location.pathname.replace("/pattern/", "")))[0].days][1]["4. close"]) - (Object.entries(relevantHistory).find(entry => entry[1]["4. close"].slice(0, -2) === this.props.patterns.filter(pattern => pattern.id === parseInt(window.location.pathname.replace("/pattern/", "")))[0].close)[1]["4. close"])))}</span> in return. </div>
-          </div>
+          JSXAdapter.closeInformationTwo(relevantHistory, this.props)
+          :
+          null
+        }
+        {this.props.patterns.filter(pattern => pattern.id === parseInt(window.location.pathname.replace("/pattern/", "")))[0] !== undefined && this.props.patterns.filter(pattern => pattern.id === parseInt(window.location.pathname.replace("/pattern/", "")))[0].open !== "" ?
+          JSXAdapter.openInformationOne(this.state, relevantHistory, this.props, PatternChart)
+          :
+          null
+        }
+        {this.state.history && this.props.patterns.filter(pattern => pattern.id === parseInt(window.location.pathname.replace("/pattern/", "")))[0].open !== "" && Object.entries(relevantHistory).find(entry => entry[1]["1. open"].slice(0, -2) === this.props.patterns.filter(pattern => pattern.id === parseInt(window.location.pathname.replace("/pattern/", "")))[0].open) !== undefined ?
+          JSXAdapter.openInformationTwo(relevantHistory, this.props)
+          :
+          null
+        }
+        {this.props.patterns.filter(pattern => pattern.id === parseInt(window.location.pathname.replace("/pattern/", "")))[0] !== undefined && this.props.patterns.filter(pattern => pattern.id === parseInt(window.location.pathname.replace("/pattern/", "")))[0].high !== "" ?
+          JSXAdapter.highInformationOne(this.state, relevantHistory, this.props, PatternChart)
+          :
+          null
+        }
+        {this.state.history && this.props.patterns.filter(pattern => pattern.id === parseInt(window.location.pathname.replace("/pattern/", "")))[0].high !== "" && Object.entries(relevantHistory).find(entry => entry[1]["2. high"].slice(0, -2) === this.props.patterns.filter(pattern => pattern.id === parseInt(window.location.pathname.replace("/pattern/", "")))[0].high) !== undefined ?
+          JSXAdapter.highInformationTwo(relevantHistory, this.props)
+          :
+          null
+        }
+        {this.props.patterns.filter(pattern => pattern.id === parseInt(window.location.pathname.replace("/pattern/", "")))[0] !== undefined && this.props.patterns.filter(pattern => pattern.id === parseInt(window.location.pathname.replace("/pattern/", "")))[0].low !== "" ?
+          JSXAdapter.lowInformationOne(this.state, relevantHistory, this.props, PatternChart)
+          :
+          null
+        }
+        {this.state.history && this.props.patterns.filter(pattern => pattern.id === parseInt(window.location.pathname.replace("/pattern/", "")))[0].low !== "" && Object.entries(relevantHistory).find(entry => entry[1]["3. low"].slice(0, -2) === this.props.patterns.filter(pattern => pattern.id === parseInt(window.location.pathname.replace("/pattern/", "")))[0].low) !== undefined ?
+          JSXAdapter.lowInformationTwo(relevantHistory, this.props)
           :
           null
         }

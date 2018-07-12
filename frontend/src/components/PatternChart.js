@@ -23,6 +23,7 @@ export default class PatternChart extends React.Component{
     return(
       <div className="patternChart">
       <Line data={this.state.chartData}
+        options={{pointHitDetectionRadius: 1}}
         width="1200"
         height="400" />
       </div>
