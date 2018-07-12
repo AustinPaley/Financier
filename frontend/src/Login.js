@@ -70,6 +70,7 @@ export default class Login extends React.Component{
     console.log(this.state.error)
     return(
       <div className="Registration">
+        <h2>FINANCIER</h2>
         <div className="Overlay">
           <div className="center-registration">
             <h1 id="login-header">

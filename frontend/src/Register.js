@@ -89,6 +89,7 @@ class Register extends React.Component{
   render(){
     return(
       <div className="Registration">
+        <h2>FINANCIER</h2>
         <div className="Overlay">
           <div className="center-login">
             <h1 id="registration-header">
