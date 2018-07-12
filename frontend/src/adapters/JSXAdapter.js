@@ -15,8 +15,8 @@ class JSXAdapter {
           }
         <div className="patternParameters">
           <h3><u>Search Parameters:</u></h3>
-          <div><b>Symbol:</b> {props.patterns.filter(pattern => pattern.id === parseInt(window.location.pathname.replace("/pattern/", "")))[0].symbol}</div>
-          <div><b>Investment Size:</b> {props.patterns.filter(pattern => pattern.id === parseInt(window.location.pathname.replace("/pattern/", "")))[0].investment_size}</div>
+          <div><b>Symbol:</b> {props.patterns.filter(pattern => pattern.id === parseInt(window.location.pathname.replace("/pattern/", "")))[0].symbol.toUpperCase()}</div>
+          <div><b>Shares Purchased: </b> {props.patterns.filter(pattern => pattern.id === parseInt(window.location.pathname.replace("/pattern/", "")))[0].investment_size}</div>
           <div><b>Open:</b> {props.patterns.filter(pattern => pattern.id === parseInt(window.location.pathname.replace("/pattern/", "")))[0].open}</div>
           <div><b>High:</b> {props.patterns.filter(pattern => pattern.id === parseInt(window.location.pathname.replace("/pattern/", "")))[0].high}</div>
           <div><b>Low:</b> {props.patterns.filter(pattern => pattern.id === parseInt(window.location.pathname.replace("/pattern/", "")))[0].low}</div>
@@ -57,8 +57,8 @@ class JSXAdapter {
           }
         <div className="patternParameters">
           <h3><u>Search Parameters:</u></h3>
-          <div><b>Symbol:</b> {props.patterns.filter(pattern => pattern.id === parseInt(window.location.pathname.replace("/pattern/", "")))[0].symbol}</div>
-          <div><b>Investment Size:</b> {props.patterns.filter(pattern => pattern.id === parseInt(window.location.pathname.replace("/pattern/", "")))[0].investment_size}</div>
+          <div><b>Symbol:</b> {props.patterns.filter(pattern => pattern.id === parseInt(window.location.pathname.replace("/pattern/", "")))[0].symbol.toUpperCase()}</div>
+          <div><b>Shares Purchased: </b> {props.patterns.filter(pattern => pattern.id === parseInt(window.location.pathname.replace("/pattern/", "")))[0].investment_size}</div>
           <div><b>Open:</b> {props.patterns.filter(pattern => pattern.id === parseInt(window.location.pathname.replace("/pattern/", "")))[0].open}</div>
           <div><b>High:</b> {props.patterns.filter(pattern => pattern.id === parseInt(window.location.pathname.replace("/pattern/", "")))[0].high}</div>
           <div><b>Low:</b> {props.patterns.filter(pattern => pattern.id === parseInt(window.location.pathname.replace("/pattern/", "")))[0].low}</div>
@@ -99,8 +99,8 @@ static highInformationOne(state, relevantHistory, props, PatternChart){
         }
       <div className="patternParameters">
         <h3><u>Search Parameters:</u></h3>
-        <div><b>Symbol:</b> {props.patterns.filter(pattern => pattern.id === parseInt(window.location.pathname.replace("/pattern/", "")))[0].symbol}</div>
-        <div><b>Investment Size:</b> {props.patterns.filter(pattern => pattern.id === parseInt(window.location.pathname.replace("/pattern/", "")))[0].investment_size}</div>
+        <div><b>Symbol:</b> {props.patterns.filter(pattern => pattern.id === parseInt(window.location.pathname.replace("/pattern/", "")))[0].symbol.toUpperCase()}</div>
+        <div><b>Shares Purchased: </b> {props.patterns.filter(pattern => pattern.id === parseInt(window.location.pathname.replace("/pattern/", "")))[0].investment_size}</div>
         <div><b>Open:</b> {props.patterns.filter(pattern => pattern.id === parseInt(window.location.pathname.replace("/pattern/", "")))[0].open}</div>
         <div><b>High:</b> {props.patterns.filter(pattern => pattern.id === parseInt(window.location.pathname.replace("/pattern/", "")))[0].high}</div>
         <div><b>Low:</b> {props.patterns.filter(pattern => pattern.id === parseInt(window.location.pathname.replace("/pattern/", "")))[0].low}</div>
@@ -141,8 +141,8 @@ static lowInformationOne(state, relevantHistory, props, PatternChart){
         }
       <div className="patternParameters">
         <h3><u>Search Parameters:</u></h3>
-        <div><b>Symbol:</b> {props.patterns.filter(pattern => pattern.id === parseInt(window.location.pathname.replace("/pattern/", "")))[0].symbol}</div>
-        <div><b>Investment Size:</b> {props.patterns.filter(pattern => pattern.id === parseInt(window.location.pathname.replace("/pattern/", "")))[0].investment_size}</div>
+        <div><b>Symbol:</b> {props.patterns.filter(pattern => pattern.id === parseInt(window.location.pathname.replace("/pattern/", "")))[0].symbol.toUpperCase()}</div>
+        <div><b>Shares Purchased: </b> {props.patterns.filter(pattern => pattern.id === parseInt(window.location.pathname.replace("/pattern/", "")))[0].investment_size}</div>
         <div><b>Open:</b> {props.patterns.filter(pattern => pattern.id === parseInt(window.location.pathname.replace("/pattern/", "")))[0].open}</div>
         <div><b>High:</b> {props.patterns.filter(pattern => pattern.id === parseInt(window.location.pathname.replace("/pattern/", "")))[0].high}</div>
         <div><b>Low:</b> {props.patterns.filter(pattern => pattern.id === parseInt(window.location.pathname.replace("/pattern/", "")))[0].low}</div>
