@@ -2,6 +2,7 @@ import React from 'react'
 
 class JSXAdapter {
   static closeInformationOne(state, relevantHistory, props, PatternChart){
+
     return(
       <div className="patternContainer">
         <h2>Results:</h2>
@@ -10,7 +11,7 @@ class JSXAdapter {
           ?
           <PatternChart pattern={Object.entries(relevantHistory).slice((Object.entries(relevantHistory).map(entry => entry[0]).indexOf(Object.entries(relevantHistory).find(entry => entry[1]["4. close"].slice(0, -2) === props.patterns.filter(pattern => pattern.id === parseInt(window.location.pathname.replace("/pattern/", "")))[0].close)[0]) - props.patterns.filter(pattern => pattern.id === parseInt(window.location.pathname.replace("/pattern/", "")))[0].days), (Object.entries(relevantHistory).map(entry => entry[0]).indexOf(Object.entries(relevantHistory).find(entry => entry[1]["4. close"].slice(0, -2) === props.patterns.filter(pattern => pattern.id === parseInt(window.location.pathname.replace("/pattern/", "")))[0].close)[0]))+1).map(date => parseFloat(date[1]["4. close"].slice(0, -2))).reverse()}/>
           :
-          null
+          <div className="invalidPattern">This pattern is invalid. Please return to the Pattern Matcher page, delete it, and try again.</div>
           }
         <div className="patternParameters">
           <h3><u>Search Parameters:</u></h3>
@@ -43,6 +44,7 @@ class JSXAdapter {
   }
 
   static openInformationOne(state, relevantHistory, props, PatternChart){
+
     return(
       <div className="patternContainer">
         <h2>Results:</h2>
@@ -51,7 +53,7 @@ class JSXAdapter {
           ?
           <PatternChart pattern={Object.entries(relevantHistory).slice((Object.entries(relevantHistory).map(entry => entry[0]).indexOf(Object.entries(relevantHistory).find(entry => entry[1]["1. open"].slice(0, -2) === props.patterns.filter(pattern => pattern.id === parseInt(window.location.pathname.replace("/pattern/", "")))[0].open)[0]) - props.patterns.filter(pattern => pattern.id === parseInt(window.location.pathname.replace("/pattern/", "")))[0].days), (Object.entries(relevantHistory).map(entry => entry[0]).indexOf(Object.entries(relevantHistory).find(entry => entry[1]["1. open"].slice(0, -2) === props.patterns.filter(pattern => pattern.id === parseInt(window.location.pathname.replace("/pattern/", "")))[0].open)[0]))+1).map(date => parseFloat(date[1]["1. open"].slice(0, -2))).reverse()}/>
           :
-          null
+          <div className="invalidPattern">This pattern is invalid. Please return to the Pattern Matcher page, delete it, and try again.</div>
           }
         <div className="patternParameters">
           <h3><u>Search Parameters:</u></h3>
@@ -84,6 +86,7 @@ static openInformationTwo(relevantHistory, props){
 }
 
 static highInformationOne(state, relevantHistory, props, PatternChart){
+
   return(
     <div className="patternContainer">
       <h2>Results:</h2>
@@ -92,7 +95,7 @@ static highInformationOne(state, relevantHistory, props, PatternChart){
         ?
         <PatternChart pattern={Object.entries(relevantHistory).slice((Object.entries(relevantHistory).map(entry => entry[0]).indexOf(Object.entries(relevantHistory).find(entry => entry[1]["2. high"].slice(0, -2) === props.patterns.filter(pattern => pattern.id === parseInt(window.location.pathname.replace("/pattern/", "")))[0].high)[0]) - props.patterns.filter(pattern => pattern.id === parseInt(window.location.pathname.replace("/pattern/", "")))[0].days), (Object.entries(relevantHistory).map(entry => entry[0]).indexOf(Object.entries(relevantHistory).find(entry => entry[1]["2. high"].slice(0, -2) === props.patterns.filter(pattern => pattern.id === parseInt(window.location.pathname.replace("/pattern/", "")))[0].high)[0]))+1).map(date => parseFloat(date[1]["2. high"].slice(0, -2))).reverse()}/>
         :
-        null
+        <div className="invalidPattern">This pattern is invalid. Please return to the Pattern Matcher page, delete it, and try again.</div>
         }
       <div className="patternParameters">
         <h3><u>Search Parameters:</u></h3>
@@ -125,6 +128,7 @@ static highInformationTwo(relevantHistory, props){
 }
 
 static lowInformationOne(state, relevantHistory, props, PatternChart){
+
   return(
     <div className="patternContainer">
       <h2>Results:</h2>
@@ -133,7 +137,7 @@ static lowInformationOne(state, relevantHistory, props, PatternChart){
         ?
         <PatternChart pattern={Object.entries(relevantHistory).slice((Object.entries(relevantHistory).map(entry => entry[0]).indexOf(Object.entries(relevantHistory).find(entry => entry[1]["3. low"].slice(0, -2) === props.patterns.filter(pattern => pattern.id === parseInt(window.location.pathname.replace("/pattern/", "")))[0].low)[0]) - props.patterns.filter(pattern => pattern.id === parseInt(window.location.pathname.replace("/pattern/", "")))[0].days), (Object.entries(relevantHistory).map(entry => entry[0]).indexOf(Object.entries(relevantHistory).find(entry => entry[1]["3. low"].slice(0, -2) === props.patterns.filter(pattern => pattern.id === parseInt(window.location.pathname.replace("/pattern/", "")))[0].low)[0]))+1).map(date => parseFloat(date[1]["3. low"].slice(0, -2))).reverse()}/>
         :
-        null
+        <div className="invalidPattern">This pattern is invalid. Please return to the Pattern Matcher page, delete it, and try again.</div>
         }
       <div className="patternParameters">
         <h3><u>Search Parameters:</u></h3>
