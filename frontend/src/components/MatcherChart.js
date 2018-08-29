@@ -180,7 +180,6 @@ class MatcherChart extends React.Component{
   }
 
   render(){
-    console.log("UNAVAILABLE STATE", this.state.unavailable)
     return(
       <div className="MatcherChart">
       <h2>{this.props.symbols.find(symbol => symbol.symbol === this.props.primarySymbol.toUpperCase()) !== undefined ? this.props.symbols.find(symbol => symbol.symbol === this.props.primarySymbol.toUpperCase()).name : "INFORMATION NOT AVAILABLE"} <em>({this.props.primarySymbol.toUpperCase()})</em> {this.state.selectedDataType}</h2>

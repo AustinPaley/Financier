@@ -496,7 +496,7 @@ input.stockSearch{
 
 .stockSpotlightCompanyName{
   float: left;
-  margin-left: -600px;
+  margin-left: -605px;
   margin-top: 40px;
   font-size: 20px;
 }
@@ -568,6 +568,16 @@ select.savedPatterns{
   margin-top: 14px;
   width: 200px;
   height: 20px;
+}
+
+button.deletePatterns{
+  float: left;
+  margin-left: 40px;
+  margin-top: 14px;
+  width: 140px;
+  height: 20px;
+  background-color: rgb(255, 0, 0, 0.3);
+  border-radius: 5px;
 }
 
 .invalidPattern{

@@ -46,6 +46,18 @@ class Spotlight extends React.Component{
     })
   }
 
+  deleteSpotlight = (event) => {
+    const ToBeDeleted = event.target.parentNode.children[2].value
+    if (ToBeDeleted !== "Your Saved Symbols..."){
+      Adapter.spotlightDelete("http://localhost:4000/api/v1/spotlights")
+      .then(res => {
+        debugger
+        this.setState({
+          saved_patterns: res
+        })
+      })
+    }
+  }
 
   changeStock = (event) => {
     const SymbolSearched = event.target.value
