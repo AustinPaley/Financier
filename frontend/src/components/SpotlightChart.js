@@ -3,6 +3,7 @@ import {Line} from 'react-chartjs'
 import Adapter from '../adapters/Adapter'
 const API = process.env.REACT_APP_ALPHA_VANTAGE_API
 const URL1 = "https://www.alphavantage.co/query?function"
+const URL2 = "https://api.iextrading.com/1.0/stock/"
 const DAILY = `=TIME_SERIES_DAILY`
 const ONEMINUTE = "&interval=1min"
 
@@ -33,34 +34,51 @@ class SpotlightChart extends React.Component{
   }
 
   componentDidMount(){
-    console.log("PATTERN PROPS", this.props.primarySymbol)
     if(this.props.primarySymbol !== ""){
       let SYMBOL = "&symbol=" + this.props.primarySymbol
-      Adapter.makeFetch(URL1 + DAILY + SYMBOL + ONEMINUTE + API)
+      let IEXFETCH = URL2 + this.props.primarySymbol + "/chart/3m"
+      // Adapter.makeFetch(URL1 + DAILY + SYMBOL + ONEMINUTE + API)
+      // .then(res => {
+      //   if (!(res.hasOwnProperty('Error Message')) && !(res.hasOwnProperty('Information'))){
+      //     this.setState({
+      //       chartData:{
+      //         labels: [],
+      //         datasets: [{
+      //           label: "Performance Data",
+      //           fillColor: "rgba(66, 88, 138, 0.5)",
+      //           strokeColor: "rgba(66, 88, 138)",
+      //           highlightFill: "rgba(90, 0, 0)",
+      //           highlightStroke: "rgba(90, 0, 0)",
+      //           data: Object.entries(res["Time Series (Daily)"]).map(day => day[1]["4. close"]).reverse()
+      //         }]
+      //       },
+      //       allData: res
+      //     })
+      //   }
+      // })
+      Adapter.makeFetch(IEXFETCH)
       .then(res => {
-        if (!(res.hasOwnProperty('Error Message')) && !(res.hasOwnProperty('Information'))){
-          this.setState({
-            chartData:{
-              labels: [],
-              datasets: [{
-                label: "Performance Data",
-                fillColor: "rgba(66, 88, 138, 0.5)",
-                strokeColor: "rgba(66, 88, 138)",
-                highlightFill: "rgba(90, 0, 0)",
-                highlightStroke: "rgba(90, 0, 0)",
-                data: Object.entries(res["Time Series (Daily)"]).map(day => day[1]["4. close"]).reverse()
-              }]
-            },
-            allData: res
-          })
-        }
-      })
-    }
+        if(res["status"] !== 404){
+        this.setState({
+          chartData:{
+            labels: [],
+            datasets: [{
+              label: "Performance Data",
+              fillColor: "rgba(66, 88, 138, 0.5)",
+              strokeColor: "rgba(66, 88, 138)",
+              highlightFill: "rgba(90, 0, 0)",
+              highlightStroke: "rgba(90, 0, 0)",
+              data: res.map(day => day["close"]),
+            }]
+          },
+          allData: res
+        })
+      }
+    })
   }
+}
 
     componentWillReceiveProps(nextProps) {
-      console.log("PATTERN STATE", this.state.primarySymbol)
-      console.log("PATTERN NEXTPROPS", nextProps.primarySymbol)
       if (this.state.primarySymbol !== nextProps.primarySymbol) {
         let SYMBOL = "&symbol=" + nextProps.primarySymbol
         Adapter.makeFetch(URL1 + DAILY + SYMBOL + ONEMINUTE + API)

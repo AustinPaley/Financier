@@ -94,7 +94,6 @@ class Pattern extends React.Component{
 }
 
 const mapStateToProps = state => {
-  console.log("IN PATTERN PROPS", state.pattern.patterns)
   return {
     patterns: state.pattern.patterns
   }

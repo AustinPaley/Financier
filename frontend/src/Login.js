@@ -67,7 +67,6 @@ export default class Login extends React.Component{
   }
 
   render(){
-    console.log(this.state.error)
     return(
       <div className="Registration">
         <h2>FINANCIER</h2>
