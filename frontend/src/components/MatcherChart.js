@@ -81,7 +81,6 @@ class MatcherChart extends React.Component{
       Adapter.makeFetch(URL1 + DAILY + SYMBOL + ONEMINUTE + API)
       .then(res => {
         if (!(res.hasOwnProperty('Error Message')) && !(res.hasOwnProperty('Information'))){
-          debugger
           this.setState({
             chartData:{
               labels: [],
@@ -106,7 +105,6 @@ class MatcherChart extends React.Component{
       Adapter.makeFetch(URL1 + DAILY + SYMBOL + ONEMINUTE + API)
       .then(res => {
         if (!(res.hasOwnProperty('Error Message')) && !(res.hasOwnProperty('Information'))){
-          debugger
           this.setState({
             chartData:{
               labels: [],
@@ -126,7 +124,6 @@ class MatcherChart extends React.Component{
       })
     }
     else {
-      debugger
       this.setState({
         unavailable: true
       })
@@ -144,7 +141,7 @@ class MatcherChart extends React.Component{
             strokeColor: "rgba(66, 88, 138)",
             highlightFill: "rgba(90, 0, 0)",
             highlightStroke: "rgba(90, 0, 0)",
-            data: Object.entries(this.state.allData["Time Series (Daily)"]).map(day => day[1]["1. open"])
+            data: this.state.allData.map(day => day[event.target.name])
           }]
         },
         selectedDataType: "Opens"
@@ -160,7 +157,7 @@ class MatcherChart extends React.Component{
             strokeColor: "rgba(66, 88, 138)",
             highlightFill: "rgba(90, 0, 0)",
             highlightStroke: "rgba(90, 0, 0)",
-            data: Object.entries(this.state.allData["Time Series (Daily)"]).map(day => day[1]["4. close"])
+            data: this.state.allData.map(day => day[event.target.name])
           }]
         },
         selectedDataType: "Closes"
@@ -176,7 +173,7 @@ class MatcherChart extends React.Component{
             strokeColor: "rgba(66, 88, 138)",
             highlightFill: "rgba(90, 0, 0)",
             highlightStroke: "rgba(90, 0, 0)",
-            data: Object.entries(this.state.allData["Time Series (Daily)"]).map(day => day[1]["2. high"])
+            data: this.state.allData.map(day => day[event.target.name])
           }]
         },
         selectedDataType: "Highs"
@@ -192,7 +189,7 @@ class MatcherChart extends React.Component{
             strokeColor: "rgba(66, 88, 138)",
             highlightFill: "rgba(90, 0, 0)",
             highlightStroke: "rgba(90, 0, 0)",
-            data: Object.entries(this.state.allData["Time Series (Daily)"]).map(day => day[1]["3. low"])
+            data: this.state.allData.map(day => day[event.target.name])
           }]
         },
         selectedDataType: "Lows"
