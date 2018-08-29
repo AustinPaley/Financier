@@ -4,6 +4,7 @@ import Adapter from '../adapters/Adapter'
 import {connect} from 'react-redux'
 const API = process.env.REACT_APP_ALPHA_VANTAGE_API
 const URL1 = "https://www.alphavantage.co/query?function"
+const URL2 = "https://api.iextrading.com/1.0/stock/"
 const DAILY = `=TIME_SERIES_DAILY`
 const ONEMINUTE = "&interval=1min"
 
@@ -32,27 +33,47 @@ class MatcherChart extends React.Component{
 
   componentDidMount(){
     let SYMBOL = "&symbol=" + this.props.primarySymbol
-    Adapter.makeFetch(URL1 + DAILY + SYMBOL + ONEMINUTE + API)
-    .then(res => {
-      if (!(res.hasOwnProperty('Error Message')) && !(res.hasOwnProperty('Information'))){
-        this.setState({
-          chartData:{
-            labels: [],
-            datasets: [{
-              label: "Performance Data",
-              fillColor: "rgba(66, 88, 138, 0.5)",
-              strokeColor: "rgba(66, 88, 138)",
-              highlightFill: "rgba(90, 0, 0)",
-              highlightStroke: "rgba(90, 0, 0)",
-              data: Object.entries(res["Time Series (Daily)"]).map(day => day[1]["4. close"]).reverse()
-            }]
-          },
-          allData: res,
-          unavailable: false
-        })
-      }
-    })
-  }
+    let IEXFETCH = URL2 + this.props.primarySymbol + "/chart/3m"
+    // Adapter.makeFetch(URL1 + DAILY + SYMBOL + ONEMINUTE + API)
+    // .then(res => {
+    //   if (!(res.hasOwnProperty('Error Message')) && !(res.hasOwnProperty('Information'))){
+    //     this.setState({
+    //       chartData:{
+    //         labels: [],
+    //         datasets: [{
+    //           label: "Performance Data",
+    //           fillColor: "rgba(66, 88, 138, 0.5)",
+    //           strokeColor: "rgba(66, 88, 138)",
+    //           highlightFill: "rgba(90, 0, 0)",
+    //           highlightStroke: "rgba(90, 0, 0)",
+    //           data: Object.entries(res["Time Series (Daily)"]).map(day => day[1]["4. close"]).reverse()
+    //         }]
+    //       },
+    //       allData: res,
+    //       unavailable: false
+    //     })
+    //   }
+    // })
+    Adapter.makeFetch(IEXFETCH)
+      .then(res => {
+        if(res["status"] !== 404){
+          this.setState({
+            chartData:{
+              labels: [],
+              datasets: [{
+                label: "Performance Data",
+                fillColor: "rgba(66, 88, 138, 0.5)",
+                strokeColor: "rgba(66, 88, 138)",
+                highlightFill: "rgba(90, 0, 0)",
+                highlightStroke: "rgba(90, 0, 0)",
+                data: res.map(day => day["close"]),
+              }]
+            },
+            allData: res
+          })
+        }
+      })
+}
 
   componentWillReceiveProps(nextProps) {
     if (this.state.primarySymbol !== nextProps.primarySymbol) {
