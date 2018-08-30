@@ -134,7 +134,7 @@ class Spotlight extends React.Component{
           <SpotlightChart primarySymbol={this.state.symbolSearch}/>
           :
           this.state.loading === true ?
-            <img className="SpotlightLoadWheel" src={LoadingWheel} />
+            <img className="SpotlightLoadWheel" alt="loadingWheel" src={LoadingWheel} />
           :
             null
         }

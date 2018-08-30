@@ -1,6 +1,5 @@
 import React, { Component } from 'react';
 import './App.css';
-import StockContainer from './StockContainer'
 import Spotlight from './Spotlight'
 import NavBar from './Navbar'
 import Login from './Login'

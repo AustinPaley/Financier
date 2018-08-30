@@ -134,7 +134,7 @@ class Matcher extends React.Component{
             <br />
             <h2>Enter a Symbol to See Historical Data</h2>
             <br />
-            <img className="MatcherLoadingWheel" src={LoadingWheel} />
+            <img className="MatcherLoadingWheel" alt="loadingWheel" src={LoadingWheel} />
             </div>
         }
         <div className="pattern-form">

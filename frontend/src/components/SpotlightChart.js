@@ -35,7 +35,7 @@ class SpotlightChart extends React.Component{
 
   componentDidMount(){
     if(this.props.primarySymbol !== ""){
-      let SYMBOL = "&symbol=" + this.props.primarySymbol
+      // let SYMBOL = "&symbol=" + this.props.primarySymbol
       let IEXFETCH = URL2 + this.props.primarySymbol + "/chart/3m"
       // Adapter.makeFetch(URL1 + DAILY + SYMBOL + ONEMINUTE + API)
       // .then(res => {
