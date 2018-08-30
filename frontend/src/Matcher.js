@@ -139,7 +139,6 @@ class Matcher extends React.Component{
         }
         <div className="pattern-form">
           <form onSubmit={this.handleSubmit}>
-            <div className="form-amount-investing">Shares to Purchase: <input className="input-amount-investing" name="amount-investing" type="text" onChange={this.handleInput} /></div><br/>
             <div className="form-primary-symbol">Primary Symbol Name: <input className="input-primary-symbol" name="primary-symbol" type="text" onChange={this.handleInput} value={this.state.symbolInput} /><br/>
              <em>or</em>
             <select className="input-primary-symbol" name="primary-symbol" type="select" onChange={this.handleInput}>
@@ -149,6 +148,7 @@ class Matcher extends React.Component{
                 <option value={symbol.symbol}>{symbol.name.toString().substring(0, 30) + "..."}</option>)})}
             </select>
             </div>
+            <div className="form-amount-investing">Shares to Purchase: <input className="input-amount-investing" name="amount-investing" type="text" onChange={this.handleInput} /></div><br/>
             <div className="pattern-selector">Open<input className="pattern-input" name="open" type="text" onChange={this.handleInput} /></div>
             <div className="pattern-selector">Previous Close:<input className="pattern-input" name="close" type="text" onChange={this.handleInput} /></div>
             <div className="pattern-selector">High:<input className="pattern-input" name="high" type="text" onChange={this.handleInput} /></div>

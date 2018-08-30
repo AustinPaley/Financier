@@ -6,7 +6,7 @@ import ReactPlayer from 'react-player'
 
 const DownArrow = require('./images/down-arrow.png')
 const UpArrow = require('./images/up-arrow.png')
-const Loading = require('./images/loading-wheel.gif')
+// const Loading = require('./images/loading-wheel.gif')
 
 const API = process.env.REACT_APP_ALPHA_VANTAGE_API
 const URL1 = "https://www.alphavantage.co/query?function"
@@ -461,10 +461,10 @@ class Overview extends React.Component{
           <ReactPlayer url="https://www.youtube.com/watch?v=Ga3maNZ0x0w" playing volume="0" className="Video" controls="true" />
           {this.state.worldwidenews !== "" ? this.state.worldwidenews.map((news, index) => {
             return (
-            <div className="newsLink">
-                <a href={news.url}>{news.headline.toString().substring(0, 100) + "..."}</a>
-                <div className="recent-news-source">{news.source}</div>
-                <div className="recent-news-date">{news.datetime}</div>
+            <div key={index.toString() + "news-container"} className="newsLink">
+                <a key={index.toString() + "news-url"} href={news.url}>{news.headline.toString().substring(0, 100) + "..."}</a>
+                <div key={index.toString() + "news-source"} className="recent-news-source">{news.source}</div>
+                <div key={index.toString() + "news-date"} className="recent-news-date">{news.datetime}</div>
             </div>)
           }) : null}
         </div>

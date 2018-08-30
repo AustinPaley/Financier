@@ -19,8 +19,8 @@ class Pattern extends React.Component{
   }
 
   componentDidMount(){
-    if (this.props.patterns !== undefined && this.props.patterns.length !== undefined && this.props.patterns.filter(pattern => pattern.id === parseInt(window.location.pathname.replace("/pattern/", "")))[0] !== undefined){
-      const PATTERN = this.props.patterns.filter(pattern => pattern.id === parseInt(window.location.pathname.replace("/pattern/", "")))[0]
+    if (this.props.patterns !== undefined && this.props.patterns.length !== undefined && this.props.patterns.filter(pattern => pattern.id === parseInt(window.location.pathname.replace("/pattern/", ""), 10))[0] !== undefined){
+      const PATTERN = this.props.patterns.filter(pattern => pattern.id === parseInt(window.location.pathname.replace("/pattern/", ""), 10))[0]
       let symbol = PATTERN.symbol
       Adapter.makeFetch(URL1 + DAILY + SYMBOLTYPE + symbol + ONEMINUTE + API)
       .then(res => {
