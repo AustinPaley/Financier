@@ -3,11 +3,13 @@ import { connect } from 'react-redux'
 import Adapter from './adapters/Adapter'
 import JSXAdapter from './adapters/JSXAdapter'
 import PatternChart from './components/PatternChart'
-const API = process.env.REACT_APP_ALPHA_VANTAGE_API
-const URL1 = "https://www.alphavantage.co/query?function"
-const DAILY = `=TIME_SERIES_DAILY`
-let SYMBOLTYPE = "&symbol="
-const ONEMINUTE = "&interval=1min"
+import * as Constants from './adapters/Constants'
+// const API = process.env.REACT_APP_ALPHA_VANTAGE_API
+// const URL1 = "https://www.alphavantage.co/query?function"
+const URL2 = "https://api.iextrading.com/1.0/stock/"
+// const DAILY = `=TIME_SERIES_DAILY`
+// let SYMBOLTYPE = "&symbol="
+// const ONEMINUTE = "&interval=1min"
 
 class Pattern extends React.Component{
   constructor(props){
@@ -15,22 +17,42 @@ class Pattern extends React.Component{
 
     this.state={
       history: '',
+      patterninfo: {},
     }
   }
 
   componentDidMount(){
     if (this.props.patterns !== undefined && this.props.patterns.length !== undefined && this.props.patterns.filter(pattern => pattern.id === parseInt(window.location.pathname.replace("/pattern/", ""), 10))[0] !== undefined){
-      const PATTERN = this.props.patterns.filter(pattern => pattern.id === parseInt(window.location.pathname.replace("/pattern/", ""), 10))[0]
-      let symbol = PATTERN.symbol
-      Adapter.makeFetch(URL1 + DAILY + SYMBOLTYPE + symbol + ONEMINUTE + API)
-      .then(res => {
-        if(res.Information !== "Please consider optimizing your API call frequency." && res["Error Message"] !== "Invalid API call. Please retry or visit the documentation (https://www.alphavantage.co/documentation/) for TIME_SERIES_DAILY."){
-          this.setState({
-            history: res
-          })
-        }
+      let currentSymbol = this.props.patterns.filter(pattern => pattern.id === parseInt(window.location.pathname.replace("/pattern/", "")))[0].symbol
+      Adapter.patternFetch("http://localhost:4000/api/v1/patterns/" + this.props.match.params.patternid)
+      .then (res => {
+        this.setState({
+          patterninfo: res
+        })
+      })
+
+      Adapter.makeFetch(Constants.URL2 + currentSymbol + "/chart/6m")
+      .then (res => {
+        debugger
+        this.setState({
+          history: res
+        })
       })
     }
+
+    // if (this.props.patterns !== undefined && this.props.patterns.length !== undefined && this.props.patterns.filter(pattern => pattern.id === parseInt(window.location.pathname.replace("/pattern/", ""), 10))[0] !== undefined){
+      // const PATTERN = this.props.patterns.filter(pattern => pattern.id === parseInt(window.location.pathname.replace("/pattern/", ""), 10))[0]
+      // let symbol = PATTERN.symbol
+
+      // Adapter.makeFetch(URL1 + DAILY + SYMBOLTYPE + symbol + ONEMINUTE + API)
+      // .then(res => {
+      //   if(res.Information !== "Please consider optimizing your API call frequency." && res["Error Message"] !== "Invalid API call. Please retry or visit the documentation (https://www.alphavantage.co/documentation/) for TIME_SERIES_DAILY."){
+      //     this.setState({
+      //       history: res
+      //     })
+      //   }
+      // })
+    // }
     // if (this.props.patterns !== undefined && this.props.patterns.length === undefined){
     //   let symbol = this.props.pattern.symbol
     //   Adapter.makeFetch(URL1 + DAILY + SYMBOLTYPE + symbol + ONEMINUTE + API)
@@ -45,7 +67,7 @@ class Pattern extends React.Component{
   }
 
   render(){
-    const relevantHistory = this.state.history["Time Series (Daily)"]
+    const relevantHistory = this.state.history
     return(
       <div>
         {this.props.patterns.filter(pattern => pattern.id === parseInt(window.location.pathname.replace("/pattern/", "")))[0] !== undefined && this.props.patterns.filter(pattern => pattern.id === parseInt(window.location.pathname.replace("/pattern/", "")))[0].close !== "" ?
@@ -53,7 +75,7 @@ class Pattern extends React.Component{
           :
           null
         }
-        {this.state.history && this.props.patterns.filter(pattern => pattern.id === parseInt(window.location.pathname.replace("/pattern/", "")))[0].close !== "" && Object.entries(relevantHistory).find(entry => entry[1]["4. close"].slice(0, -2) === this.props.patterns.filter(pattern => pattern.id === parseInt(window.location.pathname.replace("/pattern/", "")))[0].close) !== undefined ?
+        {this.state.history && this.props.patterns.filter(pattern => pattern.id === parseInt(window.location.pathname.replace("/pattern/", "")))[0] !== "" && relevantHistory.find(entry => entry.close.toString() === this.props.patterns.filter(pattern => pattern.id === parseInt(window.location.pathname.replace("/pattern/", "")))[0].close) !== undefined ?
           JSXAdapter.closeInformationTwo(relevantHistory, this.props)
           :
           null

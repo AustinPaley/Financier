@@ -4,12 +4,8 @@ import {connect} from 'react-redux'
 import { Link } from 'react-router-dom'
 import { addPattern, removePattern, createPattern } from './actions'
 import MatcherChart from './components/MatcherChart'
-const DeleteButton = require('./images/delete-icon.png')
-const LoadingWheel = require('./images/loading-wheel.gif')
+import * as Constants from './adapters/Constants'
 let Yes = null
-
-const POSTURL = "http://localhost:4000/api/v1/patterns"
-const DELETEURL = "http://localhost:4000/api/v1/patterns/"
 
 class Matcher extends React.Component{
   constructor(props){
@@ -100,7 +96,7 @@ class Matcher extends React.Component{
 
   handleSubmit = (event) => {
     event.preventDefault()
-    Adapter.postPattern(POSTURL, this.state.user_id, this.state.symbolInput, this.state.open, this.state.close, this.state.high, this.state.low, this.state.amountInvesting, this.state.days)
+    Adapter.postPattern(Constants.POSTURL, this.state.user_id, this.state.symbolInput, this.state.open, this.state.close, this.state.high, this.state.low, this.state.amountInvesting, this.state.days)
     .then(res => {
       this.props.createPattern(res)
       this.props.history.push(`/pattern/${res.id}`)
@@ -110,7 +106,7 @@ class Matcher extends React.Component{
   handleDelete = (event) =>{
     event.preventDefault()
     const DELETEID = event.target.parentNode.id
-    Adapter.deletePattern(DELETEURL + DELETEID)
+    Adapter.deletePattern(Constants.DELETEURL + DELETEID)
     .then(res => {
       alert("Pattern " + res.item.id + " has been removed.")
       this.props.removePattern(res.item)
@@ -134,7 +130,7 @@ class Matcher extends React.Component{
             <br />
             <h2>Enter a Symbol to See Historical Data</h2>
             <br />
-            <img className="MatcherLoadingWheel" alt="loadingWheel" src={LoadingWheel} />
+            <img className="MatcherLoadingWheel" alt="loadingWheel" src={Constants.LoadingWheel} />
             </div>
         }
         <div className="pattern-form">
@@ -166,7 +162,7 @@ class Matcher extends React.Component{
               return(
               <div id={pattern.id}>
                 <Link to={'/pattern/' + pattern.id}>Pattern: {pattern.id}</Link>
-                <img className="delete_button" alt="Delete Button" src={DeleteButton} style={{width: 10, height: 10}} onClick={this.handleDelete} />
+                <img className="delete_button" alt="Delete Button" src={Constants.DeleteButton} style={{width: 10, height: 10}} onClick={this.handleDelete} />
               </div>
               )
             })

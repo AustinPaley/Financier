@@ -2,7 +2,7 @@ import React from 'react'
 import SpotlightChart from './components/SpotlightChart'
 import {connect} from 'react-redux'
 import Adapter from './adapters/Adapter'
-const LoadingWheel = require('./images/loading-wheel.gif')
+import * as Constants from './adapters/Constants'
 
 let Yes = null
 let IntervalCall = null
@@ -134,7 +134,7 @@ class Spotlight extends React.Component{
           <SpotlightChart primarySymbol={this.state.symbolSearch}/>
           :
           this.state.loading === true ?
-            <img className="SpotlightLoadWheel" alt="loadingWheel" src={LoadingWheel} />
+            <img className="SpotlightLoadWheel" alt="loadingWheel" src={Constants.LoadingWheel} />
           :
             null
         }

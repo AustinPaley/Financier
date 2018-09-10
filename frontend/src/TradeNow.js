@@ -1,6 +1,6 @@
 import React from 'react'
 import {connect} from 'react-redux'
-const Construction = require('./images/construction.png')
+import * as Constants from './adapters/Constants'
 
 
 class TradeNow extends React.Component{
@@ -15,7 +15,7 @@ class TradeNow extends React.Component{
   render(){
     return(
       <div>
-        <img src={Construction} alt="Under Construction" />
+        <img src={Constants.Construction} alt="Under Construction" />
       </div>
     )
   }

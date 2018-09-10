@@ -13,8 +13,7 @@ import Pattern from './Pattern'
 import QuoteWindow from './QuoteWindow'
 import TradeNow from './TradeNow'
 import { addPattern, addSymbols } from './actions'
-
-const EXISTINGACCOUNTURL = 'http://localhost:4000/api/v1/users'
+import * as Constants from './adapters/Constants'
 
 class App extends Component {
   constructor(props){
@@ -25,7 +24,7 @@ class App extends Component {
   }
 
   componentDidMount(){
-    fetch(EXISTINGACCOUNTURL)
+    fetch(Constants.EXISTINGACCOUNTURL)
     .then(res => res.json())
     .then(json => this.setState({
       users: json

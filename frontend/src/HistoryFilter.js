@@ -21,14 +21,3 @@ export default class HistoryFilter extends React.Component{
     )
   }
 }
-
-
-//HOW TO GET THE KEYS WE NEED
-
-// Object.keys(this.props.historicalInfo)
-
-///HOW TO GET TODAY'S DATE TO COMPARE TO HISTORICAL INFORMATION
-
-// let todaysdate = new Date();
-//
-// todaysdate.getFullYear() + "-" + ("0" + (todaysdate.getMonth() + 1)) + "-" + todaysdate.getDate();

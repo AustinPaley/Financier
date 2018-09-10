@@ -2,8 +2,7 @@ import React from 'react'
 import { Link, withRouter } from 'react-router-dom'
 import { addUser } from './actions'
 import {connect} from 'react-redux'
-
-const NEWACCOUNTURL = 'http://localhost:4000/api/v1/users'
+import * as Constants from './adapters/Constants'
 
 class Register extends React.Component{
   constructor(props){
@@ -57,7 +56,7 @@ class Register extends React.Component{
 
   createUser = (event) => {
     event.preventDefault()
-    fetch(NEWACCOUNTURL, {
+    fetch(Constants.NEWACCOUNTURL, {
       method: 'POST',
       headers: {
         'Accept':'application/json',

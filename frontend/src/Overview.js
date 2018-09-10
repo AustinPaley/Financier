@@ -2,40 +2,10 @@ import React from 'react'
 import {connect} from 'react-redux'
 import Slider from 'react-slick'
 import Adapter from './adapters/Adapter'
+import * as Constants from './adapters/Constants'
 import ReactPlayer from 'react-player'
 
-const DownArrow = require('./images/down-arrow.png')
-const UpArrow = require('./images/up-arrow.png')
 // const Loading = require('./images/loading-wheel.gif')
-
-const API = process.env.REACT_APP_ALPHA_VANTAGE_API
-const URL1 = "https://www.alphavantage.co/query?function"
-const URL2 = "https://newsapi.org/v2/top-headlines?sources=the-wall-street-journal&apiKey="
-const DAILY = `=TIME_SERIES_DAILY`
-let SPXSYMBOL = "&symbol=SPX"
-let DJISYMBOL = "&symbol=DJI"
-let IXICSYMBOL = "&symbol=IXIC"
-let DAXSYMBOL = "&symbol=^GDAXI"
-let RUTSYMBOL = "&symbol=^RUT"
-let FTSESYMBOL = "&symbol=^FTSE"
-let VIXSYMBOL = "&symbol=^VIX"
-let CAC40SYMBOL = "&symbol=^FCHI"
-let NIKKEISYMBOL = "&symbol=^N225"
-let HSISYMBOL = "&symbol=^HSI"
-const ONEMINUTE = "&interval=1min"
-const SPXCALL = URL1 + DAILY + SPXSYMBOL + ONEMINUTE + API
-const DJICALL = URL1 + DAILY + DJISYMBOL + ONEMINUTE + API
-const IXICCALL = URL1 + DAILY + IXICSYMBOL + ONEMINUTE + API
-const DAXCALL = URL1 + DAILY + DAXSYMBOL + ONEMINUTE + API
-const RUTCALL = URL1 + DAILY + RUTSYMBOL + ONEMINUTE + API
-const FTSECALL = URL1 + DAILY + FTSESYMBOL + ONEMINUTE + API
-const VIXCALL = URL1 + DAILY + VIXSYMBOL + ONEMINUTE + API
-const CAC40CALL = URL1 + DAILY + CAC40SYMBOL + ONEMINUTE + API
-const NIKKEICALL = URL1 + DAILY + NIKKEISYMBOL + ONEMINUTE + API
-const HSICALL = URL1 + DAILY + HSISYMBOL + ONEMINUTE + API
-const WORLDWIDENEWS = "https://api.iextrading.com/1.0/stock/market/news/last/9"
-const NEWSAPI = process.env.REACT_APP_NEWS_API
-const TOPNEWS = URL2 + NEWSAPI
 
 class Overview extends React.Component{
   constructor(props){
@@ -57,12 +27,13 @@ class Overview extends React.Component{
   }
 
   componentDidMount(){
-    Adapter.makeFetch(SPXCALL)
+    Adapter.makeFetch(Constants.SPXCALL)
     .then(res => {
+      debugger
       if(!res.Information && !res["Error Message"]){
         this.setState({
-        todaySPX: Object.entries(res["Time Series (Daily)"])[0][1]["4. close"],
-        yesterdaySPX: Object.entries(res["Time Series (Daily)"])[1][1]["4. close"]
+          todaySPX: Object.entries(res["Time Series (Daily)"])[0][1]["4. close"],
+          yesterdaySPX: Object.entries(res["Time Series (Daily)"])[1][1]["4. close"]
         })
       }
       else if (!!res.Information && !!res["Error Message"]){
@@ -73,7 +44,7 @@ class Overview extends React.Component{
       }
     })
 
-    Adapter.makeFetch(DJICALL)
+    Adapter.makeFetch(Constants.DJICALL)
     .then(res => {
       if(!res.Information && !res["Error Message"]){
         this.setState({
@@ -81,6 +52,8 @@ class Overview extends React.Component{
         yesterdayDJI: Object.entries(res["Time Series (Daily)"])[1][1]["4. close"]
         })
       }
+
+      // CHECK DIFFERENCE HERE BETWEEN res.Information & res["Error Message"]
       else if (!!res.Information && !!res["Error Message"]){
         this.setState({
           todayDJI: 0,
@@ -89,7 +62,7 @@ class Overview extends React.Component{
       }
     })
 
-    Adapter.makeFetch(IXICCALL)
+    Adapter.makeFetch(Constants.IXICCALL)
     .then(res => {
       if(!res.Information && !res["Error Message"]){
         this.setState({
@@ -105,7 +78,7 @@ class Overview extends React.Component{
       }
     })
 
-    Adapter.makeFetch(RUTCALL)
+    Adapter.makeFetch(Constants.RUTCALL)
     .then(res => {
       if(!res.Information && !res["Error Message"]){
         this.setState({
@@ -121,7 +94,7 @@ class Overview extends React.Component{
       }
     })
 
-    Adapter.makeFetch(DAXCALL)
+    Adapter.makeFetch(Constants.DAXCALL)
     .then(res => {
       if(!res.Information && !res["Error Message"]){
         this.setState({
@@ -136,7 +109,7 @@ class Overview extends React.Component{
         })
       }
     })
-    Adapter.makeFetch(VIXCALL)
+    Adapter.makeFetch(Constants.VIXCALL)
     .then(res => {
       if(!res.Information && !res["Error Message"]){
         this.setState({
@@ -153,7 +126,7 @@ class Overview extends React.Component{
     })
 
     setInterval(function(){
-    Adapter.makeFetch(SPXCALL)
+    Adapter.makeFetch(Constants.SPXCALL)
     .then(res => {
       if(!res.Information && !res["Error Message"]){
         this.setState({
@@ -169,7 +142,7 @@ class Overview extends React.Component{
       }
     })
 
-    Adapter.makeFetch(DJICALL)
+    Adapter.makeFetch(Constants.DJICALL)
     .then(res => {
       if(!res.Information && !res["Error Message"]){
         this.setState({
@@ -185,7 +158,7 @@ class Overview extends React.Component{
       }
     })
 
-    Adapter.makeFetch(IXICCALL)
+    Adapter.makeFetch(Constants.IXICCALL)
     .then(res => {
       if(!res.Information && !res["Error Message"]){
         this.setState({
@@ -201,7 +174,7 @@ class Overview extends React.Component{
       }
     })
 
-    Adapter.makeFetch(RUTCALL)
+    Adapter.makeFetch(Constants.RUTCALL)
     .then(res => {
       if(!res.Information && !res["Error Message"]){
         this.setState({
@@ -217,7 +190,7 @@ class Overview extends React.Component{
       }
     })
 
-    Adapter.makeFetch(DAXCALL)
+    Adapter.makeFetch(Constants.DAXCALL)
     .then(res => {
       if(!res.Information && !res["Error Message"]){
         this.setState({
@@ -232,7 +205,7 @@ class Overview extends React.Component{
         })
       }
     })
-    Adapter.makeFetch(VIXCALL)
+    Adapter.makeFetch(Constants.VIXCALL)
     .then(res => {
       if(!res.Information && !res["Error Message"]){
         this.setState({
@@ -249,8 +222,8 @@ class Overview extends React.Component{
     })
   }.bind(this), 60000);
 
-    setInterval(function(){
-      Adapter.makeFetch(NIKKEICALL)
+    setInterval(() => {
+      Adapter.makeFetch(Constants.NIKKEICALL)
       .then(res => {
         if(!res.Information && !res["Error Message"]){
           this.setState({
@@ -266,7 +239,7 @@ class Overview extends React.Component{
         }
       })
 
-      Adapter.makeFetch(HSICALL)
+      Adapter.makeFetch(Constants.HSICALL)
       .then(res => {
         if(!res.Information && !res["Error Message"]){
           this.setState({
@@ -281,7 +254,7 @@ class Overview extends React.Component{
           })
         }
       })
-    Adapter.makeFetch(FTSECALL)
+    Adapter.makeFetch(Constants.FTSECALL)
     .then(res => {
       if(!res.Information && !res["Error Message"]){
         this.setState({
@@ -297,7 +270,7 @@ class Overview extends React.Component{
       }
     })
 
-    Adapter.makeFetch(CAC40CALL)
+    Adapter.makeFetch(Constants.CAC40CALL)
     .then(res => {
       if(!res.Information && !res["Error Message"]){
         this.setState({
@@ -312,11 +285,11 @@ class Overview extends React.Component{
         })
       }
     })
-  }.bind(this), 30000);
+  }, 30000);
 
-    Adapter.makeFetch(WORLDWIDENEWS).then(res => {this.setState({worldwidenews: res})})
+    Adapter.makeFetch(Constants.WORLDWIDENEWS).then(res => {this.setState({worldwidenews: res})})
 
-    Adapter.makeFetch(TOPNEWS)
+    Adapter.makeFetch(Constants.TOPNEWS)
     .then(res => {this.setState({topnews: res.articles.slice(0, 3)})})
   }
 
@@ -328,9 +301,9 @@ class Overview extends React.Component{
           <div className="overviewstock">
             <div>S&P 500 Index</div>
               {(this.state.todaySPX - this.state.yesterdaySPX) > 0 ?
-                <img className="arrow" alt="Up Arrow" src={UpArrow} style={{width: 30, height: 30}} />
+                <img className="arrow" alt="Up Arrow" src={Constants.UpArrow} style={{width: 30, height: 30}} />
               :
-                <img className="arrow" alt="Down Arrow" src={DownArrow} style={{width: 30, height: 30}} />
+                <img className="arrow" alt="Down Arrow" src={Constants.DownArrow} style={{width: 30, height: 30}} />
               }
               <div>{Math.round(1000*(this.state.todaySPX - this.state.yesterdaySPX))/1000}</div>
               <div>{(Math.round(10000*(this.state.todaySPX - this.state.yesterdaySPX)/this.state.yesterdaySPX))*100/10000}%</div>
@@ -339,9 +312,9 @@ class Overview extends React.Component{
           <div className="overviewstock">
             <div>Dow</div>
               {(this.state.todayDJI - this.state.yesterdayDJI) > 0 ?
-                <img className="arrow" alt="Up Arrow" src={UpArrow} style={{width: 30, height: 30}} />
+                <img className="arrow" alt="Up Arrow" src={Constants.UpArrow} style={{width: 30, height: 30}} />
               :
-                <img className="arrow" alt="Down Arrow" src={DownArrow} style={{width: 30, height: 30}} />
+                <img className="arrow" alt="Down Arrow" src={Constants.DownArrow} style={{width: 30, height: 30}} />
               }
               <div>{Math.round(1000*(this.state.todayDJI - this.state.yesterdayDJI))/1000}</div>
               <div>{(Math.round(10000*(this.state.todayDJI - this.state.yesterdayDJI)/this.state.yesterdayDJI))*100/10000}%</div>
@@ -350,9 +323,9 @@ class Overview extends React.Component{
           <div className="overviewstock">
             <div>Nasdaq Composite</div>
               {(this.state.todayIXIC - this.state.yesterdayIXIC) > 0 ?
-                <img className="arrow" alt="Up Arrow" src={UpArrow} style={{width: 30, height: 30}} />
+                <img className="arrow" alt="Up Arrow" src={Constants.UpArrow} style={{width: 30, height: 30}} />
               :
-                <img className="arrow" alt="Down Arrow" src={DownArrow} style={{width: 30, height: 30}} />
+                <img className="arrow" alt="Down Arrow" src={Constants.DownArrow} style={{width: 30, height: 30}} />
               }
               <div>{Math.round(1000*(this.state.todayIXIC - this.state.yesterdayIXIC))/1000}</div>
               <div>{(Math.round(10000*(this.state.todayIXIC - this.state.yesterdayIXIC)/this.state.yesterdayIXIC))*100/10000}%</div>
@@ -361,9 +334,9 @@ class Overview extends React.Component{
           <div className="overviewstock">
             <div>Russell 2000</div>
               {(this.state.todayRUT - this.state.yesterdayRUT) > 0 ?
-                <img className="arrow" alt="Up Arrow" src={UpArrow} style={{width: 30, height: 30}} />
+                <img className="arrow" alt="Up Arrow" src={Constants.UpArrow} style={{width: 30, height: 30}} />
               :
-                <img className="arrow" alt="Down Arrow" src={DownArrow} style={{width: 30, height: 30}} />
+                <img className="arrow" alt="Down Arrow" src={Constants.DownArrow} style={{width: 30, height: 30}} />
               }
               <div>{Math.round(1000*(this.state.todayRUT - this.state.yesterdayRUT))/1000}</div>
               <div>{(Math.round(10000*(this.state.todayRUT - this.state.yesterdayRUT)/this.state.yesterdayRUT))*100/10000}%</div>
@@ -372,9 +345,9 @@ class Overview extends React.Component{
           <div className="overviewstock">
           <div>DAX</div>
             {(this.state.todayDAX - this.state.yesterdayDAX) > 0 ?
-              <img className="arrow" alt="Up Arrow" src={UpArrow} style={{width: 30, height: 30}} />
+              <img className="arrow" alt="Up Arrow" src={Constants.UpArrow} style={{width: 30, height: 30}} />
             :
-              <img className="arrow" alt="Down Arrow" src={DownArrow} style={{width: 30, height: 30}} />
+              <img className="arrow" alt="Down Arrow" src={Constants.DownArrow} style={{width: 30, height: 30}} />
             }
             <div>{Math.round(1000*(this.state.todayDAX - this.state.yesterdayDAX))/1000}</div>
             <div>{(Math.round(10000*(this.state.todayDAX - this.state.yesterdayDAX)/this.state.yesterdayDAX))*100/10000}%</div>
@@ -383,9 +356,9 @@ class Overview extends React.Component{
           <div className="overviewstock">
           <div>VIX</div>
             {(this.state.todayVIX - this.state.yesterdayVIX) > 0 ?
-              <img className="arrow" alt="Up Arrow" src={UpArrow} style={{width: 30, height: 30}} />
+              <img className="arrow" alt="Up Arrow" src={Constants.UpArrow} style={{width: 30, height: 30}} />
             :
-              <img className="arrow" alt="Down Arrow" src={DownArrow} style={{width: 30, height: 30}} />
+              <img className="arrow" alt="Down Arrow" src={Constants.DownArrow} style={{width: 30, height: 30}} />
             }
             <div>{Math.round(1000*(this.state.todayVIX - this.state.yesterdayVIX))/1000}</div>
             <div>{(Math.round(10000*(this.state.todayVIX - this.state.yesterdayVIX)/this.state.yesterdayVIX))*100/10000}%</div>
@@ -394,9 +367,9 @@ class Overview extends React.Component{
           <div className="overviewstock">
           <div>FTSE 100</div>
             {(this.state.todayFTSE - this.state.yesterdayFTSE) > 0 ?
-              <img className="arrow" alt="Up Arrow" src={UpArrow} style={{width: 30, height: 30}} />
+              <img className="arrow" alt="Up Arrow" src={Constants.UpArrow} style={{width: 30, height: 30}} />
             :
-              <img className="arrow" alt="Down Arrow" src={DownArrow} style={{width: 30, height: 30}} />
+              <img className="arrow" alt="Down Arrow" src={Constants.DownArrow} style={{width: 30, height: 30}} />
             }
             <div>{Math.round(1000*(this.state.todayFTSE - this.state.yesterdayFTSE))/1000}</div>
             <div>{(Math.round(10000*(this.state.todayFTSE - this.state.yesterdayFTSE)/this.state.yesterdayFTSE))*100/10000}%</div>
@@ -405,9 +378,9 @@ class Overview extends React.Component{
           <div className="overviewstock">
           <div>CAC40</div>
             {(this.state.todayCAC40 - this.state.yesterdayCAC40) > 0 ?
-              <img className="arrow" alt="Up Arrow" src={UpArrow} style={{width: 30, height: 30}} />
+              <img className="arrow" alt="Up Arrow" src={Constants.UpArrow} style={{width: 30, height: 30}} />
             :
-              <img className="arrow" alt="Down Arrow" src={DownArrow} style={{width: 30, height: 30}} />
+              <img className="arrow" alt="Down Arrow" src={Constants.DownArrow} style={{width: 30, height: 30}} />
             }
             <div>{Math.round(1000*(this.state.todayCAC40 - this.state.yesterdayCAC40))/1000}</div>
             <div>{(Math.round(10000*(this.state.todayCAC40 - this.state.yesterdayCAC40)/this.state.yesterdayCAC40))*100/10000}%</div>
@@ -416,9 +389,9 @@ class Overview extends React.Component{
           <div className="overviewstock">
           <div>NIKKEI 225</div>
             {(this.state.todayNIKKEI - this.state.yesterdayNIKKEI) > 0 ?
-              <img className="arrow" alt="Up Arrow" src={UpArrow} style={{width: 30, height: 30}} />
+              <img className="arrow" alt="Up Arrow" src={Constants.UpArrow} style={{width: 30, height: 30}} />
             :
-              <img className="arrow" alt="Down Arrow" src={DownArrow} style={{width: 30, height: 30}} />
+              <img className="arrow" alt="Down Arrow" src={Constants.DownArrow} style={{width: 30, height: 30}} />
             }
             <div>{Math.round(1000*(this.state.todayNIKKEI - this.state.yesterdayNIKKEI))/1000}</div>
             <div>{(Math.round(10000*(this.state.todayNIKKEI - this.state.yesterdayNIKKEI)/this.state.yesterdayNIKKEI))*100/10000}%</div>
@@ -427,9 +400,9 @@ class Overview extends React.Component{
           <div className="overviewstock">
           <div>Hang Seng Index</div>
             {(this.state.todayHSI - this.state.yesterdayHSI) > 0 ?
-              <img className="arrow" alt="Up Arrow" src={UpArrow} style={{width: 30, height: 30}} />
+              <img className="arrow" alt="Up Arrow" src={Constants.UpArrow} style={{width: 30, height: 30}} />
             :
-              <img className="arrow" alt="Down Arrow" src={DownArrow} style={{width: 30, height: 30}} />
+              <img className="arrow" alt="Down Arrow" src={Constants.DownArrow} style={{width: 30, height: 30}} />
             }
             <div>{Math.round(1000*(this.state.todayHSI - this.state.yesterdayHSI))/1000}</div>
             <div>{(Math.round(10000*(this.state.todayHSI - this.state.yesterdayHSI)/this.state.yesterdayHSI))*100/10000}%</div>
