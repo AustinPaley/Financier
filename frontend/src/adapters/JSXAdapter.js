@@ -1,6 +1,18 @@
 import React from 'react'
 
 class JSXAdapter {
+  static validPatternChecker(state, props, type){
+    return (
+      state.history && props.patterns.filter(pattern => pattern.id === parseInt(window.location.pathname.replace("/pattern/", "")))[0] !== undefined && props.patterns.filter(pattern => pattern.id === parseInt(window.location.pathname.replace("/pattern/", "")))[0].type !== ""
+    )
+  }
+
+  static validPatternInfoChecker(state, props, type, relevantHistory){
+    return (
+      state.history && props.patterns.filter(pattern => pattern.id === parseInt(window.location.pathname.replace("/pattern/", "")))[0] !== "" && relevantHistory.find(entry => entry[type].toString() === props.patterns.filter(pattern => pattern.id === parseInt(window.location.pathname.replace("/pattern/", "")))[0][type]) !== undefined
+    )
+  }
+
   static closeInformationOne(state, relevantHistory, props, PatternChart){
     return (
       <div className="patternContainer">

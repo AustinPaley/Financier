@@ -38,42 +38,42 @@ class Pattern extends React.Component{
     const relevantHistory = this.state.history
     return(
       <div>
-        {this.props.patterns.filter(pattern => pattern.id === parseInt(window.location.pathname.replace("/pattern/", "")))[0] !== undefined && this.props.patterns.filter(pattern => pattern.id === parseInt(window.location.pathname.replace("/pattern/", "")))[0].close !== "" ?
+        {JSXAdapter.validPatternChecker(this.state, this.props, "close") ?
           JSXAdapter.closeInformationOne(this.state, relevantHistory, this.props, PatternChart)
           :
           null
         }
-        {this.state.history && this.props.patterns.filter(pattern => pattern.id === parseInt(window.location.pathname.replace("/pattern/", "")))[0] !== "" && relevantHistory.find(entry => entry.close.toString() === this.props.patterns.filter(pattern => pattern.id === parseInt(window.location.pathname.replace("/pattern/", "")))[0].close) !== undefined ?
+        {JSXAdapter.validPatternInfoChecker(this.state, this.props, "close", relevantHistory) ?
           JSXAdapter.closeInformationTwo(relevantHistory, this.props)
           :
           null
         }
-        {this.props.patterns.filter(pattern => pattern.id === parseInt(window.location.pathname.replace("/pattern/", "")))[0] !== undefined && this.props.patterns.filter(pattern => pattern.id === parseInt(window.location.pathname.replace("/pattern/", "")))[0].open !== "" ?
+        {JSXAdapter.validPatternChecker(this.state, this.props, "open") ?
           JSXAdapter.openInformationOne(this.state, relevantHistory, this.props, PatternChart)
           :
           null
         }
-        {this.state.history && this.props.patterns.filter(pattern => pattern.id === parseInt(window.location.pathname.replace("/pattern/", "")))[0] !== "" && relevantHistory.find(entry => entry.open.toString() === this.props.patterns.filter(pattern => pattern.id === parseInt(window.location.pathname.replace("/pattern/", "")))[0].open) !== undefined ?
+        {JSXAdapter.validPatternInfoChecker(this.state, this.props, "open", relevantHistory)?
           JSXAdapter.openInformationTwo(relevantHistory, this.props)
           :
           null
         }
-        {this.props.patterns.filter(pattern => pattern.id === parseInt(window.location.pathname.replace("/pattern/", "")))[0] !== undefined && this.props.patterns.filter(pattern => pattern.id === parseInt(window.location.pathname.replace("/pattern/", "")))[0].high !== "" ?
+        {JSXAdapter.validPatternChecker(this.state, this.props, "high") ?
           JSXAdapter.highInformationOne(this.state, relevantHistory, this.props, PatternChart)
           :
           null
         }
-        {this.state.history && this.props.patterns.filter(pattern => pattern.id === parseInt(window.location.pathname.replace("/pattern/", "")))[0] !== "" && relevantHistory.find(entry => entry.high.toString() === this.props.patterns.filter(pattern => pattern.id === parseInt(window.location.pathname.replace("/pattern/", "")))[0].high) !== undefined ?
+        {JSXAdapter.validPatternInfoChecker(this.state, this.props, "high", relevantHistory) ?
           JSXAdapter.highInformationTwo(relevantHistory, this.props)
           :
           null
         }
-        {this.props.patterns.filter(pattern => pattern.id === parseInt(window.location.pathname.replace("/pattern/", "")))[0] !== undefined && this.props.patterns.filter(pattern => pattern.id === parseInt(window.location.pathname.replace("/pattern/", "")))[0].low !== "" ?
+        {JSXAdapter.validPatternChecker(this.state, this.props, "low") ?
           JSXAdapter.lowInformationOne(this.state, relevantHistory, this.props, PatternChart)
           :
           null
         }
-        {this.state.history && this.props.patterns.filter(pattern => pattern.id === parseInt(window.location.pathname.replace("/pattern/", "")))[0] !== "" && relevantHistory.find(entry => entry.low.toString() === this.props.patterns.filter(pattern => pattern.id === parseInt(window.location.pathname.replace("/pattern/", "")))[0].low) !== undefined ?
+        {JSXAdapter.validPatternInfoChecker(this.state, this.props, "low", relevantHistory) ?
           JSXAdapter.lowInformationTwo(relevantHistory, this.props)
           :
           null
