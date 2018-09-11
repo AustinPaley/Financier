@@ -2,8 +2,9 @@ import React from 'react'
 
 class JSXAdapter {
   static validPatternChecker(state, props, type){
+    debugger
     return (
-      state.history && props.patterns.filter(pattern => pattern.id === parseInt(window.location.pathname.replace("/pattern/", "")))[0] !== undefined && props.patterns.filter(pattern => pattern.id === parseInt(window.location.pathname.replace("/pattern/", "")))[0].type !== ""
+      state.history && props.patterns.filter(pattern => pattern.id === parseInt(window.location.pathname.replace("/pattern/", "")))[0] !== undefined && props.patterns.filter(pattern => pattern.id === parseInt(window.location.pathname.replace("/pattern/", "")))[0][type] !== ""
     )
   }
 
