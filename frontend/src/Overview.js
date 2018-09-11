@@ -29,7 +29,6 @@ class Overview extends React.Component{
   componentDidMount(){
     Adapter.makeFetch(Constants.SPXCALL)
     .then(res => {
-      debugger
       if(!res.Information && !res["Error Message"]){
         this.setState({
           todaySPX: Object.entries(res["Time Series (Daily)"])[0][1]["4. close"],

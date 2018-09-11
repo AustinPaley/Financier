@@ -3,6 +3,7 @@
 export const API = process.env.REACT_APP_ALPHA_VANTAGE_API
 export const URL1 = "https://www.alphavantage.co/query?function"
 export const URL2 = "https://newsapi.org/v2/top-headlines?sources=the-wall-street-journal&apiKey="
+export const IEXURL = "https://api.iextrading.com/1.0/stock/"
 export const DAILY = `=TIME_SERIES_DAILY`
 export const SPXSYMBOL = "&symbol=SPX"
 export const DJISYMBOL = "&symbol=DJI"

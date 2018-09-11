@@ -51,7 +51,6 @@ class Spotlight extends React.Component{
     if (ToBeDeleted !== "Your Saved Symbols..."){
       Adapter.spotlightDelete("http://localhost:4000/api/v1/spotlights")
       .then(res => {
-        debugger
         this.setState({
           saved_patterns: res
         })
