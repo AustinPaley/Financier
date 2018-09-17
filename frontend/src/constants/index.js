@@ -37,10 +37,11 @@ export const UpArrow = require('../images/up-arrow.png')
 export const EXISTINGACCOUNTURL = 'http://localhost:4000/api/v1/users'
 
 //Matcher.js
-export const POSTURL = "http://localhost:4000/api/v1/patterns"
-export const DELETEURL = "http://localhost:4000/api/v1/patterns/"
-export const DeleteButton = require('../images/delete-icon.png')
-export const LoadingWheel = require('../images/loading-wheel.gif')
+export * from './matcher';
+// export const POSTURL = "http://localhost:4000/api/v1/patterns"
+// export const DELETEURL = "http://localhost:4000/api/v1/patterns/"
+// export const DeleteButton = require('../images/delete-icon.png')
+// export const LoadingWheel = require('../images/loading-wheel.gif')
 
 //Construction
 export const Construction = require('../images/construction.png')
