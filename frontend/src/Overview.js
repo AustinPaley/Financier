@@ -2,7 +2,7 @@ import React from 'react'
 import {connect} from 'react-redux'
 import Slider from 'react-slick'
 import Adapter from './adapters/Adapter'
-import * as Constants from './adapters/Constants'
+import * as Constants from './constants'
 import ReactPlayer from 'react-player'
 
 // const Loading = require('./images/loading-wheel.gif')

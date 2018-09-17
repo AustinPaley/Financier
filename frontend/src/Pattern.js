@@ -1,7 +1,7 @@
 import React from 'react'
 import { connect } from 'react-redux'
 import Adapter from './adapters/Adapter'
-import * as Constants from './adapters/Constants'
+import * as Constants from './constants'
 import JSXAdapter from './adapters/JSXAdapter'
 import PatternChart from './components/PatternChart'
 

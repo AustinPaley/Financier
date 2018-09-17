@@ -2,7 +2,7 @@ import React from 'react'
 import { Link, withRouter } from 'react-router-dom'
 import { addUser } from './actions'
 import {connect} from 'react-redux'
-import * as Constants from './adapters/Constants'
+import * as Constants from './constants'
 
 class Register extends React.Component{
   constructor(props){

@@ -2,7 +2,7 @@ import React from 'react'
 import SpotlightChart from './components/SpotlightChart'
 import {connect} from 'react-redux'
 import Adapter from './adapters/Adapter'
-import * as Constants from './adapters/Constants'
+import * as Constants from './constants'
 
 let Yes = null
 let IntervalCall = null

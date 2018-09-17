@@ -13,7 +13,7 @@ import Pattern from './Pattern'
 import QuoteWindow from './QuoteWindow'
 import TradeNow from './TradeNow'
 import { addPattern, addSymbols } from './actions'
-import * as Constants from './adapters/Constants'
+import * as Constants from './constants'
 
 class App extends Component {
   constructor(props){

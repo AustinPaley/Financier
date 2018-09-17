@@ -1,6 +1,6 @@
 import React from 'react'
 import {connect} from 'react-redux'
-import * as Constants from './adapters/Constants'
+import * as Constants from './constants'
 
 
 class TradeNow extends React.Component{

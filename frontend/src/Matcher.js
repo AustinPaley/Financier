@@ -4,7 +4,7 @@ import {connect} from 'react-redux'
 import { Link } from 'react-router-dom'
 import { addPattern, removePattern, createPattern } from './actions'
 import MatcherChart from './components/MatcherChart'
-import * as Constants from './adapters/Constants'
+import * as Constants from './constants'
 let Yes = null
 
 class Matcher extends React.Component{
