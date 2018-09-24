@@ -46,6 +46,8 @@ class Spotlight extends React.Component{
     })
   }
 
+  //////// NOT COMPLETE ////////
+
   deleteSpotlight = (event) => {
     const ToBeDeleted = event.target.parentNode.children[2].value
     if (ToBeDeleted !== "Your Saved Symbols..."){
@@ -57,6 +59,7 @@ class Spotlight extends React.Component{
       })
     }
   }
+  ////////
 
   changeStock = (event) => {
     const SymbolSearched = event.target.value
