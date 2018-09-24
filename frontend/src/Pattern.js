@@ -39,42 +39,42 @@ class Pattern extends React.Component{
     return(
       <div>
         {JSXAdapter.validPatternChecker(this.state, this.props, "close") ?
-          JSXAdapter.closeInformationOne(this.state, relevantHistory, this.props, PatternChart)
+          JSXAdapter.informationOne(this.state, relevantHistory, this.props, PatternChart, "close")
           :
           null
         }
         {JSXAdapter.validPatternInfoChecker(this.state, this.props, "close", relevantHistory) ?
-          JSXAdapter.closeInformationTwo(relevantHistory, this.props)
+          JSXAdapter.informationTwo(relevantHistory, this.props, "close")
           :
           null
         }
         {JSXAdapter.validPatternChecker(this.state, this.props, "open") ?
-          JSXAdapter.openInformationOne(this.state, relevantHistory, this.props, PatternChart)
+          JSXAdapter.informationOne(this.state, relevantHistory, this.props, PatternChart, "open")
           :
           null
         }
         {JSXAdapter.validPatternInfoChecker(this.state, this.props, "open", relevantHistory)?
-          JSXAdapter.openInformationTwo(relevantHistory, this.props)
+          JSXAdapter.informationTwo(relevantHistory, this.props, "open")
           :
           null
         }
         {JSXAdapter.validPatternChecker(this.state, this.props, "high") ?
-          JSXAdapter.highInformationOne(this.state, relevantHistory, this.props, PatternChart)
+          JSXAdapter.informationOne(this.state, relevantHistory, this.props, PatternChart, "high")
           :
           null
         }
         {JSXAdapter.validPatternInfoChecker(this.state, this.props, "high", relevantHistory) ?
-          JSXAdapter.highInformationTwo(relevantHistory, this.props)
+          JSXAdapter.informationTwo(relevantHistory, this.props, "high")
           :
           null
         }
         {JSXAdapter.validPatternChecker(this.state, this.props, "low") ?
-          JSXAdapter.lowInformationOne(this.state, relevantHistory, this.props, PatternChart)
+          JSXAdapter.informationOne(this.state, relevantHistory, this.props, PatternChart, "low")
           :
           null
         }
         {JSXAdapter.validPatternInfoChecker(this.state, this.props, "low", relevantHistory) ?
-          JSXAdapter.lowInformationTwo(relevantHistory, this.props)
+          JSXAdapter.informationTwo(relevantHistory, this.props, "low")
           :
           null
         }

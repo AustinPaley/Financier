@@ -128,7 +128,6 @@ class Matcher extends React.Component{
   }
 
   render(){
-    console.log(this.state.selectedPatternType)
     return(
       <div>
         {this.state.primarySymbol !== ''
