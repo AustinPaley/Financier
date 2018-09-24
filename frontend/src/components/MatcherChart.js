@@ -2,11 +2,7 @@ import React from 'react'
 import {Line} from 'react-chartjs'
 import Adapter from '../adapters/Adapter'
 import {connect} from 'react-redux'
-const API = process.env.REACT_APP_ALPHA_VANTAGE_API
-const URL1 = "https://www.alphavantage.co/query?function"
-const URL2 = "https://api.iextrading.com/1.0/stock/"
-const DAILY = `=TIME_SERIES_DAILY`
-const ONEMINUTE = "&interval=1min"
+import * as Constants from '../constants'
 
 class MatcherChart extends React.Component{
   constructor(props){
@@ -32,28 +28,7 @@ class MatcherChart extends React.Component{
   }
 
   componentDidMount(){
-    // let SYMBOL = "&symbol=" + this.props.primarySymbol
-    let IEXFETCH = URL2 + this.props.primarySymbol + "/chart/3m"
-    // Adapter.makeFetch(URL1 + DAILY + SYMBOL + ONEMINUTE + API)
-    // .then(res => {
-    //   if (!(res.hasOwnProperty('Error Message')) && !(res.hasOwnProperty('Information'))){
-    //     this.setState({
-    //       chartData:{
-    //         labels: [],
-    //         datasets: [{
-    //           label: "Performance Data",
-    //           fillColor: "rgba(66, 88, 138, 0.5)",
-    //           strokeColor: "rgba(66, 88, 138)",
-    //           highlightFill: "rgba(90, 0, 0)",
-    //           highlightStroke: "rgba(90, 0, 0)",
-    //           data: Object.entries(res["Time Series (Daily)"]).map(day => day[1]["4. close"]).reverse()
-    //         }]
-    //       },
-    //       allData: res,
-    //       unavailable: false
-    //     })
-    //   }
-    // })
+    let IEXFETCH = Constants.URL2 + this.props.primarySymbol + "/chart/3m"
     Adapter.makeFetch(IEXFETCH)
       .then(res => {
         if(res["status"] !== 404){
@@ -78,7 +53,7 @@ class MatcherChart extends React.Component{
   componentWillReceiveProps(nextProps) {
     if (this.state.primarySymbol !== nextProps.primarySymbol) {
       let SYMBOL = "&symbol=" + nextProps.primarySymbol
-      Adapter.makeFetch(URL1 + DAILY + SYMBOL + ONEMINUTE + API)
+      Adapter.makeFetch(Constants.URL1 + Constants.DAILY + SYMBOL + Constants.ONEMINUTE + Constants.API)
       .then(res => {
         if (!(res.hasOwnProperty('Error Message')) && !(res.hasOwnProperty('Information'))){
           this.setState({
@@ -102,7 +77,7 @@ class MatcherChart extends React.Component{
 
     else if (this.state.primarySymbol === nextProps.primarySymbol) {
       let SYMBOL = "&symbol=" + this.state.primarySymbol
-      Adapter.makeFetch(URL1 + DAILY + SYMBOL + ONEMINUTE + API)
+      Adapter.makeFetch(Constants.URL1 + Constants.DAILY + SYMBOL + Constants.ONEMINUTE + Constants.API)
       .then(res => {
         if (!(res.hasOwnProperty('Error Message')) && !(res.hasOwnProperty('Information'))){
           this.setState({
