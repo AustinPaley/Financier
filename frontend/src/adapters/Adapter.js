@@ -87,6 +87,14 @@ class Adapter {
     .then(response => response.json())
   }
 
+  static todaysData(res){
+    return Object.entries(res["Time Series (Daily)"])[0][1]["4. close"]
+  }
+
+  static yesterdaysData(res){
+    return Object.entries(res["Time Series (Daily)"])[1][1]["4. close"]
+  }
+
 }
 
 export default Adapter
