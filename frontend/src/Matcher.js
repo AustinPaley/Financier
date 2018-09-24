@@ -22,7 +22,8 @@ class Matcher extends React.Component{
       user_patterns: [],
       symbol_options: this.props.symbols,
       symbolInput: '',
-      loading: false
+      loading: false,
+      selectedPatternType: null,
     }
   }
 
@@ -113,7 +114,21 @@ class Matcher extends React.Component{
     })
   }
 
+  handlePatternType = (event) => {
+    if (event.target.value === "null"){
+      this.setState({
+        selectedPatternType: null
+      })
+    }
+    else {
+      this.setState({
+        selectedPatternType: event.target.value
+      })
+    }
+  }
+
   render(){
+    console.log(this.state.selectedPatternType)
     return(
       <div>
         {this.state.primarySymbol !== ''
@@ -144,14 +159,45 @@ class Matcher extends React.Component{
                 <option value={symbol.symbol}>{symbol.name.toString().substring(0, 30) + "..."}</option>)})}
             </select>
             </div>
-            <div className="form-amount-investing">Shares to Purchase: <input className="input-amount-investing" name="amount-investing" type="text" onChange={this.handleInput} /></div><br/>
-            <div className="pattern-selector">Open<input className="pattern-input" name="open" type="text" onChange={this.handleInput} /></div>
-            <div className="pattern-selector">Previous Close:<input className="pattern-input" name="close" type="text" onChange={this.handleInput} /></div>
-            <div className="pattern-selector">High:<input className="pattern-input" name="high" type="text" onChange={this.handleInput} /></div>
-            <div className="pattern-selector">Low:<input className="pattern-input" name="low" type="text" onChange={this.handleInput} /></div>
-            <div className="pattern-selector">Number of Days:<input className="pattern-input" name="days" type="text" onChange={this.handleInput} /></div>
-            <br /><br />
-            <button className="pattern-condition-button">Add New Condition</button>
+            <div className="form-amount-investing">Shares to Purchase: <input className="input-amount-investing" name="amount-investing" type="text" onChange={this.handleInput} />
+            </div>
+            <br/>
+            <div className="form-amount-investing">
+              Select Pattern Type:
+              <select className="pattern-selector-dropdown" name="pattern-selector" type="select" onChange={this.handlePatternType}>
+              <option default value="null">Select Pattern Type...</option>
+              <option value="Open">Open</option>
+              <option value="Previous Close">Previous Close</option>
+              <option value="High">High</option>
+              <option value="Low">Low</option>
+              </select>
+            </div>
+            <br/>
+            {this.state.selectedPatternType === "Open" ?
+              <div className="pattern-selector">Open:<input className="pattern-input" name="open" type="text" onChange={this.handleInput} /></div>
+              :
+              null
+            }
+            {this.state.selectedPatternType === "Previous Close" ?
+              <div className="pattern-selector">Previous Close:<input className="pattern-input" name="close" type="text" onChange={this.handleInput} /></div>
+              :
+              null
+            }
+            {this.state.selectedPatternType === "High" ?
+              <div className="pattern-selector">High:<input className="pattern-input" name="high" type="text" onChange={this.handleInput} /></div>
+              :
+              null
+            }
+            {this.state.selectedPatternType === "Low" ?
+              <div className="pattern-selector">Low:<input className="pattern-input" name="low" type="text" onChange={this.handleInput} /></div>
+              :
+              null
+            }
+            {this.state.selectedPatternType !== null ?
+              <div className="number-of-days">Number of Days:<input className="pattern-input" name="days" type="text" onChange={this.handleInput} /></div>
+              :
+              null
+            }
             <br /><br/>
             <input type="submit" value="Run" className="pattern-button" />
           </form>
