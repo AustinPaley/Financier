@@ -31,8 +31,8 @@ class Overview extends React.Component{
     .then(res => {
       if(!res.Information && !res["Error Message"]){
         this.setState({
-          todaySPX: Object.entries(res["Time Series (Daily)"])[0][1]["4. close"],
-          yesterdaySPX: Object.entries(res["Time Series (Daily)"])[1][1]["4. close"]
+          todaySPX: Adapter.todaysData(res),
+          yesterdaySPX: Adapter.yesterdaysData(res)
         })
       }
       else if (!!res.Information && !!res["Error Message"]){
@@ -47,12 +47,11 @@ class Overview extends React.Component{
     .then(res => {
       if(!res.Information && !res["Error Message"]){
         this.setState({
-        todayDJI: Object.entries(res["Time Series (Daily)"])[0][1]["4. close"],
-        yesterdayDJI: Object.entries(res["Time Series (Daily)"])[1][1]["4. close"]
+        todayDJI: Adapter.todaysData(res),
+        yesterdayDJI: Adapter.yesterdaysData(res)
         })
       }
 
-      // CHECK DIFFERENCE HERE BETWEEN res.Information & res["Error Message"]
       else if (!!res.Information && !!res["Error Message"]){
         this.setState({
           todayDJI: 0,
@@ -65,8 +64,8 @@ class Overview extends React.Component{
     .then(res => {
       if(!res.Information && !res["Error Message"]){
         this.setState({
-        todayIXIC: Object.entries(res["Time Series (Daily)"])[0][1]["4. close"],
-        yesterdayIXIC: Object.entries(res["Time Series (Daily)"])[1][1]["4. close"]
+        todayIXIC: Adapter.todaysData(res),
+        yesterdayIXIC: Adapter.yesterdaysData(res)
         })
       }
       else if (!!res.Information && !!res["Error Message"]){
@@ -81,8 +80,8 @@ class Overview extends React.Component{
     .then(res => {
       if(!res.Information && !res["Error Message"]){
         this.setState({
-        todayRUT: Object.entries(res["Time Series (Daily)"])[0][1]["4. close"],
-        yesterdayRUT: Object.entries(res["Time Series (Daily)"])[1][1]["4. close"]
+        todayRUT: Adapter.todaysData(res),
+        yesterdayRUT: Adapter.yesterdaysData(res)
         })
       }
       else if (!!res.Information && !!res["Error Message"]){
@@ -97,8 +96,8 @@ class Overview extends React.Component{
     .then(res => {
       if(!res.Information && !res["Error Message"]){
         this.setState({
-        todayDAX: Object.entries(res["Time Series (Daily)"])[0][1]["4. close"],
-        yesterdayDAX: Object.entries(res["Time Series (Daily)"])[1][1]["4. close"]
+        todayDAX: Adapter.todaysData(res),
+        yesterdayDAX: Adapter.yesterdaysData(res)
         })
       }
       else if (!!res.Information && !!res["Error Message"]){
@@ -112,8 +111,8 @@ class Overview extends React.Component{
     .then(res => {
       if(!res.Information && !res["Error Message"]){
         this.setState({
-        todayVIX: Object.entries(res["Time Series (Daily)"])[0][1]["4. close"],
-        yesterdayVIX: Object.entries(res["Time Series (Daily)"])[1][1]["4. close"]
+        todayVIX: Adapter.todaysData(res),
+        yesterdayVIX: Adapter.yesterdaysData(res)
         })
       }
       else if (!!res.Information && !!res["Error Message"]){
@@ -129,8 +128,8 @@ class Overview extends React.Component{
     .then(res => {
       if(!res.Information && !res["Error Message"]){
         this.setState({
-        todaySPX: Object.entries(res["Time Series (Daily)"])[0][1]["4. close"],
-        yesterdaySPX: Object.entries(res["Time Series (Daily)"])[1][1]["4. close"]
+        todaySPX: Adapter.todaysData(res),
+        yesterdaySPX: Adapter.yesterdaysData(res)
         })
       }
       else if (!!res.Information && !!res["Error Message"]){
@@ -145,8 +144,8 @@ class Overview extends React.Component{
     .then(res => {
       if(!res.Information && !res["Error Message"]){
         this.setState({
-        todayDJI: Object.entries(res["Time Series (Daily)"])[0][1]["4. close"],
-        yesterdayDJI: Object.entries(res["Time Series (Daily)"])[1][1]["4. close"]
+        todayDJI: Adapter.todaysData(res),
+        yesterdayDJI: Adapter.yesterdaysData(res)
         })
       }
       else if (!!res.Information && !!res["Error Message"]){
@@ -161,8 +160,8 @@ class Overview extends React.Component{
     .then(res => {
       if(!res.Information && !res["Error Message"]){
         this.setState({
-        todayIXIC: Object.entries(res["Time Series (Daily)"])[0][1]["4. close"],
-        yesterdayIXIC: Object.entries(res["Time Series (Daily)"])[1][1]["4. close"]
+        todayIXIC: Adapter.todaysData(res),
+        yesterdayIXIC: Adapter.yesterdaysData(res)
         })
       }
       else if (!!res.Information && !!res["Error Message"]){
@@ -177,8 +176,8 @@ class Overview extends React.Component{
     .then(res => {
       if(!res.Information && !res["Error Message"]){
         this.setState({
-        todayRUT: Object.entries(res["Time Series (Daily)"])[0][1]["4. close"],
-        yesterdayRUT: Object.entries(res["Time Series (Daily)"])[1][1]["4. close"]
+        todayRUT: Adapter.todaysData(res),
+        yesterdayRUT: Adapter.yesterdaysData(res)
         })
       }
       else if (!!res.Information && !!res["Error Message"]){
@@ -193,8 +192,8 @@ class Overview extends React.Component{
     .then(res => {
       if(!res.Information && !res["Error Message"]){
         this.setState({
-        todayDAX: Object.entries(res["Time Series (Daily)"])[0][1]["4. close"],
-        yesterdayDAX: Object.entries(res["Time Series (Daily)"])[1][1]["4. close"]
+        todayDAX: Adapter.todaysData(res),
+        yesterdayDAX: Adapter.yesterdaysData(res)
         })
       }
       else if (!!res.Information && !!res["Error Message"]){
@@ -208,8 +207,8 @@ class Overview extends React.Component{
     .then(res => {
       if(!res.Information && !res["Error Message"]){
         this.setState({
-        todayVIX: Object.entries(res["Time Series (Daily)"])[0][1]["4. close"],
-        yesterdayVIX: Object.entries(res["Time Series (Daily)"])[1][1]["4. close"]
+        todayVIX: Adapter.todaysData(res),
+        yesterdayVIX: Adapter.yesterdaysData(res)
         })
       }
       else if (!!res.Information && !!res["Error Message"]){
@@ -226,8 +225,8 @@ class Overview extends React.Component{
       .then(res => {
         if(!res.Information && !res["Error Message"]){
           this.setState({
-          todayNIKKEI: Object.entries(res["Time Series (Daily)"])[0][1]["4. close"],
-          yesterdayNIKKEI: Object.entries(res["Time Series (Daily)"])[1][1]["4. close"]
+          todayNIKKEI: Adapter.todaysData(res),
+          yesterdayNIKKEI: Adapter.yesterdaysData(res)
           })
         }
         else if (!!res.Information && !!res["Error Message"]){
@@ -242,8 +241,8 @@ class Overview extends React.Component{
       .then(res => {
         if(!res.Information && !res["Error Message"]){
           this.setState({
-          todayHSI: Object.entries(res["Time Series (Daily)"])[0][1]["4. close"],
-          yesterdayHSI: Object.entries(res["Time Series (Daily)"])[1][1]["4. close"]
+          todayHSI: Adapter.todaysData(res),
+          yesterdayHSI: Adapter.yesterdaysData(res)
           })
         }
         else if (!!res.Information && !!res["Error Message"]){
@@ -257,8 +256,8 @@ class Overview extends React.Component{
     .then(res => {
       if(!res.Information && !res["Error Message"]){
         this.setState({
-        todayFTSE: Object.entries(res["Time Series (Daily)"])[0][1]["4. close"],
-        yesterdayFTSE: Object.entries(res["Time Series (Daily)"])[1][1]["4. close"]
+        todayFTSE: Adapter.todaysData(res),
+        yesterdayFTSE: Adapter.yesterdaysData(res)
         })
       }
       else if (!!res.Information && !!res["Error Message"]){
@@ -273,8 +272,8 @@ class Overview extends React.Component{
     .then(res => {
       if(!res.Information && !res["Error Message"]){
         this.setState({
-        todayCAC40: Object.entries(res["Time Series (Daily)"])[0][1]["4. close"],
-        yesterdayCAC40: Object.entries(res["Time Series (Daily)"])[1][1]["4. close"]
+        todayCAC40: Adapter.todaysData(res),
+        yesterdayCAC40: Adapter.yesterdaysData(res)
         })
       }
       else if (!!res.Information && !!res["Error Message"]){
@@ -293,6 +292,7 @@ class Overview extends React.Component{
   }
 
   render(){
+    console.log(this.state.todaySPX)
     return(
       <div>
         <h2>Todays Markets</h2>
