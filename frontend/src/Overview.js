@@ -410,13 +410,12 @@ class Overview extends React.Component{
         </Slider>
         <br />
         <div className="topStoryContainer">
-          <tr><h2>Top Stories</h2></tr>
-          <div className="topNewsContainer">
+          <h2 className="topStoryContainer__h2">Top Stories</h2>
             {this.state.topnews.length === 3 ?
               this.state.topnews.map((news, index) =>{
                 return(
-                  <div key={index} className="topNews">
-                    <img src={news.urlToImage} alt={news.title} style={{width: 400, height: 200}} />
+                  <div key={index} className="topStoryContainer__topNews">
+                    <img src={news.urlToImage} alt={news.title}/>
                     <h3><a href={news.url}>{news.title.toString().substring(0, 55) + "..."}</a></h3>
                     <div>by {news.author}</div>
                   </div>
@@ -425,10 +424,8 @@ class Overview extends React.Component{
               :
               null
             }
-          </div>
         </div>
-        <br /><br/>
-        <h2>Recent News</h2>
+        <h2 className="recent-news-title">Recent News</h2>
         <div className="recent-news-container">
           <ReactPlayer url="https://www.youtube.com/watch?v=Ga3maNZ0x0w" playing volume="0" className="Video" controls="true" />
           {this.state.worldwidenews !== "" ? this.state.worldwidenews.map((news, index) => {
