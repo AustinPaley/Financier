@@ -2,6 +2,16 @@ html {
   font-size: 62.5%;
 }
 
+@media only screen and (max-width: 1000px) {
+  html {
+    font-size: 56.25%; } }
+@media only screen and (max-width: 800px) {
+  html {
+    font-size: 45%; } }
+@media only screen and (max-width: 600px) {
+  html {
+    font-size: 20%; } }
+
 h2{
   font-size: 2.25rem;
 }
@@ -187,6 +197,24 @@ h2{
   }
 }
 
+@media only screen and (max-width: 800px){
+  .navigation__housing{
+    position: absolute;
+    top: 50%;
+    left: 45%;
+    transform: translate(-50%, -50%);
+  }
+}
+
+@media only screen and (max-width: 600px){
+  .navigation__housing{
+    position: absolute;
+    top: 50%;
+    left: 45%;
+    transform: translate(-50%, -50%);
+  }
+}
+
 .navigation__todaysmarkets{
   display: inline-block;
   font-size: 2rem;
@@ -201,6 +229,24 @@ h2{
     font-size: 1.5rem;
     width: auto;
     margin-top: 0;
+  }
+}
+
+@media only screen and (max-width: 800px){
+  .navigation__todaysmarkets{
+    font-size: 1.5rem;
+    width: auto;
+    margin-top: 0;
+  }
+}
+
+@media only screen and (max-width: 600px){
+  .navigation__todaysmarkets{
+    font-size: 3.5rem;
+    width: auto;
+    margin-top: 0;
+    margin-right: 1rem;
+    margin-left: 3rem;
   }
 }
 
@@ -220,6 +266,23 @@ h2{
   }
 }
 
+@media only screen and (max-width: 800px){
+  .navigation__quotewindow{
+    font-size: 1.5rem;
+    width: auto;
+    margin-top: 0;
+  }
+}
+
+@media only screen and (max-width: 600px){
+  .navigation__quotewindow{
+    font-size: 3.5rem;
+    width: auto;
+    margin-top: 0;
+    margin-right: 1rem;
+  }
+}
+
 .navigation__stockspotlight{
   display:inline-block;
   font-size: 2rem;
@@ -233,6 +296,23 @@ h2{
     font-size: 1.5rem;
     width: auto;
     margin-top: 0;
+  }
+}
+
+@media only screen and (max-width: 800px){
+  .navigation__stockspotlight{
+    font-size: 1.5rem;
+    width: auto;
+    margin-top: 0;
+  }
+}
+
+@media only screen and (max-width: 600px){
+  .navigation__stockspotlight{
+    font-size: 3.5rem;
+    width: auto;
+    margin-top: 0;
+    margin-right: 1rem;
   }
 }
 
@@ -252,6 +332,23 @@ h2{
   }
 }
 
+@media only screen and (max-width: 800px){
+  .navigation__patternmatcher{
+    font-size: 1.5rem;
+    width: auto;
+    margin-top: 0;
+  }
+}
+
+@media only screen and (max-width: 600px){
+  .navigation__patternmatcher{
+    font-size: 3.5rem;
+    width: auto;
+    margin-top: 0;
+    margin-right: 1rem;
+  }
+}
+
 .navigation__trade{
   display:inline-block;
   font-size: 2rem;
@@ -265,6 +362,61 @@ h2{
     font-size: 1.5rem;
     width: auto;
     margin-top: 0;
+  }
+}
+
+@media only screen and (max-width: 800px){
+  .navigation__trade{
+    font-size: 1.5rem;
+    width: auto;
+    margin-top: 0;
+  }
+}
+
+@media only screen and (max-width: 600px){
+  .navigation__trade{
+    font-size: 3.5rem;
+    width: auto;
+    margin-top: 0;
+    margin-right: 1rem;
+  }
+}
+
+.navigation__clock{
+  display:inline-block;
+  font-size: 1.6rem;
+  text-decoration: none;
+  width: auto;
+  margin-left: 2.25rem;
+  color: #FFEBC4;
+}
+
+@media only screen and (max-width: 1000px){
+  .navigation__clock{
+    font-size: 1.1rem;
+    width: auto;
+    margin-left: 2.25rem;
+    margin-top: 0;
+  }
+}
+
+@media only screen and (max-width: 800px){
+  .navigation__clock{
+    font-size: 1.1rem;
+    width: auto;
+    margin-left: 2.25rem;
+    margin-top: 0;
+  }
+}
+
+@media only screen and (max-width: 600px){
+  .navigation__clock{
+    width: auto;
+    margin-left: 1rem;
+    margin-right: 1rem;
+    margin-top: 0;
+    font-size: .1rem;
+    display: none;
   }
 }
 
@@ -289,6 +441,29 @@ h2{
   }
 }
 
+@media only screen and (max-width: 800px){
+  .navigation__logout_button{
+    font-size: 1rem;
+    height: 1.8rem;
+    width: auto;
+    margin-left: 2.25rem;
+    margin-top: 0;
+  }
+}
+
+@media only screen and (max-width: 600px){
+  .navigation__logout_button{
+    font-size: .5rem;
+    height: 2rem;
+    width: auto;
+    margin-left: 1rem;
+    margin-top: 0;
+    background-color: transparent;
+    border-color: transparent;
+    color: #FFEBC4;
+  }
+}
+
 .navigation__logout_button:hover{
   display:inline-block;
   font-size: 1rem;
@@ -308,27 +483,31 @@ h2{
     font-size: 1rem;
     height: 1.8rem;
     width: auto;
-    margin-left: 4.25rem;
+    margin-left: 2.25rem;
     margin-top: 0;
   }
 }
 
-
-.navigation__clock{
-  display:inline-block;
-  font-size: 1.6rem;
-  text-decoration: none;
-  width: auto;
-  margin-left: 2.25rem;
-  color: #FFEBC4;
-}
-
-@media only screen and (max-width: 1000px){
-  .navigation__clock{
-    font-size: 1.1rem;
+@media only screen and (max-width: 800px){
+  .navigation__logout_button:hover{
+    font-size: 1rem;
+    height: 1.8rem;
     width: auto;
     margin-left: 2.25rem;
     margin-top: 0;
+  }
+}
+
+@media only screen and (max-width: 600px){
+  .navigation__logout_button:hover{
+    font-size: .5rem;
+    height: 2rem;
+    width: auto;
+    margin-left: 1rem;
+    margin-top: 0;
+    background-color: transparent;
+    border-color: transparent;
+    color: #FFEBC4;
   }
 }
 
