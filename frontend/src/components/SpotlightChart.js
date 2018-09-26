@@ -31,7 +31,7 @@ class SpotlightChart extends React.Component{
 
   componentDidMount(){
     if(this.props.primarySymbol !== ""){
-      let IEXFETCH = Constants.URL2 + this.props.primarySymbol + "/chart/3m"
+      let IEXFETCH = Constants.IEXURL + this.props.primarySymbol + "/chart/3m"
       Adapter.makeFetch(IEXFETCH)
       .then(res => {
         if(res["status"] !== 404){
