@@ -9,6 +9,10 @@ class MatcherChart extends React.Component{
     super(props)
 
     this.state={
+      openButtonStatus: "matcherchart-button",
+      closedButtonStatus: "matcherchart-button",
+      highButtonStatus: "matcherchart-button",
+      lowButtonStatus: "matcherchart-button",
       primarySymbol: this.props.primarySymbol,
       chartData: {
         labels: [],
@@ -28,7 +32,7 @@ class MatcherChart extends React.Component{
   }
 
   componentDidMount(){
-    let IEXFETCH = Constants.URL2 + this.props.primarySymbol + "/chart/3m"
+    let IEXFETCH = Constants.IEXURL + this.props.primarySymbol + "/chart/3m"
     Adapter.makeFetch(IEXFETCH)
       .then(res => {
         if(res["status"] !== 404){
@@ -108,6 +112,10 @@ class MatcherChart extends React.Component{
   handleClick = (event) =>{
     if (event.target.name === "open"){
       this.setState({
+        openButtonStatus: "matcherchart-button-selected",
+        closedButtonStatus: "matcherchart-button",
+        highButtonStatus: "matcherchart-button",
+        lowButtonStatus: "matcherchart-button",
         chartData:{
           labels: [],
           datasets: [{
@@ -124,6 +132,10 @@ class MatcherChart extends React.Component{
     }
     else if (event.target.name === "close"){
       this.setState({
+        openButtonStatus: "matcherchart-button",
+        closedButtonStatus: "matcherchart-button-selected",
+        highButtonStatus: "matcherchart-button",
+        lowButtonStatus: "matcherchart-button",
         chartData:{
           labels: [],
           datasets: [{
@@ -140,6 +152,10 @@ class MatcherChart extends React.Component{
     }
     else if (event.target.name === "high"){
       this.setState({
+        openButtonStatus: "matcherchart-button",
+        closedButtonStatus: "matcherchart-button",
+        highButtonStatus: "matcherchart-button-selected",
+        lowButtonStatus: "matcherchart-button",
         chartData:{
           labels: [],
           datasets: [{
@@ -156,6 +172,10 @@ class MatcherChart extends React.Component{
     }
     else if (event.target.name === "low"){
       this.setState({
+        openButtonStatus: "matcherchart-button",
+        closedButtonStatus: "matcherchart-button",
+        highButtonStatus: "matcherchart-button",
+        lowButtonStatus: "matcherchart-button-selected",
         chartData:{
           labels: [],
           datasets: [{
@@ -181,10 +201,10 @@ class MatcherChart extends React.Component{
           width="1200"
           height="400" />
         <br/>
-        <button name="open" onClick={this.handleClick}>Open</button>
-        <button name="high" onClick={this.handleClick}>High</button>
-        <button name="low" onClick={this.handleClick}>Low</button>
-        <button name="close" onClick={this.handleClick}>Close</button>
+        <button name="open" id="open-button" className={this.state.openButtonStatus} onClick={this.handleClick}>Open</button>
+        <button name="high" id="high-button" className={this.state.highButtonStatus} onClick={this.handleClick}>High</button>
+        <button name="low" id="low-button" className={this.state.lowButtonStatus} onClick={this.handleClick}>Low</button>
+        <button name="close" id="close-button" className={this.state.closedButtonStatus} onClick={this.handleClick}>Close</button>
       </div>
     )
   }
